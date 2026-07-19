@@ -1,24 +1,25 @@
-# Instatic Blog Ecosystem
+# StackScout
 
-Self-hosted visual CMS (Docker) → Static HTML/CSS → Git push → Live on Vercel/Cloudflare ($0).
+Dev infrastructure & automation blog. Self-hosted Instatic CMS (Docker) → Static HTML/CSS → Cloudflare Pages ($0).
 
-## Directory Structure
+**Live:** [stackscout-blog.pages.dev](https://stackscout-blog.pages.dev)
+
+## Architecture
 
 ```
 instatic/
-├── .github/workflows/   # Future CI/CD
 ├── instatic-data/       # Docker volume mount (NOT in git)
 │   ├── data/cms.db      # Live SQLite database
 │   └── uploads/         # Media library assets
-├── public-site/         # Git-tracked static output (deploys to hosting)
-│   ├── .git/
+├── public-site/         # Git-tracked static output → Cloudflare Pages
 │   ├── assets/          # CSS, fonts, scripts
 │   ├── posts/           # Generated post pages
 │   ├── index.html
 │   ├── sitemap.xml
 │   └── robots.txt
 ├── scripts/
-│   └── deploy.sh        # One-command deploy
+│   ├── deploy.sh        # Git commit + push
+│   └── backup.sh        # SQLite backup
 ├── compose.prod.yml     # Base Docker compose
 ├── compose.sqlite.yml   # SQLite override
 └── .mcp.json            # MCP server config
@@ -33,7 +34,7 @@ docker compose -f compose.prod.yml -f compose.sqlite.yml up -d
 # 2. Open admin
 open http://localhost:3001/admin
 
-# 3. Create content via CMS UI, then deploy
+# 3. Edit content, publish, then deploy
 ./scripts/deploy.sh
 ```
 
@@ -49,32 +50,33 @@ open http://localhost:3001/admin
 | Deploy w/ message | `./scripts/deploy.sh "Add new blog post"` |
 | Backup DB | `./scripts/backup.sh` |
 
-## Deployment Setup
+## Deployment
 
-1. Create a GitHub repo for your static site
-2. In `public-site/`, add the remote:
-   ```bash
-   cd public-site
-   git remote add origin git@github.com:YOUR_USER/YOUR_REPO.git
-   ```
-3. Connect the repo to Vercel or Cloudflare Pages
-4. Run `./scripts/deploy.sh` after every publish
+**Cloudflare Pages** connected to `godera010/stackscout-blog` (main branch).
+
+| Setting | Value |
+|---------|-------|
+| Repository | `godera010/stackscout-blog` |
+| Branch | `main` |
+| Build output directory | `public-site` |
+
+Pushes to `main` auto-deploy. Use `./scripts/deploy.sh` to commit and push changes.
 
 ## Backup
 
-SQLite database backup:
 ```bash
 ./scripts/backup.sh
 # Creates: backups/cms-YYYY-MM-DD-HHMMSS.db
 ```
 
-## MCP Integration
+## MCP
 
-The `.mcp.json` connects to the running CMS instance for programmatic content/page management. Open the Site or Content editor in your browser for editing tools to work.
+`.mcp.json` connects to the running CMS for programmatic content/page management. Open the Site or Content editor in your browser for editing tools to work.
 
 ## Stack
 
 - **CMS:** Instatic (Bun, visual editor)
-- **Database:** SQLite (file-based, zero-config)
+- **Database:** SQLite
 - **Output:** Static HTML/CSS
-- **Deploy:** Git push → Vercel/Cloudflare (free tier)
+- **Deploy:** Git push → Cloudflare Pages (free)
+- **Repo:** [github.com/godera010/stackscout-blog](https://github.com/godera010/stackscout-blog)
