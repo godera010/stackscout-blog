@@ -1,0 +1,6 @@
+# Public Site - .gitignore
+# Keep assets/, posts/, index.html tracked
+# Ignore build artifacts if any
+
+node_modules/
+.env
