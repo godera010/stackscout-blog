@@ -1,0 +1,9 @@
+{
+  "instatic": {
+    "type": "http",
+    "url": "http://localhost:3001/_instatic/mcp",
+    "headers": {
+      "Authorization": "Bearer imcp_bIb6eMVbtj_6f2i92JEr2tBjFVfsqEGLODFESBk0vs0"
+    }
+  }
+}

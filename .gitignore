@@ -1,0 +1,27 @@
+# Instatic CMS - Root .gitignore
+
+# SQLite database (managed by Docker volume, never commit)
+instatic-data/data/
+
+# User uploads (managed by Docker volume, never commit)
+instatic-data/uploads/
+
+# Docker volumes
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
