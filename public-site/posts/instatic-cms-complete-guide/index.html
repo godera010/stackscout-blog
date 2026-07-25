@@ -10,6 +10,78 @@
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/assets/styles.css">
+  <style>
+    .toc {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+    .toc h2 {
+      font-size: 1rem;
+      margin: 0 0 var(--space-md);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .toc ol {
+      margin: 0;
+      padding-left: var(--space-xl);
+    }
+    .toc li {
+      margin-bottom: var(--space-xs);
+      font-size: 0.9375rem;
+    }
+    .toc a {
+      color: var(--color-text);
+    }
+    .toc a:hover {
+      color: var(--color-accent);
+    }
+    .toc .sub {
+      padding-left: var(--space-lg);
+      list-style-type: disc;
+      margin-top: var(--space-xs);
+    }
+    .toc .sub li {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+    .post-image {
+      margin: var(--space-xl) 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+    .post-image img {
+      width: 100%;
+      display: block;
+    }
+    .post-image figcaption {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      background: var(--color-surface);
+    }
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      margin: var(--space-xl) 0;
+      border: 1px solid var(--color-border);
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -39,18 +111,62 @@
         </ul>
       </div>
 
-      <div class="body">
-        <p>Instatic CMS is a self-hosted, open-source visual website builder that compiles design tokens, content, and layouts into clean static HTML and CSS — eliminating the need for separate frontend frameworks, hosting platforms, and form services. Built by the CoreBunch team (makers of Motion.page and Core Framework), Instatic runs on a single Bun server and outputs pages lightweight enough to read in view-source. This guide covers Instatic's architecture, deployment paths, and how it compares to Webflow, WordPress, and Astro-based stacks.</p>
+      <nav class="toc">
+        <h2>Contents</h2>
+        <ol>
+          <li><a href="#who-built">Who Built Instatic CMS?</a></li>
+          <li><a href="#architecture">Technical Architecture</a>
+            <ul class="sub">
+              <li><a href="#publisher">How the Static Publisher Works</a></li>
+              <li><a href="#plugins">Plugin Security Model</a></li>
+            </ul>
+          </li>
+          <li><a href="#core-framework">Core Framework Integration</a></li>
+          <li><a href="#components">Visual Components and Content Model</a>
+            <ul class="sub">
+              <li><a href="#typed-params">Typed Parameters</a></li>
+              <li><a href="#forms">Native Forms</a></li>
+            </ul>
+          </li>
+          <li><a href="#deployment">Deployment Options</a>
+            <ul class="sub">
+              <li><a href="#railway">Railway Deploy</a></li>
+              <li><a href="#docker">Docker Deployment</a></li>
+              <li><a href="#local">Local Development</a></li>
+            </ul>
+          </li>
+          <li><a href="#comparison">Instatic vs Webflow vs WordPress vs Astro</a></li>
+          <li><a href="#who-should">Who Should Use Instatic?</a></li>
+          <li><a href="#limitations">Limitations and Tradeoffs</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
 
-        <h2>Who Built Instatic CMS?</h2>
+      <div class="body">
+        <p>Instatic CMS is a self-hosted, open-source visual website builder that compiles design tokens, content, and layouts into clean static HTML and CSS — eliminating the need for separate frontend frameworks, hosting platforms, and form services. Built by the CoreBunch team (makers of Motion.page and Core Framework), Instatic runs on a single Bun server and outputs pages lightweight enough to read in view-source.</p>
+
+        <!-- Video: Intro -->
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/zyjCF_TaLlg" title="Meet Instatic: Open-Source Alternative to Webflow, Framer & WordPress" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h2 id="who-built">Who Built Instatic CMS?</h2>
         <p><strong>CoreBunch is a bootstrapped software team that created Instatic after their previous product lost 80% of revenue to AI coding tools.</strong></p>
         <p>The team behind Instatic — David Babinec and Rameez — previously built Motion.page (a visual animation tool for WordPress) and Core Framework (a design-token engine used by thousands of WordPress professionals working with builders like Bricks and Oxygen). Core Framework's revenue dropped sharply as AI-assisted coding tools made design-token configuration easier for non-specialists. Rather than continuing to build plugins for existing platforms, the team pivoted to develop a standalone visual publishing platform.</p>
         <p>Instatic is the result: a unified CMS that combines the visual editing experience of Webflow with the self-hosted control of WordPress and the static output of a Jamstack generator. The project is MIT licensed with no open-core asterisks, no "contact sales" tier, and no vendor lock-in.</p>
         <blockquote><strong>Single-source claim:</strong> The 80% revenue decline figure comes from the original research document provided for this post. CoreBunch has not publicly disclosed exact revenue figures. This claim should be treated as approximate.</blockquote>
 
-        <h2>Instatic CMS Technical Architecture</h2>
+        <h2 id="architecture">Instatic CMS Technical Architecture</h2>
         <p><strong>Instatic runs on a single Bun server that combines a visual canvas editor, SQLite or Postgres database, sandboxed WebAssembly plugins, and a static HTML compiler.</strong></p>
-        <p>The canvas editor displays real DOM badges on each node (showing <code>section</code>, <code>div</code>, <code>article</code>, etc.) and allows side-by-side editing across Desktop, Tablet, and Mobile breakpoints. The technical stack breaks down as follows:</p>
+        <p>The canvas editor displays real DOM badges on each node (showing <code>section</code>, <code>div</code>, <code>article</code>, etc.) and allows side-by-side editing across Desktop, Tablet, and Mobile breakpoints.</p>
+
+        <figure class="post-image">
+          <img src="https://raw.githubusercontent.com/corebunch/instatic/main/docs/assets/readme/design-framework.webp" alt="Core Framework scales inside Instatic — a fluid spacing scale with mathematical ratios, edited live next to the canvas" loading="lazy">
+          <figcaption>Core Framework design tokens edited live next to the multi-breakpoint canvas.</figcaption>
+        </figure>
+
+        <p>The technical stack breaks down as follows:</p>
         <table>
           <thead><tr><th>Component</th><th>Technology</th></tr></thead>
           <tbody>
@@ -67,7 +183,7 @@
         </table>
         <p>The architecture eliminates the traditional headless CMS stack. Instead of connecting a headless CMS → frontend framework → hosting platform → form service → analytics vendor — each with its own bill and dashboard — Instatic consolidates everything into one process.</p>
 
-        <h3>How the Static Publisher Works</h3>
+        <h3 id="publisher">How the Static Publisher Works</h3>
         <p>Instatic's publisher operates in three layers:</p>
         <ol>
           <li><strong>Static pages</strong> bake straight to disk on publish and swap atomically. Visitors receive a file, not a server render.</li>
@@ -76,11 +192,11 @@
         </ol>
         <p>The output is plain HTML and compact CSS. No React on public pages, no editor runtime, no framework attributes in the markup. The site loads like a static file because it is one.</p>
 
-        <h3>Plugin Security Model</h3>
+        <h3 id="plugins">Plugin Security Model</h3>
         <p>Instatic plugins run in per-plugin worker threads hosting a QuickJS-WASM sandbox. Plugins have no filesystem access, no environment variables, and no network access unless the site owner explicitly grants it — one host at a time. Editor extensions require the explicit <code>editor.code</code> permission before installation.</p>
         <p>Through the SDK, plugins can add HTTP routes, admin pages, storage, background jobs, loop data sources, canvas modules, media adapters, and lifecycle hooks.</p>
 
-        <h2>Core Framework Integration</h2>
+        <h2 id="core-framework">Core Framework Integration</h2>
         <p><strong>Core Framework is a built-in design-token engine that generates color shades, fluid type scales, and spacing ramps from a single configuration.</strong></p>
         <p>Core Framework is not a plugin — it's wired into Instatic as a core system. The same engine that thousands of WordPress professionals use in Bricks and Oxygen is the foundation of Instatic's design layer.</p>
         <p>Key capabilities:</p>
@@ -92,11 +208,16 @@
         </ul>
         <p>Your design system lives as data. Change one token and every page using that token updates across the entire site.</p>
 
-        <h2>Visual Components and Content Model</h2>
+        <h2 id="components">Visual Components and Content Model</h2>
         <p><strong>Instatic uses a unified data model where pages, posts, custom collections, form submissions, and visual components all share one store: <code>data_tables</code> and <code>data_rows</code>.</strong></p>
         <p>There is no special-cased "pages" table. Schemas, raw rows, imports, exports, and form submissions all sit in one consistent place. At <code>/admin/data</code>, you create custom post types and data tables with their own fields, then work the rows in a spreadsheet-style grid with search, sort, filter, bulk publish, and bulk export.</p>
 
-        <h3>Visual Components with Typed Parameters</h3>
+        <figure class="post-image">
+          <img src="https://raw.githubusercontent.com/corebunch/instatic/main/docs/assets/readme/build-components.webp" alt="Editing a Visual Component — a typed text param with a default value, bound to a node in the component's own tree" loading="lazy">
+          <figcaption>Visual Components with typed parameters update every instance site-wide.</figcaption>
+        </figure>
+
+        <h3 id="typed-params">Visual Components with Typed Parameters</h3>
         <p>Reusable UI components support typed parameters and named content slots:</p>
         <table>
           <thead><tr><th>Parameter type</th><th>Use case</th></tr></thead>
@@ -114,10 +235,20 @@
         </table>
         <p>Editing a master component updates every instance site-wide. Instatic blocks circular component references before they happen, preventing infinite loops.</p>
 
-        <h3>Native Forms</h3>
+        <figure class="post-image">
+          <img src="https://raw.githubusercontent.com/corebunch/instatic/main/docs/assets/readme/manage-media.webp" alt="The Media workspace — an OS-style file manager for every asset on the site" loading="lazy">
+          <figcaption>The Media workspace provides OS-style file management with folders, bulk operations, and usage tracking.</figcaption>
+        </figure>
+
+        <h3 id="forms">Native Forms</h3>
         <p>Forms placed on the canvas read input fields and automatically generate matching database tables in the CMS. Submissions land in your own data tables — no third-party form service, no embed, no monthly fee for a contact form.</p>
 
-        <h2>Instatic Deployment Options</h2>
+        <figure class="post-image">
+          <img src="https://raw.githubusercontent.com/corebunch/instatic/main/docs/assets/readme/analyze-dashboard.webp" alt="The Instatic dashboard — site stats, activity feed, and status widgets on a customizable grid" loading="lazy">
+          <figcaption>The customizable dashboard with audit log, activity feed, and status widgets.</figcaption>
+        </figure>
+
+        <h2 id="deployment">Instatic Deployment Options</h2>
         <p><strong>Instatic deploys via one-click Railway templates ($5/month), Render, or Docker on any VPS.</strong></p>
         <table>
           <thead><tr><th>Provider</th><th>Database</th><th>Best for</th><th>Cost</th></tr></thead>
@@ -129,23 +260,33 @@
           </tbody>
         </table>
 
-        <h3>One-Click Railway Deploy</h3>
+        <figure class="post-image">
+          <img src="https://raw.githubusercontent.com/corebunch/instatic/main/docs/assets/readme/railway-deploy.gif" alt="Deploying Instatic to Railway — from template to a live CMS in under a minute" loading="lazy">
+          <figcaption>Railway one-click deploy: template to live CMS in under two minutes.</figcaption>
+        </figure>
+
+        <h3 id="railway">One-Click Railway Deploy</h3>
         <p>Railway is the recommended path. The template provisions the Docker container (<code>ghcr.io/corebunch/instatic:latest</code>) and attaches a persistent block volume at <code>/app/storage</code> — ensuring the SQLite database, uploaded media, custom fonts, and compiled static assets survive container restarts and version redeploys. Railway generates the <code>INSTATIC_SECRET_KEY</code> automatically for encrypting LLM API keys and MFA settings. Deployment takes under two minutes at a flat ~$5/month compute cost with no terminal required.</p>
 
-        <h3>Docker Deployment</h3>
+        <h3 id="docker">Docker Deployment</h3>
         <p>For self-managed servers, Instatic publishes a single Docker image at <code>ghcr.io/corebunch/instatic:latest</code>. The minimum viable Docker setup:</p>
         <pre><code>INSTATIC_IMAGE=ghcr.io/corebunch/instatic:latest \
 docker compose -f compose.prod.yml -f compose.sqlite.yml up -d</code></pre>
         <p>The compose configuration mounts local directories for the SQLite database and uploads, so data persists across container restarts. Adding Caddy for TLS termination is documented in the VPS deployment guide.</p>
 
-        <h3>Local Development</h3>
+        <h3 id="local">Local Development</h3>
         <pre><code>git clone https://github.com/corebunch/instatic.git
 cd instatic
 bun install
 bun run dev</code></pre>
         <p>The dev server launches at <code>http://localhost:5173</code>. Running <code>bun run start</code> builds the admin panel and serves it from the Bun server at <code>http://localhost:3001/admin</code>.</p>
 
-        <h2>Instatic vs Webflow vs WordPress vs Astro</h2>
+        <!-- Video: Deployment Tutorial -->
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/5XUKUy0fu54" title="Deploy, Design, and Build with Instatic" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h2 id="comparison">Instatic vs Webflow vs WordPress vs Astro</h2>
         <p><strong>Instatic produces the same static output as Astro, the visual editing of Webflow, and the self-hosted control of WordPress — in a single tool.</strong></p>
         <table>
           <thead><tr><th>Feature</th><th>Instatic</th><th>Webflow</th><th>WordPress + Elementor</th><th>Astro + Headless CMS</th></tr></thead>
@@ -170,7 +311,7 @@ bun run dev</code></pre>
         <h3>vs Astro + Headless CMS</h3>
         <p>Astro paired with Strapi or Sanity produces excellent static output but requires configuring a build pipeline, managing two systems, and triggering CI/CD deploys on content changes. Instatic combines the content editor and static compiler in one tool with no deployment pipeline to configure.</p>
 
-        <h2>Who Should Use Instatic CMS?</h2>
+        <h2 id="who-should">Who Should Use Instatic CMS?</h2>
         <p><strong>Instatic suits agencies wanting client-friendly editors, solo developers seeking static performance without code-first SSGs, and teams needing self-hosted control.</strong></p>
         <p>Best-fit scenarios:</p>
         <ul>
@@ -187,7 +328,7 @@ bun run dev</code></pre>
           <li>Projects needing a mature plugin ecosystem (still growing)</li>
         </ul>
 
-        <h2>Instatic Limitations and Tradeoffs</h2>
+        <h2 id="limitations">Instatic Limitations and Tradeoffs</h2>
         <p><strong>Instatic is version 0.0.x as of July 2026 — production-stable for single sites, but APIs may shift before 1.0.</strong></p>
         <p>Honest assessment:</p>
         <ul>
@@ -199,7 +340,7 @@ bun run dev</code></pre>
         </ul>
         <p>The tradeoff: you get clean output, full ownership, and zero vendor lock-in at the cost of a younger ecosystem. For solo developers and small agencies comfortable with early-stage tools, the math works.</p>
 
-        <h2>Getting Started with Instatic</h2>
+        <h2 id="getting-started">Getting Started with Instatic</h2>
         <p><strong>Clone the repo, run <code>bun install</code> and <code>bun run dev</code>, and the visual editor launches at localhost:5173.</strong></p>
         <p>Quick-start steps:</p>
         <ol>
@@ -212,7 +353,7 @@ bun run dev</code></pre>
         <p>For production, run <code>bun run start</code> to build the admin panel and serve from port 3001. For Docker deployment, use the compose files with SQLite or Postgres.</p>
         <p>The AI agent works through the MCP protocol with a "Bring Your Own Key" system — connect Claude, OpenAI, OpenRouter, or local Ollama to your running instance. The agent edits real, editable DOM nodes directly on the canvas, not screenshots or code walls. It includes a 35-tool Site scope for building pages and a 15-tool Content scope for editing entries.</p>
 
-        <h2>FAQ</h2>
+        <h2 id="faq">FAQ</h2>
 
         <h3>Is Instatic CMS free?</h3>
         <p>Instatic is MIT licensed with no paid tiers, no open-core restrictions, and no "contact sales" requirements. Hosting costs depend on your deployment choice: $0 on your own VPS, ~$5/month on Railway with SQLite, or free on Cloudflare Pages for the static output.</p>
