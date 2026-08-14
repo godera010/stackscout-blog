@@ -85,10 +85,14 @@
 </head>
 <body>
   <header>
-    <nav>
-      <a href="/" class="logo">StackScout</a>
-      <a href="/posts">Posts</a>
-      <a href="/sitemap.xml">Sitemap</a>
+    <nav class="nav-container">
+      <div class="brand-wrapper">
+        <a href="/" class="brand-logo"><span class="dot"></span>StackScout</a>
+      </div>
+      <div class="nav-links">
+        <a href="/posts" class="active">Posts</a>
+        <a href="/about">About</a>
+      </div>
     </nav>
   </header>
   <main>
@@ -380,7 +384,31 @@ bun run dev</code></pre>
     </article>
   </main>
   <footer>
-    <p>&copy; 2026 StackScout. Powered by Instatic.</p>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="brand-logo"><span class="dot"></span>StackScout</a>
+          <p>Engineering infrastructure, automation &amp; deployment deep-dives.</p>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-nav-col">
+            <strong>Navigation</strong>
+            <a href="/">Home</a>
+            <a href="/posts">Posts</a>
+            <a href="/about">About</a>
+          </div>
+          <div class="footer-nav-col">
+            <strong>Resources</strong>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 StackScout. Powered by Cloudflare Pages.</p>
+        <p>Dev Infrastructure &amp; Automation Blog</p>
+      </div>
+    </div>
   </footer>
 
   <script type="application/ld+json">

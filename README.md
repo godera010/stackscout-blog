@@ -1,58 +1,45 @@
 # StackScout
 
-Dev infrastructure & automation blog. Self-hosted Instatic CMS (Docker) → Static HTML/CSS → Cloudflare Pages ($0).
+Dev infrastructure & automation publication. Ultra-fast, zero-dependency static HTML/CSS → Cloudflare Pages ($0).
 
-**Live:** [stackscout-blog.pages.dev](https://stackscout-blog.pages.dev)
+**Live Site:** [stackscout-blog.pages.dev](https://stackscout-blog.pages.dev)
 
 ## Architecture
 
 ```
 instatic/
-├── instatic-data/       # Docker volume mount (NOT in git)
-│   ├── data/cms.db      # Live SQLite database
-│   └── uploads/         # Media library assets
-├── public-site/         # Git-tracked static output → Cloudflare Pages
-│   ├── assets/          # CSS, fonts, scripts
-│   ├── posts/           # Generated post pages
-│   ├── index.html
-│   ├── sitemap.xml
+├── public-site/         # Git-tracked static site root → Cloudflare Pages
+│   ├── assets/          # CSS design system (styles.css)
+│   ├── posts/           # Engineering articles & markdown sources
+│   ├── about/           # About page
+│   ├── index.html       # Homepage
+│   ├── sitemap.xml      # SEO sitemap
 │   └── robots.txt
 ├── scripts/
-│   ├── deploy.sh        # Git commit + push
-│   └── backup.sh        # SQLite backup
-├── compose.prod.yml     # Base Docker compose
-├── compose.sqlite.yml   # SQLite override
-└── .mcp.json            # MCP server config
+│   └── deploy.sh        # Stage, commit & push to GitHub
+└── research/            # Technical research & post drafts
 ```
 
-## Quick Start
+## Quick Start & Workflow
 
 ```bash
-# 1. Start CMS
-docker compose -f compose.prod.yml -f compose.sqlite.yml up -d
-
-# 2. Open admin
-open http://localhost:3001/admin
-
-# 3. Edit content, publish, then deploy
-./scripts/deploy.sh
+# 1. Edit or add articles in public-site/posts/
+# 2. Preview locally using VS Code Live Server or python -m http.server
+# 3. Deploy to Cloudflare Pages:
+./scripts/deploy.sh "Publish new engineering article"
 ```
 
 ## Commands
 
 | Action | Command |
 |--------|---------|
-| Start CMS | `docker compose -f compose.prod.yml -f compose.sqlite.yml up -d` |
-| Stop CMS | `docker compose -f compose.prod.yml -f compose.sqlite.yml down` |
-| Logs | `docker compose -f compose.prod.yml -f compose.sqlite.yml logs -f` |
-| Update | `docker compose -f compose.prod.yml -f compose.sqlite.yml pull && docker compose -f compose.prod.yml -f compose.sqlite.yml up -d` |
 | Deploy site | `./scripts/deploy.sh` |
 | Deploy w/ message | `./scripts/deploy.sh "Add new blog post"` |
-| Backup DB | `./scripts/backup.sh` |
+| Local preview | `python -m http.server 8080 --directory public-site` |
 
 ## Deployment
 
-**Cloudflare Pages** connected to `godera010/stackscout-blog` (main branch).
+**Cloudflare Pages** connected to `godera010/stackscout-blog` (`main` branch).
 
 | Setting | Value |
 |---------|-------|
@@ -60,23 +47,11 @@ open http://localhost:3001/admin
 | Branch | `main` |
 | Build output directory | `public-site` |
 
-Pushes to `main` auto-deploy. Use `./scripts/deploy.sh` to commit and push changes.
-
-## Backup
-
-```bash
-./scripts/backup.sh
-# Creates: backups/cms-YYYY-MM-DD-HHMMSS.db
-```
-
-## MCP
-
-`.mcp.json` connects to the running CMS for programmatic content/page management. Open the Site or Content editor in your browser for editing tools to work.
+Pushes to `main` auto-deploy globally. Use `./scripts/deploy.sh` to commit and push changes.
 
 ## Stack
 
-- **CMS:** Instatic (Bun, visual editor)
-- **Database:** SQLite
-- **Output:** Static HTML/CSS
-- **Deploy:** Git push → Cloudflare Pages (free)
+- **Frontend:** Semantic HTML5 & Vanilla CSS Design System
+- **Output:** Pure static HTML/CSS (Zero JS overhead)
+- **Hosting:** Cloudflare Pages (Free global CDN)
 - **Repo:** [github.com/godera010/stackscout-blog](https://github.com/godera010/stackscout-blog)

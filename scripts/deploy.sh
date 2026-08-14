@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# deploy.sh - Push static site to remote (Vercel/Cloudflare via Git)
+# deploy.sh - Commit & push static site repository to remote (Cloudflare Pages via Git)
 # Usage: ./scripts/deploy.sh [optional commit message]
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SITE_DIR="$SCRIPT_DIR/../public-site"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M")
 COMMIT_MSG="${1:-Site Update: $TIMESTAMP}"
 
-echo "==> Navigating to public-site..."
-cd "$SITE_DIR"
+echo "==> Navigating to repository root ($REPO_DIR)..."
+cd "$REPO_DIR"
 
 # Verify we're in a git repo
 if [ ! -d ".git" ]; then
-  echo "ERROR: public-site is not a git repository. Run 'git init' first."
+  echo "ERROR: $REPO_DIR is not a git repository. Run 'git init' first."
   exit 1
 fi
 
@@ -49,4 +49,4 @@ if ! git push origin main; then
   exit 1
 fi
 
-echo "==> Deploy complete! Site will build on your hosting platform."
+echo "==> Deploy complete! Site will build on Cloudflare Pages."
