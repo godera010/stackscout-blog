@@ -8,83 +8,52 @@
   <meta property="og:title" content="About — StackScout">
   <meta property="og:description" content="Dev infrastructure, automation, and deployment deep-dives.">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <header>
-    <nav class="nav-container">
-      <div class="brand-wrapper">
-        <a href="/" class="brand-logo"><span class="dot"></span>StackScout</a>
-      </div>
-      <div class="nav-links">
-        <a href="/posts">Posts</a>
-        <a href="/about" class="active">About</a>
-      </div>
+    <nav>
+      <a href="/" class="logo">StackScout</a>
+      <a href="/posts/">Posts</a>
     </nav>
   </header>
 
   <main>
-    <article style="max-width: 720px; margin: 0 auto;">
-      <header class="article-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-lg);">
-        <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: var(--space-xs);">About StackScout</h1>
-        <p class="lead">Practical engineering deep dives into the tools and infrastructure behind modern software.</p>
+    <article>
+      <header>
+        <h1>About StackScout</h1>
+        <div class="subtitle">Practical engineering deep dives into the tools and infrastructure behind modern software.</div>
       </header>
 
-      <div class="body">
-        <h2>Editorial Mission</h2>
-        <p>StackScout exists to demystify developer infrastructure, container ecosystems, deployment pipelines, and automation tooling. Rather than writing surface-level installation tutorials, we focus on explaining <strong>what actually happens under the hood</strong>.</p>
+      <h2>Editorial Mission</h2>
+      <p>StackScout exists to demystify developer infrastructure, container ecosystems, deployment pipelines, and automation tooling. Rather than writing surface-level installation tutorials, we focus on explaining <strong>what actually happens under the hood</strong>.</p>
 
-        <p>Our core content pillars include:</p>
-        <ul>
-          <li><strong>Containers &amp; Virtualization:</strong> WSL 2, Docker Engine, Podman, cgroups, kernel namespaces, and OCI runtimes.</li>
-          <li><strong>DevOps &amp; Automation:</strong> CI/CD workflows, GitHub Actions, local development orchestration, and Infrastructure as Code.</li>
-          <li><strong>Cloud &amp; Networking:</strong> Reverse proxies (Nginx, Traefik, Caddy), DNS, TLS termination, and static hosting platforms.</li>
-          <li><strong>Self-Hosted Systems:</strong> Lightweight CMS engines, SQLite operational patterns, and containerized dev environments.</li>
-        </ul>
+      <p>Our core content pillars include:</p>
+      <ul>
+        <li><strong>Containers &amp; Virtualization:</strong> WSL 2, Docker Engine, Podman, cgroups, kernel namespaces, and OCI runtimes.</li>
+        <li><strong>DevOps &amp; Automation:</strong> CI/CD workflows, GitHub Actions, local development orchestration, and Infrastructure as Code.</li>
+        <li><strong>Cloud &amp; Networking:</strong> Reverse proxies (Nginx, Traefik, Caddy), DNS, TLS termination, and static hosting platforms.</li>
+        <li><strong>Self-Hosted Systems:</strong> Lightweight tools, SQLite operational patterns, and containerized dev environments.</li>
+      </ul>
 
-        <h2>Architecture &amp; Tech Stack</h2>
-        <p>StackScout is built using a clean, zero-dependency static stack:</p>
-        <ul>
-          <li><strong>Frontend:</strong> Native semantic HTML5 and vanilla CSS design system.</li>
-          <li><strong>Source Code:</strong> Git-tracked Markdown source files for engineering articles.</li>
-          <li><strong>Performance:</strong> Zero client-side JavaScript frameworks or dynamic server overhead.</li>
-          <li><strong>Hosting &amp; CD:</strong> Automated global static deployment via Git push to Cloudflare Pages.</li>
-        </ul>
+      <h2>Architecture &amp; Tech Stack</h2>
+      <p>StackScout is built using a clean, zero-dependency static stack:</p>
+      <ul>
+        <li><strong>Frontend:</strong> Native semantic HTML5 and vanilla CSS design system.</li>
+        <li><strong>Source Code:</strong> Git-tracked Markdown source files for engineering articles.</li>
+        <li><strong>Performance:</strong> Zero client-side JavaScript frameworks or dynamic server overhead.</li>
+        <li><strong>Hosting &amp; CD:</strong> Automated global static deployment via Git push to Cloudflare Pages.</li>
+      </ul>
 
-        <h2 style="margin-top: var(--space-2xl);">Open Source &amp; Repository</h2>
-        <p>The code, templates, and engineering articles for StackScout are open source and available on GitHub:</p>
-        <p><a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener" style="font-weight: 600;">github.com/godera010/stackscout-blog &rarr;</a></p>
-      </div>
+      <h2>Open Source &amp; Repository</h2>
+      <p>The code, templates, and engineering articles for StackScout are open source and available on GitHub:</p>
+      <p><a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">github.com/godera010/stackscout-blog &rarr;</a></p>
     </article>
   </main>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="/" class="brand-logo"><span class="dot"></span>StackScout</a>
-          <p>Engineering infrastructure, automation &amp; deployment deep-dives.</p>
-        </div>
-        <div class="footer-nav">
-          <div class="footer-nav-col">
-            <strong>Navigation</strong>
-            <a href="/">Home</a>
-            <a href="/posts">Posts</a>
-            <a href="/about">About</a>
-          </div>
-          <div class="footer-nav-col">
-            <strong>Resources</strong>
-            <a href="/sitemap.xml">Sitemap</a>
-            <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 StackScout. Powered by Cloudflare Pages.</p>
-        <p>Dev Infrastructure &amp; Automation Blog</p>
-      </div>
-    </div>
+    <p>&copy; 2026 StackScout</p>
   </footer>
 </body>
 </html>

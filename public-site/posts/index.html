@@ -3,101 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Posts — StackScout</title>
+  <title>Posts — StackScout</title>
   <meta name="description" content="Technical deep-dives on Linux, Docker, containers, CI/CD, cloud infrastructure, and DevOps automation.">
-  <meta property="og:title" content="All Posts — StackScout">
+  <meta property="og:title" content="Posts — StackScout">
   <meta property="og:description" content="Browse all engineering deep-dives from StackScout.">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <header>
-    <nav class="nav-container">
-      <div class="brand-wrapper">
-        <a href="/" class="brand-logo"><span class="dot"></span>StackScout</a>
-      </div>
-      <div class="nav-links">
-        <a href="/posts" class="active">Posts</a>
-        <a href="/about">About</a>
-      </div>
+    <nav>
+      <a href="/" class="logo">StackScout</a>
+      <a href="/posts/" class="active">Posts</a>
     </nav>
   </header>
 
   <main>
-    <div style="margin-bottom: var(--space-2xl);">
-      <h1 style="font-size: 2.25rem; font-weight: 800; margin-bottom: var(--space-xs);">Articles &amp; Deep Dives</h1>
-      <p class="lead">Practical engineering guides for dev infrastructure, containers, and deployment automation.</p>
-    </div>
+    <h1>Posts</h1>
+    <p class="lead">Dev infrastructure, automation, and deployment deep-dives.</p>
 
     <div class="post-list">
-      <!-- Post 1 -->
-      <a href="/posts/docker-on-windows-wsl2-under-the-hood/" class="post-card">
-        <div class="meta">
-          <span class="tag-pill" style="margin-right: 0.5rem;">CONTAINERS • ARCHITECTURE</span>
-          <time datetime="2026-08-14">August 14, 2026</time>
-          <span>• 11 min read</span>
-        </div>
-        <h3>Docker on Windows with WSL 2: What Actually Happens Under the Hood</h3>
+      <div class="post-item">
+        <div class="date">August 14, 2026</div>
+        <h2><a href="/posts/docker-on-windows-wsl2-under-the-hood/">Docker on Windows with WSL 2: What Actually Happens Under the Hood</a></h2>
         <p>A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).</p>
-      </a>
+      </div>
 
-      <!-- Post 2 -->
-      <a href="/posts/instatic-cms-complete-guide/" class="post-card">
-        <div class="meta">
-          <span class="tag-pill" style="margin-right: 0.5rem;">CMS • STATIC SITE</span>
-          <time datetime="2026-07-25">July 25, 2026</time>
-          <span>• 14 min read</span>
-        </div>
-        <h3>Instatic CMS: The Complete Technical Guide</h3>
+      <div class="post-item">
+        <div class="date">July 25, 2026</div>
+        <h2><a href="/posts/instatic-cms-complete-guide/">Instatic CMS: The Complete Technical Guide</a></h2>
         <p>Instatic CMS is a self-hosted visual CMS that outputs clean static HTML. Learn its architecture, deployment options, and how it compares to Webflow and WordPress.</p>
-      </a>
+      </div>
     </div>
-
-    <!-- Topics Grid -->
-    <section class="topics-section">
-      <div class="section-header" style="border: none; padding-bottom: 0; margin-bottom: var(--space-xs);">
-        <span class="section-title">TOPICS</span>
-      </div>
-      <div class="topics-grid">
-        <a href="#" class="topic-tag"># Docker</a>
-        <a href="#" class="topic-tag"># Linux</a>
-        <a href="#" class="topic-tag"># DevOps</a>
-        <a href="#" class="topic-tag"># Cloud</a>
-        <a href="#" class="topic-tag"># Networking</a>
-        <a href="#" class="topic-tag"># Automation</a>
-        <a href="#" class="topic-tag"># Self-hosting</a>
-        <a href="#" class="topic-tag"># Deployment</a>
-      </div>
-    </section>
   </main>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="/" class="brand-logo"><span class="dot"></span>StackScout</a>
-          <p>Engineering infrastructure, automation &amp; deployment deep-dives.</p>
-        </div>
-        <div class="footer-nav">
-          <div class="footer-nav-col">
-            <strong>Navigation</strong>
-            <a href="/">Home</a>
-            <a href="/posts">Posts</a>
-            <a href="/about">About</a>
-          </div>
-          <div class="footer-nav-col">
-            <strong>Resources</strong>
-            <a href="/sitemap.xml">Sitemap</a>
-            <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 StackScout. Powered by Cloudflare Pages.</p>
-        <p>Dev Infrastructure &amp; Automation Blog</p>
-      </div>
-    </div>
+    <p>&copy; 2026 StackScout</p>
   </footer>
 </body>
 </html>
