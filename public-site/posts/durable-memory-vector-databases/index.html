@@ -69,35 +69,10 @@
       <h2 id="why-it-matters">2. Why It Matters: The CPU Cache vs. RAM Analogy</h2>
       <p>To understand why vector storage alone falls short, we can map the AI memory stack directly to classical hardware memory hierarchies:</p>
 
-      <pre class="diagram"><code>+-----------------------------------------------------------------------+
-|  LLM INFERENCE CORE (GPU / TPU Execution)                             |
-+-----------------------------------------------------------------------+
-                                   ^
-                                   | (Active Prompt Payload)
-+-----------------------------------------------------------------------+
-|  CONTEXT WINDOW                                                       |
-|  * Equivalent to CPU L1/L2 Cache                                      |
-|  * High cost per token, volatile, fixed token limit                   |
-+-----------------------------------------------------------------------+
-                                   ^
-                                   | (Task Hydration)
-+-----------------------------------------------------------------------+
-|  ACTIVE WORKING MEMORY                                                |
-|  * Equivalent to System RAM                                           |
-|  * Dynamically assembled working set for current task                 |
-+-----------------------------------------------------------------------+
-                                   ^
-                                   | (Write-Side Custody & Curation)
-+-----------------------------------------------------------------------+
-|  DURABLE MEMORY POLICY LAYER                                          |
-|  * Equivalent to Managed File System & Governance Policy              |
-|  * Stores verified ADRs, signed policies, and domain specs            |
-+-----------------------------------------------------------------------+
-                                   ^
-                                   | (Vector Indexing & Persistence)
-+-----------------------------------------------------------------------+
-|  PHYSICAL STORAGE (Vector DB, Postgres, S3, RocksDB)                  |
-+-----------------------------------------------------------------------+</code></pre>
+      <figure>
+        <img src="../../assets/images/durable_memory_architecture.jpg" alt="AI Memory Layers Architecture Diagram">
+        <figcaption>Figure 1: AI Memory Layers Architecture showing Durable Memory policy layer feeding Active Working Memory, Context Window CPU Cache, and LLM Inference Core.</figcaption>
+      </figure>
 
       <p>Without a strict curation layer between inference execution and physical storage, every temporary calculation, hallucinated thought, and duplicate CLI tool output gets permanently ingested into your vector index.</p>
 
@@ -117,21 +92,6 @@
 
       <h2 id="write-boundary">4. Memory Is a Write Problem: Write-Side Custody</h2>
       <p>The vast majority of RAG (Retrieval-Augmented Generation) literature focuses exclusively on the read path: reranking models, embedding models, and similarity thresholds. However, <strong>memory quality is fundamentally determined on the write side.</strong></p>
-
-      <pre class="diagram"><code>+-----------------------+
-|  OBSERVATION / OUTPUT |
-+-----------------------+
-            |
-            v
-+-----------------------+     1. Is it Authoritative?
-|    WRITE BOUNDARY     | --> 2. Is it Verified?
-|  (Write-Side Custody) | --> 3. Is it Duplicate?
-+-----------------------+     4. Does it Expire?
-            |
-            v  [Passed Policy]
-+-----------------------+
-|    DURABLE MEMORY     |
-+-----------------------+</code></pre>
 
       <p>In traditional software engineering, developers do not check compiler output, temporary build artifacts, or local `.cache` folders into Git repositories. We check in source code and specifications. Durable memory requires AI agents to apply the exact same discipline before committing knowledge to disk.</p>
 

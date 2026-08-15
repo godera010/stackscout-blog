@@ -22,7 +22,7 @@
           <a href="../../about/">About</a>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
             <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1.3-1z"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1-1.3z"/></svg>
           </button>
         </div>
       </div>
@@ -79,33 +79,10 @@
       <h2 id="architectural-stack">3. The Architectural Stack</h2>
       <p>To understand how a containerized application executes on a Windows workstation, we can trace the boundaries from Win32 host applications down to isolated container processes:</p>
 
-      <pre class="diagram"><code>+-----------------------------------------------------------------------+
-|                             WINDOWS 11 HOST                           |
-|  [ VS Code ]   [ Edge Browser ]   [ PowerShell ]   [ Win32 App ]      |
-+-----------------------------------------------------------------------+
-                                   |
-         Hyper-V Host Compute Service (HCS) Lightweight MicroVM
-                                   |
-+-----------------------------------------------------------------------+
-|                           WSL 2 UTILITY VM                            |
-|  +-----------------------------------------------------------------+  |
-|  |                   CUSTOM MICROSOFT LINUX KERNEL                 |  |
-|  |     Namespaces (PID, NET, MNT)  *  cgroups v2  *  /dev/dxg       |  |
-|  +-----------------------------------------------------------------+  |
-|                                  |                                    |
-|         +------------------------+------------------------+           |
-|         |                                                 |           |
-|         v                                                 v           |
-|  +------------------------------+              +-------------------+  |
-|  |  Docker Engine / containerd  |              | Native WSL (wslc) |  |
-|  +------------------------------+              +-------------------+  |
-|         |                                                 |           |
-|         v                                                 v           |
-|  +-----------------------------------------------------------------+  |
-|  |                       RUNNING CONTAINERS                        |  |
-|  |   [ Nginx ]          [ Node.js API ]          [ PostgreSQL ]    |  |
-|  +-----------------------------------------------------------------+  |
-+-----------------------------------------------------------------------+</code></pre>
+      <figure>
+        <img src="../../assets/images/wsl2_architecture.jpg" alt="Windows 11 Virtualization &amp; WSL 2 Container Architecture Diagram">
+        <figcaption>Figure 1: Windows 11 Virtualization Architecture showing Host Compute Service (HCS), LightVM container host, cgroups v2 kernel controllers, and isolated container execution.</figcaption>
+      </figure>
 
       <h3>3.1. Hyper-V LightVM &amp; Host Compute Service (HCS)</h3>
       <p>WSL 2 communicates with the Windows host via Hyper-V Sockets (HV-Socket) and the Host Compute Service. The LightVM boots in less than one second and consumes a minimal baseline memory footprint.</p>
@@ -155,19 +132,6 @@
 
       <h2 id="filesystem-bottleneck">5. The Filesystem Performance Bottleneck</h2>
       <p>The single most frequent performance failure in WSL 2 setups is storing project files on the Windows NTFS drive (e.g. <code>C:\Users\dev\project</code>) and bind-mounting them into Linux containers.</p>
-
-      <pre class="diagram"><code>SLOWNESS HIGHWAY (Cross-OS Translation):
-Windows NTFS (C:\Users\dev\my-app)
-   ---> 9P / VirtioFS Protocol Translation
-   ---> WSL 2 Mount Point (/mnt/c/Users/dev/my-app)
-   ---> Container Bind Mount
-   RESULT: ~10x-20x slower I/O for heavy node_modules / git operations.
-
-MAXIMUM PERFORMANCE PATH (Native Linux VHDX):
-WSL 2 Native ext4 VHDX (/home/dev/projects/my-app)
-   ---> Direct Linux Kernel Virtual Block Device
-   ---> Container Bind Mount
-   RESULT: Near-native Linux I/O throughput.</code></pre>
 
       <blockquote>
         <p><strong>Rule of thumb:</strong> Store your source code repositories inside the native WSL filesystem at <code>/home/username/projects/</code> instead of <code>/mnt/c/</code> to achieve maximum I/O throughput.</p>

@@ -469,6 +469,29 @@ td {
   margin-bottom: 1.25rem;
 }
 
+/* Article Images & Figures */
+article img, figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  margin: 1.75rem 0;
+  display: block;
+}
+
+figure {
+  margin: 2rem 0;
+}
+
+figcaption {
+  font-size: 0.825rem;
+  color: var(--color-text-subtle);
+  text-align: center;
+  margin-top: -1rem;
+  margin-bottom: 1.75rem;
+  font-family: var(--font-mono);
+}
+
 /* Article Page Layout */
 article header {
   border-bottom: 1px solid var(--color-border);

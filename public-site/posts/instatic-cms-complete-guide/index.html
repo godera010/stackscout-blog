@@ -35,7 +35,7 @@
       <header>
         <h1>Instatic CMS: The Complete Technical Guide</h1>
         <div class="subtitle">Architecture, deployment options, and comparison with Webflow &amp; WordPress.</div>
-        <div class="meta">JUL 25, 2026 &nbsp;·&nbsp; 10 MIN READ &nbsp;·&nbsp; BY STACKSCOUT ENGINEERING</div>
+        <div class="meta">JUL 25, 2026 &nbsp;·&nbsp; 12 MIN READ &nbsp;·&nbsp; BY STACKSCOUT ENGINEERING</div>
       </header>
 
       <blockquote>
@@ -48,12 +48,15 @@
           <li><a href="#what-is-instatic">1. What is Instatic CMS?</a></li>
           <li><a href="#why-it-matters">2. Why It Matters: Solving the CMS Dilemma</a></li>
           <li><a href="#architecture">3. System Architecture &amp; Tech Stack</a></li>
-          <li><a href="#how-it-works">4. How It Works: Canvas to Static Compiler</a></li>
-          <li><a href="#deployment">5. Deployment Guide (Docker &amp; Cloud)</a></li>
-          <li><a href="#comparisons">6. Comparisons &amp; Alternatives</a></li>
-          <li><a href="#common-pitfalls">7. Common Pitfalls &amp; Edge Cases</a></li>
-          <li><a href="#faq">8. Frequently Asked Questions (FAQ)</a></li>
-          <li><a href="#conclusion">9. Summary &amp; Recommendations</a></li>
+          <li><a href="#visual-canvas">4. Visual Canvas Engine</a></li>
+          <li><a href="#built-in-features">5. Built-In Features (Forms, Plugins, AI Agent)</a></li>
+          <li><a href="#deployment">6. Deployment Options (Docker, Railway, Render)</a></li>
+          <li><a href="#performance">7. Performance Benchmarks</a></li>
+          <li><a href="#comparisons">8. Comparisons &amp; Alternatives</a></li>
+          <li><a href="#limitations">9. Limitations &amp; Trade-offs</a></li>
+          <li><a href="#getting-started">10. Getting Started with Instatic</a></li>
+          <li><a href="#faq">11. Frequently Asked Questions (FAQ)</a></li>
+          <li><a href="#conclusion">12. Summary &amp; Recommendations</a></li>
         </ol>
       </div>
 
@@ -74,26 +77,10 @@
 
       <h2 id="architecture">3. System Architecture &amp; Tech Stack</h2>
 
-      <pre class="diagram"><code>+-----------------------------------------------------------------------+
-|                       INSTATIC BUN SERVER RUNTIME                     |
-|                                                                       |
-|  +---------------------+   +---------------------+   +-------------+  |
-|  | Visual Editor UI    |   | SQLite / Postgres   |   | Core        |  |
-|  | (Web Component Canvas)| | (Content & Assets)  |   | Framework   |  |
-|  +---------------------+   +---------------------+   +-------------+  |
-|                                       |                               |
-|                                       v                               |
-|                     +-----------------------------------+             |
-|                     |   STATIC HTML / CSS COMPILER      |             |
-|                     +-----------------------------------+             |
-+-----------------------------------------------------------------------+
-                                        |
-                                        v (Export / Deploy)
-+-----------------------------------------------------------------------+
-|  GLOBAL STATIC HOSTING (Cloudflare Pages, Vercel, Netlify, Nginx)     |
-|  * Pure 0ms Static HTML/CSS Delivery                                  |
-|  * $0 Server Runtime Overhead                                         |
-+-----------------------------------------------------------------------+</code></pre>
+      <figure>
+        <img src="../../assets/images/instatic_architecture.jpg" alt="Instatic CMS System Architecture Diagram">
+        <figcaption>Figure 1: Instatic CMS Architecture showing single Bun runtime, SQLite/Postgres persistence, visual editor core, and static compilation pipeline.</figcaption>
+      </figure>
 
       <h3>3.1. Single Bun Process Architecture</h3>
       <p>Instatic executes as a single Bun runtime process. Bun provides ultra-fast startup times, native TypeScript execution, built-in SQLite bindings, and fast file I/O operations.</p>
@@ -101,27 +88,45 @@
       <h3>3.2. Core Framework Design Tokens</h3>
       <p>Integrated directly into the editor is the Core Framework design token engine. It generates CSS custom properties for fluid typography scales, responsive spacing rules, and color palettes from a single centralized configuration panel.</p>
 
-      <h2 id="how-it-works">4. How It Works: Canvas to Static Compiler</h2>
-      <ol>
-        <li><strong>Visual Editing:</strong> Design pages on a visual canvas using HTML5 semantic elements, flexbox, and grid layouts.</li>
-        <li><strong>Content Storage:</strong> Document schemas and media metadata are stored in embedded SQLite (or PostgreSQL for team setups).</li>
-        <li><strong>One-Click Compilation:</strong> Hitting <em>Publish</em> triggers the static compiler, which renders clean HTML and scoped CSS without leftover editor scripts.</li>
-        <li><strong>CDN Push:</strong> The resulting output directory is pushed to static hosts like Cloudflare Pages or Git repositories.</li>
-      </ol>
+      <h2 id="visual-canvas">4. Visual Canvas Engine</h2>
+      <p>The visual editor renders a real DOM tree inside an iframe canvas, letting you inspect and edit HTML elements with a visual panel. Styles map directly to CSS variables generated by Core Framework.</p>
 
-      <h2 id="deployment">5. Deployment Guide (Docker &amp; Cloud)</h2>
+      <ul>
+        <li><strong>Responsive Breakpoints:</strong> Edit layout rules across Desktop, Tablet, and Mobile viewport modes visually.</li>
+        <li><strong>Component Reusability:</strong> Save DOM subtrees as master components with prop overrides.</li>
+        <li><strong>Clean Source Export:</strong> Output produces semantic HTML5 elements without wrapper bloat or builder-specific classes.</li>
+      </ul>
 
-      <pre><code># Run Instatic locally via Docker
-docker run -d \
-  -p 3000:3000 \
-  -v instatic_data:/app/data \
-  --name instatic-cms \
-  corebunch/instatic:latest</code></pre>
+      <h2 id="built-in-features">5. Built-In Features</h2>
 
-      <p>For production team environments, deploy the container to Railway, Render, or self-hosted VPS servers behind an Nginx reverse proxy with TLS termination.</p>
+      <h3>5.1. Form Submissions &amp; Storage</h3>
+      <p>Forms on published static sites post to Instatic's lightweight forms endpoint, storing submissions in SQLite/Postgres with webhook triggers for email or Discord notifications.</p>
 
-      <h2 id="comparisons">6. Comparisons &amp; Alternatives</h2>
-      <p>Compare Instatic CMS against commercial SaaS builders and legacy monoliths:</p>
+      <h3>5.2. Plugin System &amp; AI Agent (MCP)</h3>
+      <p>Instatic includes an extensibility SDK and a built-in AI assistant via Model Context Protocol (MCP). Connect OpenAI, Claude, or local Ollama instances to generate, edit, or refactor visual DOM nodes directly on the canvas.</p>
+
+      <h2 id="deployment">6. Deployment Options</h2>
+
+      <h3>6.1. Docker &amp; Docker Compose</h3>
+      <pre><code># Docker Compose deployment with SQLite
+services:
+  app:
+    image: corebunch/instatic:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/instatic.db
+    volumes:
+      - ./instatic-data:/app/data</code></pre>
+
+      <h3>6.2. Managed Railway or Render Deployment</h3>
+      <p>Deploy to Railway or Render in minutes using the official Dockerfile. Connect a persistent volume for SQLite or set <code>DATABASE_URL</code> to a managed PostgreSQL cluster.</p>
+
+      <h2 id="performance">7. Performance Benchmarks</h2>
+      <p>Published static sites achieve 100/100 Google Lighthouse scores by default. Because no Node.js or PHP runtime executes on page load, Time to First Byte (TTFB) is bounded only by your CDN edge network latency (&lt;20 ms globally on Cloudflare Pages).</p>
+
+      <h2 id="comparisons">8. Comparisons &amp; Alternatives</h2>
 
       <table>
         <thead>
@@ -166,33 +171,40 @@ docker run -d \
         </tbody>
       </table>
 
-      <h2 id="common-pitfalls">7. Common Pitfalls &amp; Edge Cases</h2>
+      <h2 id="limitations">9. Limitations &amp; Trade-offs</h2>
+      <ul>
+        <li><strong>Younger Ecosystem:</strong> Fewer pre-built third-party plugins compared to WordPress's 60,000+ extensions.</li>
+        <li><strong>Pre-1.0 API Evolution:</strong> Active v0.0.x development means schema migrations should be backed up before upgrading editor releases.</li>
+        <li><strong>Static Focus:</strong> Fully dynamic membership portals require client-side SDK integration (e.g. Supabase Auth or Clerk).</li>
+      </ul>
 
-      <h3>7.1. Dynamic Form Submissions</h3>
-      <p>Because published sites are static HTML, dynamic forms require external endpoints (such as Formspree, Cloudflare Workers, or Instatic's webhooks endpoint) rather than native PHP form processing.</p>
+      <h2 id="getting-started">10. Getting Started with Instatic</h2>
+      <pre><code># Quickstart CLI commands
+git clone https://github.com/corebunch/instatic.git
+cd instatic
+bun install
+bun run dev</code></pre>
+      <p>Open <code>http://localhost:5173</code> in your browser to launch the visual editor wizard.</p>
 
-      <h3>7.2. Early Version Stability (v0.0.x)</h3>
-      <p>As of 2026, Instatic is in active version 0.0.x development. While published static output is 100% production-ready (since it's just HTML/CSS), editor database schemas may change between major pre-release updates.</p>
-
-      <h2 id="faq">8. Frequently Asked Questions (FAQ)</h2>
+      <h2 id="faq">11. Frequently Asked Questions (FAQ)</h2>
       <div class="faq-list">
-        <h3>What is Instatic CMS?</h3>
-        <p>Instatic CMS is an open-source, self-hosted visual website builder powered by a Bun server that compiles visual canvas designs directly into static HTML and CSS files.</p>
+        <h3>Is Instatic CMS free?</h3>
+        <p>Instatic is MIT licensed with no paid tiers, no open-core restrictions, and no contact-sales requirements. Hosting costs depend on your deployment choice: $0 on your own VPS, ~$5/month on Railway with SQLite, or free on Cloudflare Pages for static output.</p>
 
-        <h3>How does Instatic CMS differ from Webflow?</h3>
-        <p>Unlike Webflow's proprietary hosted SaaS platform, Instatic CMS is self-hosted, MIT-licensed, and outputs zero-dependency static files that can be hosted on any free static CDN.</p>
+        <h3>How does Instatic compare to Webflow?</h3>
+        <p>Instatic provides a similar visual canvas editor but runs self-hosted and outputs clean static HTML without builder JavaScript. Webflow charges $16–36/month and locks sites into its proprietary platform. Instatic has zero platform fees and no vendor lock-in.</p>
 
-        <h3>What database does Instatic CMS use?</h3>
-        <p>Instatic CMS supports lightweight embedded SQLite for single-instance deployments or PostgreSQL for team and enterprise workflows.</p>
+        <h3>Can Instatic replace WordPress?</h3>
+        <p>For sites that need visual editing, static output, and self-hosted control, Instatic replaces WordPress with a lighter, more secure architecture. Instatic is better for sites where performance and security matter more than plugin breadth.</p>
 
-        <h3>Does Instatic CMS require a server on published websites?</h3>
-        <p>No. Once published, Instatic outputs plain static HTML and CSS files, requiring zero server runtime, node processes, or dynamic databases to serve visitors.</p>
+        <h3>Is Instatic good for SEO?</h3>
+        <p>Instatic outputs clean semantic HTML with no framework runtime, producing fast page loads and readable source code for search crawlers. You control meta tags, structured data, and clean static URL paths.</p>
 
-        <h3>Can you deploy Instatic CMS on Docker or Railway?</h3>
-        <p>Yes. Instatic CMS provides official Docker container images that deploy seamlessly to Railway, Render, Fly.io, or self-hosted VPS servers for $0 to $5 per month.</p>
+        <h3>What database does Instatic use?</h3>
+        <p>Instatic supports SQLite (default, zero-config) and PostgreSQL (for teams and managed backups). The database choice is set via the DATABASE_URL environment variable across Docker and cloud deployments.</p>
       </div>
 
-      <h2 id="conclusion">9. Summary &amp; Recommendations</h2>
+      <h2 id="conclusion">12. Summary &amp; Recommendations</h2>
       <ul>
         <li><strong>Self-Host for Zero Lock-in:</strong> Use Instatic Docker containers to retain 100% ownership of your site designs and content databases.</li>
         <li><strong>Deploy Static for Maximum Speed:</strong> Export pure HTML/CSS to free global static CDNs like Cloudflare Pages.</li>
@@ -246,42 +258,42 @@ docker run -d \
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is Instatic CMS?",
+          "name": "Is Instatic CMS free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Instatic CMS is an open-source, self-hosted visual website builder powered by a Bun server that compiles visual canvas designs directly into static HTML and CSS files."
+            "text": "Instatic is MIT licensed with no paid tiers, no open-core restrictions, and no contact-sales requirements. Hosting costs depend on your deployment choice: $0 on your own VPS, ~$5/month on Railway with SQLite, or free on Cloudflare Pages for static output."
           }
         },
         {
           "@type": "Question",
-          "name": "How does Instatic CMS differ from Webflow?",
+          "name": "How does Instatic compare to Webflow?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Unlike Webflow's proprietary hosted SaaS platform, Instatic CMS is self-hosted, MIT-licensed, and outputs zero-dependency static files that can be hosted on any free static CDN."
+            "text": "Instatic provides a similar visual canvas editor but runs self-hosted and outputs clean static HTML without builder JavaScript. Webflow charges $16–36/month and locks sites into its proprietary platform. Instatic has zero platform fees and no vendor lock-in."
           }
         },
         {
           "@type": "Question",
-          "name": "What database does Instatic CMS use?",
+          "name": "Can Instatic replace WordPress?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Instatic CMS supports lightweight embedded SQLite for single-instance deployments or PostgreSQL for team and enterprise workflows."
+            "text": "For sites that need visual editing, static output, and self-hosted control, Instatic replaces WordPress with a lighter, more secure architecture. Instatic is better for sites where performance and security matter more than plugin breadth."
           }
         },
         {
           "@type": "Question",
-          "name": "Does Instatic CMS require a server on published websites?",
+          "name": "Is Instatic good for SEO?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Once published, Instatic outputs plain static HTML and CSS files, requiring zero server runtime, node processes, or dynamic databases to serve visitors."
+            "text": "Instatic outputs clean semantic HTML with no framework runtime, producing fast page loads and readable source code for search crawlers. You control meta tags, structured data, and clean static URL paths."
           }
         },
         {
           "@type": "Question",
-          "name": "Can you deploy Instatic CMS on Docker or Railway?",
+          "name": "What database does Instatic use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Instatic CMS provides official Docker container images that deploy seamlessly to Railway, Render, Fly.io, or self-hosted VPS servers for $0 to $5 per month."
+            "text": "Instatic supports SQLite (default, zero-config) and PostgreSQL (for teams and managed backups). The database choice is set via the DATABASE_URL environment variable across Docker and cloud deployments."
           }
         }
       ]
