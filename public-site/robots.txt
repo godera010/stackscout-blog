@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yoursite.vercel.app/sitemap.xml
+Sitemap: https://stackscout-blog.pages.dev/sitemap.xml
