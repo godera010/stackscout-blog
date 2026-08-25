@@ -286,22 +286,22 @@ Instatic supports SQLite (default, zero-config) and PostgreSQL (for teams and ma
   "@type": "BlogPosting",
   "headline": "Instatic CMS: The Complete Technical Guide (2026)",
   "description": "Instatic CMS is a self-hosted visual CMS that outputs clean static HTML. Learn its architecture, deployment options, and how it compares to Webflow and WordPress.",
-  "url": "https://stackscout-blog.pages.dev/posts/instatic-cms-complete-guide",
+  "url": "https://stackscout.blog/posts/instatic-cms-complete-guide",
   "datePublished": "2026-07-25",
   "dateModified": "2026-07-25",
   "author": {
     "@type": "Person",
     "name": "StackScout",
-    "url": "https://stackscout-blog.pages.dev"
+    "url": "https://stackscout.blog"
   },
   "publisher": {
     "@type": "Organization",
     "name": "StackScout",
-    "url": "https://stackscout-blog.pages.dev"
+    "url": "https://stackscout.blog"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://stackscout-blog.pages.dev/posts/instatic-cms-complete-guide"
+    "@id": "https://stackscout.blog/posts/instatic-cms-complete-guide"
   },
   "articleSection": "Web Development",
   "keywords": ["Instatic CMS", "static site generator", "visual CMS", "Jamstack", "self-hosted CMS", "Webflow alternative", "WordPress alternative"]
