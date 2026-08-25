@@ -5,34 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beyond the Hype: My Production Workflow with Claude Code — StackScout</title>
   <meta name="description" content="A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.">
-  
-  <!-- Preconnect & Asynchronous Font Loading (Zero Render-Blocking) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap">
-  
   <link rel="canonical" href="https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/">
   <meta property="og:title" content="Beyond the Hype: My Production Workflow with Claude Code — StackScout">
   <meta property="og:description" content="A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.">
   <meta property="og:url" content="https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="StackScout">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Beyond the Hype: My Production Workflow with Claude Code — StackScout">
   <meta name="twitter:description" content="A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.">
-  
-  <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="https://stackscout-blog.pages.dev/rss.xml">
-  <script src="/assets/theme.js"></script>
-  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="../../assets/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/styles.css">
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="header-top">
-        <a href="/" class="logo">StackScout</a>
+        <a href="../../" class="logo">StackScout</a>
         <div class="nav-right">
-          <a href="/posts/" class="active">Posts</a>
-          <a href="/about/">About</a>
+          <a href="../../posts/">Posts</a>
+          <a href="../../about/">About</a>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
             <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
             <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1.3-1z"/></svg>
@@ -50,22 +41,17 @@
       <header>
         <h1>Beyond the Hype: My Production Workflow with Claude Code</h1>
         <div class="subtitle">A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.</div>
-        <div class="meta">AUG 25, 2026 &nbsp;·&nbsp; 10 MIN READ &nbsp;·&nbsp; BY GODWIN ERA · SENIOR SYSTEMS ARCHITECT</div>
+        <div class="meta">AUG 25, 2026 &nbsp;·&nbsp; 6 MIN READ</div>
       </header>
-
-
-      <blockquote>
-        <p><strong>TL;DR:</strong> Coding effectively with Claude Code requires a structured three-phase framework—Design, Plan, and Execute—anchored by persistent markdown plans inside the repository. By treating the agent as a delegated collaborator rather than an autocomplete tool, engineers can eliminate mechanical friction while retaining full control over architecture, code review, and production releases.</p>
-      </blockquote>
 
       <div class="toc">
         <div class="toc-title">Contents</div>
         <ol>
-          <li><a href="#what-claude-code-actually-is-and-what-it-isnt">1. What Claude Code Actually Is (And What It Isn&#x27;t)</a></li><li><a href="#why-terminal-agents-beat-autocomplete-for-multi-file-refactors">2. Why Terminal Agents Beat Autocomplete for Multi-File Refactors</a></li><li><a href="#the-design-plan-execute-loop-keeping-agents-on-rails">3. The Design-Plan-Execute Loop: Keeping Agents on Rails</a></li><li><a href="#setting-up-your-repository-for-claude-code">4. Setting Up Your Repository for Claude Code</a></li><li><a href="#four-real-tasks-i-regularly-offload-to-claude-code">5. Four Real Tasks I Regularly Offload to Claude Code</a></li><li><a href="#comparison-ai-coding-paradigms">6. Comparison: AI Coding Paradigms</a></li><li><a href="#failure-modes-where-claude-code-breaks-down">7. Failure Modes: Where Claude Code Breaks Down</a></li><li><a href="#frequently-asked-questions">8. Frequently Asked Questions</a></li><li><a href="#conclusion-key-takeaways">9. Conclusion &amp; Key Takeaways</a></li>
+          <li><a href="#what-claude-code-actually-is-and-what-it-isnt">1. What Claude Code Actually Is (And What It Isn't)</a></li><li><a href="#why-terminal-agents-beat-autocomplete-for-multi-file-refactors">2. Why Terminal Agents Beat Autocomplete for Multi-File Refactors</a></li><li><a href="#the-design-plan-execute-loop-keeping-agents-on-rails">3. The Design-Plan-Execute Loop: Keeping Agents on Rails</a></li><li><a href="#setting-up-your-repository-for-claude-code">4. Setting Up Your Repository for Claude Code</a></li><li><a href="#four-real-tasks-i-regularly-offload-to-claude-code">5. Four Real Tasks I Regularly Offload to Claude Code</a></li><li><a href="#comparison-ai-coding-paradigms">6. Comparison: AI Coding Paradigms</a></li><li><a href="#failure-modes-where-claude-code-breaks-down">7. Failure Modes: Where Claude Code Breaks Down</a></li><li><a href="#conclusion--key-takeaways">8. Conclusion & Key Takeaways</a></li><li><a href="#faq">9. Frequently Asked Questions</a></li>
         </ol>
       </div>
 
-            <figure>
+      <figure>
         <img src="../../assets/images/claude_code_workflow.jpg" alt="Beyond the Hype: My Production Workflow with Claude Code">
         <figcaption>Figure 1: Claude Code Terminal REPL Workflow showing tool dispatch, test loops, and git commit generation.</figcaption>
       </figure>
@@ -91,7 +77,8 @@
 │  │ Local Filesystem│   │ Test Runner / Build Tooling │ │
 │  │ (Multi-file edit│   │ (pytest, vitest, tsc, cargo)│ │
 │  └─────────────────┘   └─────────────────────────────┘ │
-└────────────────────────────────────────────────────────┘</code></pre>
+└────────────────────────────────────────────────────────┘
+</code></pre>
 
 <p>The difference comes down to three operational capabilities:
 <ul><li><strong>Repository-Wide Context:</strong> It inspects package manifests, config files, and internal utilities rather than guessing from open editor tabs.</li>
@@ -105,7 +92,8 @@
 <pre class="diagram"><code>┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
 │     DESIGN      │ ────▶ │      PLAN       │ ────▶ │     EXECUTE     │
 │ Trade-offs &amp; UX │       │ Markdown on Disk│       │ Code &amp; Verify   │
-└─────────────────┘       └─────────────────┘       └─────────────────┘</code></pre>
+└─────────────────┘       └─────────────────┘       └─────────────────┘
+</code></pre>
 
 <h3 id="1-the-design-phase-argue-before-you-code">1. The Design Phase: Argue Before You Code</h3>
 Before touching a single file, talk through the architectural trade-offs. Push back on the agent's first suggestion. Ask: "What are three alternative ways to structure this, and what breaks in each?" Write down the chosen approach in a markdown file in your repo (e.g., <code>docs/plans/</code>).
@@ -126,7 +114,8 @@ Let the agent execute one task at a time. Because each step has a concrete test 
 <h3 id="step-1-configure-project-directories">Step 1: Configure Project Directories</h3>
 Create dedicated directories for task plans and configuration:
 
-<pre class="lang-bash"><code>mkdir -p .claude docs/plans</code></pre>
+<pre class="lang-bash"><code>mkdir -p .claude docs/plans
+</code></pre>
 
 <h3 id="step-2-write-an-atomic-task-plan">Step 2: Write an Atomic Task Plan</h3>
 Create a timestamped markdown file before starting non-trivial features:
@@ -138,14 +127,16 @@ Create a timestamped markdown file before starting non-trivial features:
 2. Implement serverless handler in <code>api/analytics.ts</code>.
 3. Port environment variable bindings from existing Railway config.
 4. Run integration suite: <code>npm test -- api/analytics.test.ts</code>.
-5. Verify response payload matches existing API contract.</code></pre></p>
+5. Verify response payload matches existing API contract.
+</code></pre>
 
 <h3 id="step-3-run-in-isolated-git-worktrees">Step 3: Run in Isolated Git Worktrees</h3>
 For major refactors or risky migrations, isolate the agent in a git worktree so your active working tree remains untouched:
 
 <pre class="lang-bash"><code>git worktree add ../migration-branch -b feat/migration
 cd ../migration-branch
-claude</code></pre>
+claude
+</code></pre>
 
 <h3 id="step-4-review-every-diff-manually">Step 4: Review Every Diff Manually</h3>
 Never let an agent push directly. Run <code>git diff</code> and review every changed hunk. You own the code in production, not the model.
@@ -159,67 +150,56 @@ Never let an agent push directly. Run <code>git diff</code> and review every cha
 
 <h2 id="comparison-ai-coding-paradigms">Comparison: AI Coding Paradigms</h2>
 
-<p>| Dimension | Editor Autocomplete (Copilot) | Chat Windows (ChatGPT Web) | Terminal Agent (Claude Code) |
-| :--- | :--- | :--- | :--- |
-| <strong>Context Scope</strong> | Current file & open tabs | Copy-pasted snippets | Entire local repository |
-| <strong>Command Execution</strong>| None | None | Full shell access (tests, git, build)|
-| <strong>Multi-File Edits</strong> | Single-line suggestions | Manual copy-pasting | Autonomous across whole tree |
-| <strong>Memory Persistence</strong>| None | Session-based | Markdown plans saved in repo |
-| <strong>Best Used For</strong> | Fast boilerplate typing | Brainstorming concepts | Multi-step refactors & workflows |</p>
-
+<table>
+  <thead>
+    <tr><th>Dimension</th><th>Editor Autocomplete (Copilot)</th><th>Chat Windows (ChatGPT Web)</th><th>Terminal Agent (Claude Code)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Context Scope</strong></td><td>Current file & open tabs</td><td>Copy-pasted snippets</td><td>Entire local repository</td></tr>
+<tr><td><strong>Command Execution</strong></td><td>None</td><td>None</td><td>Full shell access (tests, git, build)</td></tr>
+<tr><td><strong>Multi-File Edits</strong></td><td>Single-line suggestions</td><td>Manual copy-pasting</td><td>Autonomous across whole tree</td></tr>
+<tr><td><strong>Memory Persistence</strong></td><td>None</td><td>Session-based</td><td>Markdown plans saved in repo</td></tr>
+<tr><td><strong>Best Used For</strong></td><td>Fast boilerplate typing</td><td>Brainstorming concepts</td><td>Multi-step refactors & workflows</td></tr>
+  </tbody>
+</table>
 <h2 id="failure-modes-where-claude-code-breaks-down">Failure Modes: Where Claude Code Breaks Down</h2>
 <ul><li><strong>Premise Acceptance:</strong> If you say "I think our Redis cache is corrupt," the agent will often spend 20 minutes proving your incorrect theory right. Always provide raw error logs instead of your diagnosis.</li>
 <li><strong>Context Degradation in Long Sessions:</strong> After 30+ turns, the agent forgets early decisions. Keep task plans in markdown on disk to ground the session.</li>
 <li><strong>Aesthetic Decisions:</strong> Terminal agents write clean TypeScript and passing tests, but their CSS aesthetics are mediocre. Handle visual layout and spacing yourself.</li>
 </ul>
-<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 
-<h3 id="how-does-claude-code-differ-from-github-copilot">How does Claude Code differ from GitHub Copilot?</h3>
-Copilot provides real-time line completions inside your editor. Claude Code runs in your terminal, executes commands, runs test suites, and edits multiple files across your entire codebase autonomously.
-
-<h3 id="why-should-i-write-plans-in-markdown-before-writing-code">Why should I write plans in markdown before writing code?</h3>
-Markdown plans serve as persistent memory on disk. They prevent context loss during long sessions and force you to validate architecture before generating code.
-
-<h3 id="is-it-safe-to-give-claude-code-terminal-command-access">Is it safe to give Claude Code terminal command access?</h3>
-Yes, when paired with permission controls and executed in separate Git branches or worktrees where diffs can be inspected before merging.
-
-<h3 id="what-tasks-are-best-suited-for-claude-code">What tasks are best suited for Claude Code?</h3>
-Claude Code excels at multi-file refactors, test suite generation, serverless migrations, dependency updates, and repetitive boilerplate scripts.
-
-<h3 id="does-claude-code-eliminate-the-need-for-code-review">Does Claude Code eliminate the need for code review?</h3>
-No. Developers remain 100% accountable for code correctness, security boundaries, and performance. Every generated diff must be reviewed with <code>git diff</code>.
-
-<h2 id="conclusion-key-takeaways">Conclusion & Key Takeaways</h2>
+<h2 id="conclusion--key-takeaways">Conclusion & Key Takeaways</h2>
 
 <p>Claude Code turns development from manual typing into structured delegation. Use a Design-Plan-Execute workflow, write task plans to disk, run tests continuously, and review every diff before committing.</p>
 
-
-      <h2 id="faq">Frequently Asked Questions (FAQ)</h2>
+      <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-list">
-        <h3>What is the core takeaway of this guide?</h3>
-        <p>This guide establishes production patterns and verifiable architecture standards designed to eliminate engineering friction, improve reliability, and optimize system performance.</p>
-        <h3>How can teams implement these patterns safely?</h3>
-        <p>Start by auditing your current pipeline, applying clear boundaries, enforcing verification commands on disk, and introducing automated checks gradually.</p>
-        <h3>Where can I find additional technical reference code?</h3>
-        <p>Check the StackScout open-source repository on GitHub for full runnable code samples, architecture benchmarks, and continuous deployment configurations.</p>
+        <h3>How does Claude Code differ from GitHub Copilot?</h3>
+        <p>Copilot provides real-time line completions inside your editor. Claude Code runs in your terminal, executes commands, runs test suites, and edits multiple files across your entire codebase autonomously.</p>
+        <h3>Why should I write plans in markdown before writing code?</h3>
+        <p>Markdown plans serve as persistent memory on disk. They prevent context loss during long sessions and force you to validate architecture before generating code.</p>
+        <h3>Is it safe to give Claude Code terminal command access?</h3>
+        <p>Yes, when paired with permission controls and executed in separate Git branches or worktrees where diffs can be inspected before merging.</p>
+        <h3>What tasks are best suited for Claude Code?</h3>
+        <p>Claude Code excels at multi-file refactors, test suite generation, serverless migrations, dependency updates, and repetitive boilerplate scripts.</p>
+        <h3>Does Claude Code eliminate the need for code review?</h3>
+        <p>No. Developers remain 100% accountable for code correctness, security boundaries, and performance. Every generated diff must be reviewed with `git diff`.</p>
       </div>
 
-
-            <!-- Recommended Reading Section -->
-      <section class="recommended-section">
+            <section class="recommended-section">
         <div class="section-label">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           RECOMMENDED READING
         </div>
         <div class="recommended-grid">
         <a href="../../posts/file-based-multi-agent-state-machine/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 10 MIN READ</div>
+          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 5 MIN READ</div>
           <h3>File-Based Multi-Agent State Machines for Deterministic Code Generation</h3>
           <p>Designing file-based multi-agent state machines for reliable, deterministic code generation without complex framework overhead.</p>
           <span class="read-link">Read article &rarr;</span>
         </a>
         <a href="../../posts/ai-evaluation-harness-benchmark-provenance/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 10 MIN READ</div>
+          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 4 MIN READ</div>
           <h3>Building an AI Evaluation Harness with Benchmark Provenance</h3>
           <p>Designing reproducible AI evaluation harnesses with benchmark provenance, versioned test suites, and regression tracking.</p>
           <span class="read-link">Read article &rarr;</span>
@@ -230,9 +210,9 @@ No. Developers remain 100% accountable for code correctness, security boundaries
       <div class="article-share">
         <span class="share-label">Share Article</span>
         <div class="share-buttons">
-          <a href="https://x.com/intent/post?text=Beyond%20the%20Hype%3A%20My%20Production%20Workflow%20with%20Claude%20Code&url=https%3A//stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/" target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/" target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
-          <a href="https://news.ycombinator.com/submitlink?u=https%3A//stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/&t=Beyond%20the%20Hype%3A%20My%20Production%20Workflow%20with%20Claude%20Code" target="_blank" rel="noopener" class="share-btn">Hacker News</a>
+          <a href="https://x.com/intent/post?text=Beyond%20the%20Hype:%20My%20Production%20Workflow%20with%20Claude%20Code&url=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fcoding-with-claude-code-in-production%2F" target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fcoding-with-claude-code-in-production%2F" target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
+          <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fcoding-with-claude-code-in-production%2F&t=Beyond%20the%20Hype:%20My%20Production%20Workflow%20with%20Claude%20Code" target="_blank" rel="noopener" class="share-btn">Hacker News</a>
           <button class="share-btn copy-link-btn" onclick="copyArticleLink(this)">Copy Link</button>
         </div>
       </div>
@@ -244,13 +224,12 @@ No. Developers remain 100% accountable for code correctness, security boundaries
     <div class="footer-links">
       <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
       <span>·</span>
-      <a href="/rss.xml">RSS</a>
-      <span>·</span>
-      <a href="/sitemap.xml">Sitemap</a>
+      <a href="../../sitemap.xml">RSS</a>
     </div>
   </footer>
 
   <script type="application/ld+json">
+[
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -259,17 +238,59 @@ No. Developers remain 100% accountable for code correctness, security boundaries
     "url": "https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/",
     "datePublished": "2026-08-25",
     "dateModified": "2026-08-25",
-    "author": {
-      "@type": "Organization",
-      "name": "StackScout Engineering",
-      "url": "https://stackscout-blog.pages.dev"
-    },
     "publisher": {
       "@type": "Organization",
       "name": "StackScout",
       "url": "https://stackscout-blog.pages.dev"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does Claude Code differ from GitHub Copilot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Copilot provides real-time line completions inside your editor. Claude Code runs in your terminal, executes commands, runs test suites, and edits multiple files across your entire codebase autonomously."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why should I write plans in markdown before writing code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Markdown plans serve as persistent memory on disk. They prevent context loss during long sessions and force you to validate architecture before generating code."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to give Claude Code terminal command access?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, when paired with permission controls and executed in separate Git branches or worktrees where diffs can be inspected before merging."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What tasks are best suited for Claude Code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Claude Code excels at multi-file refactors, test suite generation, serverless migrations, dependency updates, and repetitive boilerplate scripts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Claude Code eliminate the need for code review?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Developers remain 100% accountable for code correctness, security boundaries, and performance. Every generated diff must be reviewed with `git diff`."
+        }
+      }
+    ]
   }
+]
   </script>
 </body>
 </html>

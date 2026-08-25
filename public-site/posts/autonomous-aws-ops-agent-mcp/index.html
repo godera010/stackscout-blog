@@ -3,36 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Architecting an Autonomous AWS Ops Agent with Model Context Protocol — StackScout</title>
-  <meta name="description" content="How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations.">
-  
-  <!-- Preconnect & Asynchronous Font Loading (Zero Render-Blocking) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap">
-  
+  <title>Building an Autonomous AWS Ops Agent with Model Context Protocol — StackScout</title>
+  <meta name="description" content="Architecting an autonomous AWS cloud operations agent using Model Context Protocol (MCP), safety guardrails, and automated rollbacks.">
   <link rel="canonical" href="https://stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/">
-  <meta property="og:title" content="Architecting an Autonomous AWS Ops Agent with Model Context Protocol — StackScout">
-  <meta property="og:description" content="How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations.">
+  <meta property="og:title" content="Building an Autonomous AWS Ops Agent with Model Context Protocol — StackScout">
+  <meta property="og:description" content="Architecting an autonomous AWS cloud operations agent using Model Context Protocol (MCP), safety guardrails, and automated rollbacks.">
   <meta property="og:url" content="https://stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="StackScout">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Architecting an Autonomous AWS Ops Agent with Model Context Protocol — StackScout">
-  <meta name="twitter:description" content="How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations.">
-  
-  <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="https://stackscout-blog.pages.dev/rss.xml">
-  <script src="/assets/theme.js"></script>
-  <link rel="stylesheet" href="/assets/styles.css">
+  <meta name="twitter:title" content="Building an Autonomous AWS Ops Agent with Model Context Protocol — StackScout">
+  <meta name="twitter:description" content="Architecting an autonomous AWS cloud operations agent using Model Context Protocol (MCP), safety guardrails, and automated rollbacks.">
+  <script src="../../assets/theme.js"></script>
+  <link rel="stylesheet" href="../../assets/styles.css">
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="header-top">
-        <a href="/" class="logo">StackScout</a>
+        <a href="../../" class="logo">StackScout</a>
         <div class="nav-right">
-          <a href="/posts/" class="active">Posts</a>
-          <a href="/about/">About</a>
+          <a href="../../posts/">Posts</a>
+          <a href="../../about/">About</a>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
             <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
             <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1.3-1z"/></svg>
@@ -48,24 +39,19 @@
   <main>
     <article>
       <header>
-        <h1>Architecting an Autonomous AWS Ops Agent with Model Context Protocol</h1>
-        <div class="subtitle">How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations.</div>
-        <div class="meta">AUG 25, 2026 &nbsp;·&nbsp; 12 MIN READ &nbsp;·&nbsp; BY GODWIN ERA · CLOUD INFRASTRUCTURE LEAD</div>
+        <h1>Building an Autonomous AWS Ops Agent with Model Context Protocol</h1>
+        <div class="subtitle">Architecting an autonomous AWS cloud operations agent using Model Context Protocol (MCP), safety guardrails, and automated rollbacks.</div>
+        <div class="meta">AUG 25, 2026 &nbsp;·&nbsp; 5 MIN READ</div>
       </header>
-
-
-      <blockquote>
-        <p><strong>TL;DR:</strong> Combining AWS DevOps Agent via the Model Context Protocol (MCP) with Kiro Crew creates an autonomous site reliability system that detects silent cloud failures without pre-configured alarms. By decoupling read-only telemetry analysis from controlled remediation workflows, teams can slash Mean Time to Resolution (MTTR) from hours to under 7 minutes.</p>
-      </blockquote>
 
       <div class="toc">
         <div class="toc-title">Contents</div>
         <ol>
-          <li><a href="#why-silent-ecs-crash-loops-bypass-pagerduty">1. Why Silent ECS Crash Loops Bypass PagerDuty</a></li><li><a href="#the-brain-and-hands-pattern-read-only-diagnosis-vs-controlled-execution">2. The Brain-and-Hands Pattern: Read-Only Diagnosis vs Controlled Execution</a></li><li><a href="#step-by-step-implementation-configuring-mcp-and-autonomous-audits">3. Step-by-Step Implementation: Configuring MCP and Autonomous Audits</a></li><li><a href="#comparison-cloud-incident-response-approaches">4. Comparison: Cloud Incident Response Approaches</a></li><li><a href="#security-guardrails-keeping-devops-agents-safe">5. Security Guardrails: Keeping DevOps Agents Safe</a></li><li><a href="#frequently-asked-questions">6. Frequently Asked Questions</a></li><li><a href="#conclusion-key-takeaways">7. Conclusion &amp; Key Takeaways</a></li>
+          <li><a href="#why-silent-ecs-crash-loops-bypass-pagerduty">1. Why Silent ECS Crash Loops Bypass PagerDuty</a></li><li><a href="#the-brain-and-hands-pattern-read-only-diagnosis-vs-controlled-execution">2. The Brain-and-Hands Pattern: Read-Only Diagnosis vs Controlled Execution</a></li><li><a href="#step-by-step-implementation-configuring-mcp-and-autonomous-audits">3. Step-by-Step Implementation: Configuring MCP and Autonomous Audits</a></li><li><a href="#comparison-cloud-incident-response-approaches">4. Comparison: Cloud Incident Response Approaches</a></li><li><a href="#security-guardrails-keeping-devops-agents-safe">5. Security Guardrails: Keeping DevOps Agents Safe</a></li><li><a href="#conclusion--key-takeaways">6. Conclusion & Key Takeaways</a></li><li><a href="#faq">7. Frequently Asked Questions</a></li>
         </ol>
       </div>
 
-            <figure>
+      <figure>
         <img src="../../assets/images/aws_mcp_ops_architecture.jpg" alt="Building an Autonomous AWS Ops Agent with Model Context Protocol">
         <figcaption>Figure 1: Autonomous AWS Ops Agent Architecture with MCP tool execution, CloudWatch telemetry, and automated rollback loop.</figcaption>
       </figure>
@@ -91,10 +77,11 @@ Human engineers discover these bugs only when a customer complains or when the A
                ▼                           │
 ┌──────────────────────────────┐  MCP JSON ┌──────────────────────────────┐
 │     AWS DevOps Agent MCP     │─────────▶│          Kiro Crew            │
-│         (&quot;The Brain&quot;)        │          │         (&quot;The Hands&quot;)         │
+│         ("The Brain")        │          │         ("The Hands")         │
 │  - Reads CloudWatch &amp; X-Ray  │          │  - Runs Scheduled 30m Audits  │
 │  - Synthesizes Root Cause    │          │  - Applies Gated CLI Fixes    │
-└──────────────────────────────┘          └──────────────────────────────┘</code></pre>
+└──────────────────────────────┘          └──────────────────────────────┘
+</code></pre>
 
 <h3 id="1-the-brain-aws-devops-agent-mcp-read-only">1. The Brain: AWS DevOps Agent MCP (Read-Only)</h3>
 AWS DevOps Agent operates strictly in read-only mode via MCP across 34 diagnostic tools. It correlates CloudWatch log groups, AWS X-Ray traces, and CloudTrail event history to synthesize root-cause hypotheses and generate step-by-step mitigation plans.
@@ -108,17 +95,18 @@ Kiro Crew acts as the local orchestration worker. It runs scheduled audits, invo
 Add the MCP server to your local agent configuration with read-only AWS credentials:
 
 <pre class="lang-json"><code>{
-  &quot;mcpServers&quot;: {
-    &quot;aws-devops&quot;: {
-      &quot;command&quot;: &quot;uvx&quot;,
-      &quot;args&quot;: [&quot;aws-devops-agent-mcp&quot;],
-      &quot;env&quot;: {
-        &quot;AWS_REGION&quot;: &quot;us-east-1&quot;,
-        &quot;AWS_PROFILE&quot;: &quot;devops-agent-readonly&quot;
+  "mcpServers": {
+    "aws-devops": {
+      "command": "uvx",
+      "args": ["aws-devops-agent-mcp"],
+      "env": {
+        "AWS_REGION": "us-east-1",
+        "AWS_PROFILE": "devops-agent-readonly"
       }
     }
   }
-}</code></pre>
+}
+</code></pre>
 
 <h3 id="step-2-configure-scheduled-30-minute-audits-cron">Step 2: Configure Scheduled 30-Minute Audits (Cron)</h3>
 Set up Kiro Crew to proactively inspect infrastructure health on a 30-minute interval:
@@ -128,20 +116,21 @@ from kiro_crew import Crew, Task, Agent
 
 <p># Define the diagnostic agent with read-only MCP access
 devops_investigator = Agent(
-    name=&quot;DevOps SRE Lead&quot;,
-    role=&quot;Proactive Infrastructure Auditor&quot;,
-    tools=[&quot;aws-devops-agent-mcp&quot;],
-    goal=&quot;Identify silent container crash loops, pipeline bottlenecks, and unhandled Lambda timeouts.&quot;
+    name="DevOps SRE Lead",
+    role="Proactive Infrastructure Auditor",
+    tools=["aws-devops-agent-mcp"],
+    goal="Identify silent container crash loops, pipeline bottlenecks, and unhandled Lambda timeouts."
 )</p>
 
 <p>audit_task = Task(
-    description=&quot;Query AWS DevOps Agent for service anomalies across all us-east-1 ECS clusters.&quot;,
-    expected_output=&quot;Structured JSON diagnosis containing root cause, affected resources, and exact CLI remediation.&quot;,
+    description="Query AWS DevOps Agent for service anomalies across all us-east-1 ECS clusters.",
+    expected_output="Structured JSON diagnosis containing root cause, affected resources, and exact CLI remediation.",
     agent=devops_investigator
 )</p>
 
 <p>crew = Crew(agents=[devops_investigator], tasks=[audit_task])
-crew.run_cron(schedule=&quot;<em>/30 </em> <em> </em> *&quot;)</code></pre></p>
+crew.run_cron(schedule="*/30 * * * *")
+</code></pre>
 
 <h3 id="step-3-enforce-automated-verification-and-safe-rollbacks">Step 3: Enforce Automated Verification and Safe Rollbacks</h3>
 When an anomaly is detected—such as a task definition pointing to a deprecated environment variable—the agent generates and executes the specific fix:
@@ -151,73 +140,63 @@ aws ecs update-service \
   --cluster production-cluster \
   --service payment-api \
   --task-definition payment-api:42 \
-  --force-new-deployment</code></pre>
+  --force-new-deployment
+</code></pre>
 
 <p>The agent then monitors task stabilization over the next 5 minutes to verify the crash loop has cleared.</p>
 
 <h2 id="comparison-cloud-incident-response-approaches">Comparison: Cloud Incident Response Approaches</h2>
 
-<p>| Dimension | CloudWatch + PagerDuty | Conversational Chatbot (ChatGPT UI) | Autonomous Agent (Kiro Crew + MCP) |
-| :--- | :--- | :--- | :--- |
-| <strong>Detection Mode</strong> | Reactive to static thresholds | Manual human prompt | Proactive 30-minute automated scans |
-| <strong>Telemetry Access</strong> | Static dashboards | Manual log copy-pasting | Live, bidirectional MCP query access |
-| <strong>Mean Time to Resolution</strong> | 1–3 Hours | 30–60 Minutes | <strong>5–7 Minutes</strong> |
-| <strong>Silent Failure Discovery</strong>| None (Misses un-alarmed bugs) | None | Full coverage across all services |
-| <strong>Execution Safety</strong> | Manual CLI execution | Manual copy-paste | Sandboxed with human approval gates |</p>
-
+<table>
+  <thead>
+    <tr><th>Dimension</th><th>CloudWatch + PagerDuty</th><th>Conversational Chatbot (ChatGPT UI)</th><th>Autonomous Agent (Kiro Crew + MCP)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Detection Mode</strong></td><td>Reactive to static thresholds</td><td>Manual human prompt</td><td>Proactive 30-minute automated scans</td></tr>
+<tr><td><strong>Telemetry Access</strong></td><td>Static dashboards</td><td>Manual log copy-pasting</td><td>Live, bidirectional MCP query access</td></tr>
+<tr><td><strong>Mean Time to Resolution</strong></td><td>1–3 Hours</td><td>30–60 Minutes</td><td><strong>5–7 Minutes</strong></td></tr>
+<tr><td><strong>Silent Failure Discovery</strong></td><td>None (Misses un-alarmed bugs)</td><td>None</td><td>Full coverage across all services</td></tr>
+<tr><td><strong>Execution Safety</strong></td><td>Manual CLI execution</td><td>Manual copy-paste</td><td>Sandboxed with human approval gates</td></tr>
+  </tbody>
+</table>
 <h2 id="security-guardrails-keeping-devops-agents-safe">Security Guardrails: Keeping DevOps Agents Safe</h2>
 <ul><li><strong>Never Give the LLM Full IAM Admin:</strong> The reasoning agent should only have read permissions (<code>CloudWatchReadOnlyAccess</code>, <code>AWSXRayReadOnlyAccess</code>).</li>
 <li><strong>Human-in-the-Loop for Destructive Ops:</strong> Any action that alters security groups, modifies database schemas, or drops instances must pause for human Slack confirmation.</li>
 <li><strong>Scope Regional API Limits:</strong> Querying CloudWatch across all global regions simultaneously triggers AWS API rate limits. Scope audit loops to active production regions.</li>
 </ul>
-<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 
-<h3 id="what-is-the-model-context-protocol-mcp-in-devops">What is the Model Context Protocol (MCP) in DevOps?</h3>
-The Model Context Protocol (MCP) is an open standard that allows AI agents to securely connect to external tools, databases, and cloud APIs like AWS CloudWatch and ECS.
-
-<h3 id="how-does-an-ai-agent-detect-silent-failures-without-alarms">How does an AI agent detect silent failures without alarms?</h3>
-The agent runs scheduled programmatic audits against cloud service APIs, comparing desired service states (e.g., target task counts) against live health check metrics.
-
-<h3 id="is-it-safe-to-allow-an-ai-agent-to-fix-aws-infrastructure">Is it safe to allow an AI agent to fix AWS infrastructure?</h3>
-Yes, when using a decoupled architecture where the diagnostic agent is read-only and write actions are gated by strict IAM roles, verification tests, or human approvals.
-
-<h3 id="how-does-this-setup-reduce-mean-time-to-resolution-mttr">How does this setup reduce Mean Time to Resolution (MTTR)?</h3>
-By autonomously correlating CloudWatch logs, X-Ray traces, and deployment histories within seconds, eliminating manual triage delays during on-call incidents.
-
-<h3 id="what-aws-services-can-be-monitored-via-aws-devops-agent-mcp">What AWS services can be monitored via AWS DevOps Agent MCP?</h3>
-AWS DevOps Agent MCP supports Amazon ECS, AWS Lambda, Amazon EKS, AWS CodePipeline, AWS CodeBuild, Amazon RDS, CloudWatch, and AWS X-Ray.
-
-<h2 id="conclusion-key-takeaways">Conclusion & Key Takeaways</h2>
+<h2 id="conclusion--key-takeaways">Conclusion & Key Takeaways</h2>
 
 <p>Combining Kiro Crew with AWS DevOps Agent MCP shifts cloud operations from reactive firefighting to continuous automated reliability audits. By enforcing read-only diagnostic boundaries and controlled remediation workflows, teams eliminate silent failure loops and reduce MTTR from hours to minutes.</p>
 
-
-      <h2 id="faq">Frequently Asked Questions (FAQ)</h2>
+      <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-list">
-        <h3>What is the core takeaway of this guide?</h3>
-        <p>This guide establishes production patterns and verifiable architecture standards designed to eliminate engineering friction, improve reliability, and optimize system performance.</p>
-        <h3>How can teams implement these patterns safely?</h3>
-        <p>Start by auditing your current pipeline, applying clear boundaries, enforcing verification commands on disk, and introducing automated checks gradually.</p>
-        <h3>Where can I find additional technical reference code?</h3>
-        <p>Check the StackScout open-source repository on GitHub for full runnable code samples, architecture benchmarks, and continuous deployment configurations.</p>
+        <h3>What is the Model Context Protocol (MCP) in DevOps?</h3>
+        <p>The Model Context Protocol (MCP) is an open standard that allows AI agents to securely connect to external tools, databases, and cloud APIs like AWS CloudWatch and ECS.</p>
+        <h3>How does an AI agent detect silent failures without alarms?</h3>
+        <p>The agent runs scheduled programmatic audits against cloud service APIs, comparing desired service states (e.g., target task counts) against live health check metrics.</p>
+        <h3>Is it safe to allow an AI agent to fix AWS infrastructure?</h3>
+        <p>Yes, when using a decoupled architecture where the diagnostic agent is read-only and write actions are gated by strict IAM roles, verification tests, or human approvals.</p>
+        <h3>How does this setup reduce Mean Time to Resolution (MTTR)?</h3>
+        <p>By autonomously correlating CloudWatch logs, X-Ray traces, and deployment histories within seconds, eliminating manual triage delays during on-call incidents.</p>
+        <h3>What AWS services can be monitored via AWS DevOps Agent MCP?</h3>
+        <p>AWS DevOps Agent MCP supports Amazon ECS, AWS Lambda, Amazon EKS, AWS CodePipeline, AWS CodeBuild, Amazon RDS, CloudWatch, and AWS X-Ray.</p>
       </div>
 
-
-            <!-- Recommended Reading Section -->
-      <section class="recommended-section">
+            <section class="recommended-section">
         <div class="section-label">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           RECOMMENDED READING
         </div>
         <div class="recommended-grid">
         <a href="../../posts/zero-trust-ai-agents-istio-kubernetes/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 14 MIN READ</div>
+          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 6 MIN READ</div>
           <h3>Zero Trust Architecture for AI Agents in Istio and Kubernetes</h3>
           <p>Securing autonomous AI agents in Kubernetes using Istio service mesh, SPIFFE/SPIRE identities, mTLS, and egress control.</p>
           <span class="read-link">Read article &rarr;</span>
         </a>
         <a href="../../posts/coding-with-claude-code-in-production/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 10 MIN READ</div>
+          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 6 MIN READ</div>
           <h3>Beyond the Hype: My Production Workflow with Claude Code</h3>
           <p>A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.</p>
           <span class="read-link">Read article &rarr;</span>
@@ -228,9 +207,9 @@ AWS DevOps Agent MCP supports Amazon ECS, AWS Lambda, Amazon EKS, AWS CodePipeli
       <div class="article-share">
         <span class="share-label">Share Article</span>
         <div class="share-buttons">
-          <a href="https://x.com/intent/post?text=Architecting%20an%20Autonomous%20AWS%20Ops%20Agent%20with%20Model%20Context%20Protocol&url=https%3A//stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/" target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/" target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
-          <a href="https://news.ycombinator.com/submitlink?u=https%3A//stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/&t=Architecting%20an%20Autonomous%20AWS%20Ops%20Agent%20with%20Model%20Context%20Protocol" target="_blank" rel="noopener" class="share-btn">Hacker News</a>
+          <a href="https://x.com/intent/post?text=Building%20an%20Autonomous%20AWS%20Ops%20Agent%20with%20Model%20Context%20Protocol&url=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fautonomous-aws-ops-agent-mcp%2F" target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fautonomous-aws-ops-agent-mcp%2F" target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
+          <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fautonomous-aws-ops-agent-mcp%2F&t=Building%20an%20Autonomous%20AWS%20Ops%20Agent%20with%20Model%20Context%20Protocol" target="_blank" rel="noopener" class="share-btn">Hacker News</a>
           <button class="share-btn copy-link-btn" onclick="copyArticleLink(this)">Copy Link</button>
         </div>
       </div>
@@ -242,32 +221,73 @@ AWS DevOps Agent MCP supports Amazon ECS, AWS Lambda, Amazon EKS, AWS CodePipeli
     <div class="footer-links">
       <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
       <span>·</span>
-      <a href="/rss.xml">RSS</a>
-      <span>·</span>
-      <a href="/sitemap.xml">Sitemap</a>
+      <a href="../../sitemap.xml">RSS</a>
     </div>
   </footer>
 
   <script type="application/ld+json">
+[
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "Architecting an Autonomous AWS Ops Agent with Model Context Protocol",
-    "description": "How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations.",
+    "headline": "Building an Autonomous AWS Ops Agent with Model Context Protocol",
+    "description": "Architecting an autonomous AWS cloud operations agent using Model Context Protocol (MCP), safety guardrails, and automated rollbacks.",
     "url": "https://stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/",
     "datePublished": "2026-08-25",
     "dateModified": "2026-08-25",
-    "author": {
-      "@type": "Organization",
-      "name": "StackScout Engineering",
-      "url": "https://stackscout-blog.pages.dev"
-    },
     "publisher": {
       "@type": "Organization",
       "name": "StackScout",
       "url": "https://stackscout-blog.pages.dev"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Model Context Protocol (MCP) in DevOps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Model Context Protocol (MCP) is an open standard that allows AI agents to securely connect to external tools, databases, and cloud APIs like AWS CloudWatch and ECS."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does an AI agent detect silent failures without alarms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The agent runs scheduled programmatic audits against cloud service APIs, comparing desired service states (e.g., target task counts) against live health check metrics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to allow an AI agent to fix AWS infrastructure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, when using a decoupled architecture where the diagnostic agent is read-only and write actions are gated by strict IAM roles, verification tests, or human approvals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does this setup reduce Mean Time to Resolution (MTTR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "By autonomously correlating CloudWatch logs, X-Ray traces, and deployment histories within seconds, eliminating manual triage delays during on-call incidents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What AWS services can be monitored via AWS DevOps Agent MCP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AWS DevOps Agent MCP supports Amazon ECS, AWS Lambda, Amazon EKS, AWS CodePipeline, AWS CodeBuild, Amazon RDS, CloudWatch, and AWS X-Ray."
+        }
+      }
+    ]
   }
+]
   </script>
 </body>
 </html>
