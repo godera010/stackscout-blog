@@ -1,5 +1,8 @@
 # Instatic CMS - Root .gitignore
 
+# Research source drafts
+research/
+
 # SQLite database (managed by Docker volume, never commit)
 instatic-data/data/
 
