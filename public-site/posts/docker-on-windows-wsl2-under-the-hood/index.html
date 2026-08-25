@@ -5,24 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Docker on Windows with WSL 2: What Actually Happens Under the Hood — StackScout</title>
   <meta name="description" content="A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).">
-  <meta property="og:title" content="Docker on Windows with WSL 2: What Actually Happens Under the Hood">
-  <meta property="og:description" content="An architectural deep-dive into how Windows, WSL 2, cgroups, VirtioFS, and native WSL containers (wslc) interact.">
+  
+  <!-- Preconnect & Asynchronous Font Loading (Zero Render-Blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap">
+  
+  <link rel="canonical" href="https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/">
+  <meta property="og:title" content="Docker on Windows with WSL 2: What Actually Happens Under the Hood — StackScout">
+  <meta property="og:description" content="A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).">
+  <meta property="og:url" content="https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/">
   <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary">
-  <script src="../../assets/theme.js"></script>
-  <link rel="stylesheet" href="../../assets/styles.css">
+  <meta property="og:site_name" content="StackScout">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Docker on Windows with WSL 2: What Actually Happens Under the Hood — StackScout">
+  <meta name="twitter:description" content="A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).">
+  
+  <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="https://stackscout-blog.pages.dev/rss.xml">
+  <script src="/assets/theme.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="header-top">
-        <a href="../../" class="logo">StackScout</a>
+        <a href="/" class="logo">StackScout</a>
         <div class="nav-right">
-          <a href="../../posts/">Posts</a>
-          <a href="../../about/">About</a>
+          <a href="/posts/" class="active">Posts</a>
+          <a href="/about/">About</a>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
             <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1-1.3z"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1.3-1z"/></svg>
           </button>
         </div>
       </div>
@@ -36,192 +49,221 @@
     <article>
       <header>
         <h1>Docker on Windows with WSL 2: What Actually Happens Under the Hood</h1>
-        <div class="subtitle">What actually happens when a Linux container runs on Windows.</div>
-        <div class="meta">AUG 14, 2026 &nbsp;·&nbsp; 14 MIN READ &nbsp;·&nbsp; BY STACKSCOUT ENGINEERING</div>
+        <div class="subtitle">A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).</div>
+        <div class="meta">AUG 14, 2026 &nbsp;·&nbsp; 14 MIN READ &nbsp;·&nbsp; BY GODWIN ERA · SYSTEMS INFRASTRUCTURE ENGINEER</div>
       </header>
 
+
       <blockquote>
-        <p><strong>TL;DR:</strong> Running Docker on Windows via WSL 2 executes Linux containers inside a lightweight Hyper-V utility microVM using shared kernel cgroups v2 and namespaces. Storing code inside native WSL Linux paths (<code>/home/...</code>) rather than Windows NTFS (<code>/mnt/c/</code>) eliminates cross-OS VirtioFS translation bottlenecks and restores full Linux file-system speed.</p>
+        <p><strong>TL;DR:</strong> A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).</p>
       </blockquote>
 
       <div class="toc">
         <div class="toc-title">Contents</div>
         <ol>
-          <li><a href="#what-is-wsl2">1. What Is WSL 2 Containerization?</a></li>
-          <li><a href="#why-it-matters">2. Why It Matters: Evolution from Heavy VMs</a></li>
-          <li><a href="#architectural-stack">3. The Architectural Stack</a></li>
-          <li><a href="#wslc-vs-docker">4. Native WSL Containers (wslc) vs. Docker Desktop</a></li>
-          <li><a href="#filesystem-bottleneck">5. The Filesystem Performance Bottleneck</a></li>
-          <li><a href="#hands-on-wslc">6. Building &amp; Running with wslc</a></li>
-          <li><a href="#dotnet-embedding">7. Programmatic Container Management (.NET)</a></li>
-          <li><a href="#common-pitfalls">8. Common Pitfalls &amp; Troubleshooting</a></li>
-          <li><a href="#faq">9. Frequently Asked Questions (FAQ)</a></li>
-          <li><a href="#conclusion">10. Summary &amp; Recommendations</a></li>
+          <li><a href="#1-the-architectural-stack-windows-kernel-container">1. 1. The Architectural Stack: Windows → Kernel → Container</a></li><li><a href="#2-native-wsl-containers-wslc-vs-docker-desktop">2. 2. Native WSL Containers (wslc) vs. Docker Desktop</a></li><li><a href="#3-the-filesystem-bottleneck-mntc-vs-homeuser">3. 3. The Filesystem Bottleneck: /mnt/c/ vs /home/user/</a></li><li><a href="#4-hands-on-cli-walkthrough-with-wslc">4. 4. Hands-On CLI Walkthrough with `wslc`</a></li><li><a href="#5-programmatic-container-management-with-c-net">5. 5. Programmatic Container Management with C# / .NET</a></li><li><a href="#6-summary-recommendations">6. 6. Summary &amp; Recommendations</a></li>
         </ol>
       </div>
 
-      <h2 id="what-is-wsl2">1. What Is WSL 2 Containerization?</h2>
-      <p><strong>WSL 2 containerization is a hybrid virtualization architecture that executes Linux containers inside a dynamic Hyper-V LightVM using unified Linux kernel cgroups and namespaces.</strong></p>
-
-      <p>For years, running Linux containers on Windows workstations required developers to navigate heavy abstractions. Early solutions relied on VirtualBox or full Hyper-V virtual machines running entire guest Linux operating systems with static RAM reservations. Later, Docker Desktop simplified the user experience with a tray application, but the underlying execution model remained opaque.</p>
-
-      <p>With <strong>Windows Subsystem for Linux 2 (WSL 2)</strong> and Microsoft's introduction of <strong>Native WSL Containers (<code>wslc.exe</code> in WSL 2.9.3+)</strong>, Windows containerization has undergone a fundamental redesign. Rather than running isolated, resource-heavy guest VMs, modern Windows container setups utilize lightweight utility microVMs, direct Linux kernel cgroups v2, and shared host memory return mechanisms.</p>
-
-      <h2 id="why-it-matters">2. Why It Matters: Evolution from Heavy VMs</h2>
-      <p>Understanding the architectural mechanics of WSL 2 helps engineers diagnose performance bottlenecks, optimize build pipelines, and choose between traditional Docker Desktop installations and zero-overhead native WSL container tools.</p>
-
-      <ul>
-        <li><strong>Dynamic Memory Reclamation:</strong> Unlike traditional Hyper-V virtual machines that reserve fixed RAM blocks (e.g. 8 GB dedicated), WSL 2 dynamically expands and contracts memory, returning released Linux kernel pages to Windows host RAM.</li>
-        <li><strong>Shared Linux Kernel:</strong> All WSL 2 Linux distributions (Ubuntu, Debian, Alpine) share a single custom Microsoft-built Linux kernel. Container engines interact directly with this unified kernel.</li>
-        <li><strong>Near-Native Execution Speed:</strong> System calls execute directly against the Linux kernel rather than translating into Windows API calls (as was done in WSL 1).</li>
-      </ul>
-
-      <h2 id="architectural-stack">3. The Architectural Stack</h2>
-      <p>To understand how a containerized application executes on a Windows workstation, we can trace the boundaries from Win32 host applications down to isolated container processes:</p>
-
-      <figure>
-        <img src="../../assets/images/wsl2_architecture.jpg" alt="Windows 11 Virtualization &amp; WSL 2 Container Architecture Diagram">
-        <figcaption>Figure 1: Windows 11 Virtualization Architecture showing Host Compute Service (HCS), LightVM container host, cgroups v2 kernel controllers, and isolated container execution.</figcaption>
+            <figure>
+        <img src="../../assets/images/wsl2_architecture.jpg" alt="Docker on Windows with WSL 2: What Actually Happens Under the Hood">
+        <figcaption>Figure 1: Windows 11 Virtualization Architecture showing Host Compute Service (HCS), LightVM microkernel, and container cgroups v2.</figcaption>
       </figure>
 
-      <h3>3.1. Hyper-V LightVM &amp; Host Compute Service (HCS)</h3>
-      <p>WSL 2 communicates with the Windows host via Hyper-V Sockets (HV-Socket) and the Host Compute Service. The LightVM boots in less than one second and consumes a minimal baseline memory footprint.</p>
+<p>For years, running Linux containers on Windows meant accepting a series of heavy abstractions. Early solutions relied on VirtualBox or Hyper-V virtual machines running full Linux guest operating systems. Later, Docker Desktop abstracted this complexity behind a tray application, but the underlying mechanisms remained opaque to many engineers.</p>
 
-      <h3>3.2. Namespaces &amp; cgroups v2 Enclosure</h3>
-      <p>Containers inside WSL 2 are standard Linux processes isolated by Linux namespaces (`PID`, `NET`, `MNT`, `IPC`, `USER`) and resource-restricted by `cgroups v2`. They are not nested virtual machines.</p>
+<p>With <strong>Windows Subsystem for Linux 2 (WSL 2)</strong> and the recent addition of <strong>Native WSL Containers (<code>wslc.exe</code> in WSL 2.9.3+)</strong>, Microsoft has fundamentally rewritten how Linux code executes on Windows workstations. Rather than running a traditional heavy VM or requiring third-party background daemons, modern Windows containerization leverages lightweight utility microVMs, direct Linux kernel cgroups, and native OCI image layers.</p>
 
-      <h2 id="wslc-vs-docker">4. Native WSL Containers (wslc) vs. Docker Desktop</h2>
-      <p>WSL 2.9.3+ embeds native OCI container management directly into WSL via <code>wslc.exe</code>, giving developers a zero-overhead CLI alternative to commercial desktop tools:</p>
+<p>In this technical deep dive, we trace the exact execution path from a Windows <code>PowerShell</code> invocation down to kernel namespaces, process isolation, VirtioFS I/O layers, and container execution.</p>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Native WSL Containers (<code>wslc</code>)</th>
-            <th>Docker Desktop</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Installation Model</strong></td>
-            <td>Built into WSL (<code>wsl --update --pre-release</code>)</td>
-            <td>Standalone installer &amp; background daemon</td>
-          </tr>
-          <tr>
-            <td><strong>Licensing &amp; Cost</strong></td>
-            <td>100% Free &amp; Open Source (Apache 2.0)</td>
-            <td>Paid subscription for enterprise teams</td>
-          </tr>
-          <tr>
-            <td><strong>Resource Overhead</strong></td>
-            <td>Zero background daemon footprint</td>
-            <td>Heavier baseline (Electron UI + daemon)</td>
-          </tr>
-          <tr>
-            <td><strong>CLI Syntax</strong></td>
-            <td>Mirrors Docker CLI (<code>wslc run</code>, <code>wslc ps</code>)</td>
-            <td>Standard Docker CLI (<code>docker run</code>)</td>
-          </tr>
-          <tr>
-            <td><strong>Programmatic API</strong></td>
-            <td>Native .NET NuGet (<code>Microsoft.WSL.Containers</code>)</td>
-            <td>Docker Engine REST API socket</td>
-          </tr>
-        </tbody>
-      </table>
+<hr>
 
-      <h2 id="filesystem-bottleneck">5. The Filesystem Performance Bottleneck</h2>
-      <p>The single most frequent performance failure in WSL 2 setups is storing project files on the Windows NTFS drive (e.g. <code>C:\Users\dev\project</code>) and bind-mounting them into Linux containers.</p>
+<h2 id="1-the-architectural-stack-windows-kernel-container">1. The Architectural Stack: Windows → Kernel → Container</h2>
 
-      <blockquote>
-        <p><strong>Rule of thumb:</strong> Store your source code repositories inside the native WSL filesystem at <code>/home/username/projects/</code> instead of <code>/mnt/c/</code> to achieve maximum I/O throughput.</p>
-      </blockquote>
+<p>When you initiate a container on Windows, the request traverses three core boundaries:</p>
 
-      <h2 id="hands-on-wslc">6. Building &amp; Running with wslc</h2>
-      <p>To enable and test native WSL container execution:</p>
+<pre class="diagram"><code>+-----------------------------------------------------------------------+
+|                             WINDOWS 11 HOST                           |
+|  [ VS Code ]   [ Edge Browser ]   [ PowerShell ]   [ Win32 App ]      |
++-----------------------------------------------------------------------+
+                                   |
+         Hyper-V Host Compute Service (HCS) Lightweight MicroVM
+                                   |
++-----------------------------------------------------------------------+
+|                           WSL 2 UTILITY VM                            |
+|  +-----------------------------------------------------------------+  |
+|  |                   CUSTOM MICROSOFT LINUX KERNEL                 |  |
+|  |     Namespaces (PID, NET, MNT)  <em>  cgroups v2  </em>  /dev/dxg       |  |
+|  +-----------------------------------------------------------------+  |
+|                                  |                                    |
+|         +------------------------+------------------------+           |
+|         |                                                 |           |
+|         v                                                 v           |
+|  +------------------------------+              +-------------------+  |
+|  |  Docker Engine / containerd  |              | Native WSL (wslc) |  |
+|  +------------------------------+              +-------------------+  |
+|         |                                                 |           |
+|         v                                                 v           |
+|  +-----------------------------------------------------------------+  |
+|  |                       RUNNING CONTAINERS                        |  |
+|  |   [ Nginx ]          [ Node.js API ]          [ PostgreSQL ]    |  |
+|  +-----------------------------------------------------------------+  |
++-----------------------------------------------------------------------+</code></pre>
 
-      <pre><code># 1. Update WSL to pre-release build
+<p>1. <strong>Hyper-V LightVM Initialization:</strong> WSL 2 does not run full Hyper-V virtual machine instances with fixed allocated RAM. Instead, it utilizes Hyper-V Socket (HV-Socket) communication and the Host Compute Service (HCS) to spawn a dynamic utility VM in milliseconds.
+2. <strong>Shared Unified Kernel:</strong> All WSL 2 Linux distributions (Ubuntu, Debian, Alpine) share a single Linux kernel instance compiled by Microsoft. Memory is dynamically returned to the Windows host when Linux processes release it.
+3. <strong>Namespace & cgroup v2 Enclosure:</strong> Containers are not virtual machines within WSL 2. A container running inside WSL 2 is simply a standard Linux process isolated using Linux <code>namespaces</code> (for PID, network, and mount isolation) and <code>cgroups v2</code> (for CPU and memory caps).</p>
+
+<hr>
+
+<h2 id="2-native-wsl-containers-wslc-vs-docker-desktop">2. Native WSL Containers (wslc) vs. Docker Desktop</h2>
+
+<p>| Feature / Dimension | Native WSL Containers (<code>wslc</code>) | Docker Desktop on Windows |
+| --- | --- | --- |
+| <strong>Installation Model</strong> | Built into WSL (<code>wsl --update --pre-release</code>) | Standalone installer, background daemon, GUI client |
+| <strong>Licensing & Cost</strong> | 100% Free & Open Source (Apache 2.0) | Paid subscription required for enterprise teams |
+| <strong>Resource Footprint</strong> | Zero extra daemon overhead; uses dynamic WSL RAM pool | Heavier background footprint (Electron UI + daemon) |
+| <strong>CLI Syntax</strong> | Mirrors Docker CLI (<code>wslc run</code>, <code>wslc ps</code>, <code>wslc build</code>) | Standard Docker CLI (<code>docker run</code>, <code>docker ps</code>) |
+| <strong>Image Compatibility</strong> | Standard OCI images (Docker Hub, GHCR, ACR) | Standard OCI images & Docker Hub integration |
+| <strong>Programmatic Integration</strong> | Native C# / .NET NuGet (<code>Microsoft.WSL.Containers</code>) | Docker Engine REST API socket wrapper |
+| <strong>GPU Passthrough</strong> | Direct <code>/dev/dxg</code> DirectX / CUDA passthrough | Requires Docker Desktop GPU configuration setting |</p>
+
+<hr>
+
+<h2 id="3-the-filesystem-bottleneck-mntc-vs-homeuser">3. The Filesystem Bottleneck: /mnt/c/ vs /home/user/</h2>
+
+<p>One of the most frequent performance complaints from Windows developers is slow <code>git status</code> execution, sluggish <code>npm install</code> times, or failing hot-reloading watchers inside containers. Almost without exception, this is caused by <strong>filesystem location</strong>.</p>
+
+<pre class="diagram"><code>SLOWNESS HIGHWAY (Cross-OS Translation):
+Windows NTFS (C:\Users\dev\my-app)
+   ---&gt; 9P / VirtioFS Protocol Translation
+   ---&gt; WSL 2 Mount Point (/mnt/c/Users/dev/my-app)
+   ---&gt; Container Bind Mount
+   RESULT: ~10x-20x slower I/O for heavy node_modules / git operations.
+
+<p>MAXIMUM PERFORMANCE PATH (Native Linux VHDX):
+WSL 2 Native ext4 VHDX (/home/dev/projects/my-app)
+   ---&gt; Direct Linux Kernel Virtual Block Device
+   ---&gt; Container Bind Mount
+   RESULT: Near-native Linux I/O throughput (~3,000+ IOPS).</code></pre></p>
+
+<blockquote><p><strong>Engineering Rule of Thumb:</strong> Never mount project code stored under <code>C:\</code> into Linux containers. Always clone repositories into the native WSL filesystem at <code>/home/username/projects/</code>.</p></blockquote>
+
+<hr>
+
+<h2 id="4-hands-on-cli-walkthrough-with-wslc">4. Hands-On CLI Walkthrough with <code>wslc</code></h2>
+
+<h3 id="step-1-enable-wsl-pre-release-track">Step 1: Enable WSL Pre-Release Track</h3>
+
+<pre class="lang-powershell"><code># Update WSL to pre-release build
 wsl --update --pre-release
 
-# 2. Build image from Dockerfile
-wslc build -t demo-service .
+<p># Verify installed WSL kernel version
+wsl --version</code></pre></p>
 
-# 3. Run detached container with port mapping 8080
-wslc run -d --rm -p 8080:8080 --name app demo-service
+<h3 id="step-2-build-and-execute-via-wslc">Step 2: Build and Execute via wslc</h3>
 
-# 4. Verify running containers
-wslc container ps</code></pre>
+<pre class="lang-bash"><code># 1. Build the OCI container image
+wslc build -t wslc-python-demo .
 
-      <h2 id="dotnet-embedding">7. Programmatic Container Management (.NET)</h2>
-      <p>Using the official <code>Microsoft.WSL.Containers</code> package, Windows C# applications can spawn and manage Linux containers programmatically:</p>
+<p># 2. List locally built images
+wslc image ls</p>
 
-      <pre><code>using System;
+<p># 3. Launch container in background with host port mapping 8080
+wslc run -d --rm -p 8080:8080 --name web-service wslc-python-demo</p>
+
+<p># 4. Verify running container status
+wslc container ps</p>
+
+<p># 5. Test endpoint from Windows browser or PowerShell
+curl http://localhost:8080</code></pre></p>
+
+<hr>
+
+<h2 id="5-programmatic-container-management-with-c-net">5. Programmatic Container Management with C# / .NET</h2>
+
+<pre class="lang-csharp"><code>using System;
 using System.Threading.Tasks;
 using Microsoft.WSL.Containers;
 
-using var session = new WslContainerSession();
-string imageName = "python:3.11-slim";
+<p>namespace StackScout.WslDemo;</p>
 
-await session.PullImageAsync(imageName, new ImagePullProgress(p =>
+<p>internal class Program
 {
-    Console.WriteLine($"Pulling: {p.Percentage}%");
-}));
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine(&quot;Connecting to WSL Container Subsystem...&quot;);</p>
 
-var createOptions = new ContainerCreateOptions
-{
-    Image = imageName,
-    Name = "embedded-wsl-runner",
-    EnableGpu = true,
-    PortMappings = { new PortMapping(HostPort: 8080, ContainerPort: 80) }
-};
+<p>using var session = new WslContainerSession();
+        string imageName = &quot;python:3.11-slim&quot;;</p>
 
-using var container = await session.CreateContainerAsync(createOptions);
-await container.StartAsync();
-Console.WriteLine($"Container running (ID: {container.Id})");</code></pre>
+<p>await session.PullImageAsync(imageName, new ImagePullProgress(p =&gt;
+        {
+            Console.WriteLine($&quot;[Pull Status]: {p.Percentage}% - {p.Status}&quot;);
+        }));</p>
 
-      <h2 id="common-pitfalls">8. Common Pitfalls &amp; Troubleshooting</h2>
+<p>var createOptions = new ContainerCreateOptions
+        {
+            Image = imageName,
+            Name = &quot;embedded-wsl-runner&quot;,
+            EnableGpu = true,
+            PortMappings = { new PortMapping(HostPort: 8080, ContainerPort: 80) }
+        };</p>
 
-      <h3>8.1. High VMMEM Memory Consumption</h3>
-      <p>If the `vmmem` process consumes excessive RAM, create a `.wslconfig` file in your Windows user directory (`C:\Users\username\.wslconfig`):</p>
-      <pre><code>[wsl2]
-memory=8GB
-processors=4
-autoMemoryReclaim=dropcache</code></pre>
+<p>using var container = await session.CreateContainerAsync(createOptions);
+        await container.StartAsync();
+        Console.WriteLine($&quot;Container running successfully (ID: {container.Id})&quot;);
+    }
+}</code></pre></p>
 
-      <h3>8.2. File-Watcher Failures (`inotify`)</h3>
-      <p>Linux tools like `nodemon` or `webpack --watch` fail to detect file modifications when projects reside on `/mnt/c/` because NTFS file change events do not propagate cleanly over 9P/VirtioFS. Moving files to `/home/user/` fixes `inotify` triggers instantly.</p>
+<hr>
 
-      <h2 id="faq">9. Frequently Asked Questions (FAQ)</h2>
+<h2 id="6-summary-recommendations">6. Summary & Recommendations</h2>
+
+<p>1. <strong>Store your code in WSL native filesystem:</strong> Keep repositories inside <code>/home/username/projects/</code> to unlock maximum ext4 VHDX filesystem performance.
+2. <strong>Evaluate Native WSL Containers (<code>wslc</code>):</strong> For teams seeking zero-cost, lightweight container management without enterprise licensing friction, <code>wslc</code> provides a native open-source alternative.
+3. <strong>Leverage VS Code Remote - WSL:</strong> Run your IDE frontend on Windows while attaching directly to Linux toolchains inside WSL 2.</p>
+
+
+      <h2 id="faq">Frequently Asked Questions (FAQ)</h2>
       <div class="faq-list">
-        <h3>How does Docker work on Windows with WSL 2?</h3>
-        <p>Docker on Windows leverages WSL 2 to execute containers directly inside a shared, lightweight Linux kernel microVM using native cgroups v2 and namespaces without needing full Hyper-V guest OS installs.</p>
-
-        <h3>Why is git status or npm install slow in WSL 2?</h3>
-        <p>Accessing files stored on Windows NTFS via /mnt/c/ forces cross-OS VirtioFS protocol translation. Moving project files into the native WSL ext4 filesystem (/home/username/) resolves the performance bottleneck.</p>
-
-        <h3>What is native WSL containers (wslc)?</h3>
-        <p>wslc.exe is Microsoft's native OCI container CLI built into WSL 2.9.3+. It allows developers to build, pull, and run Linux containers directly without requiring background Docker Desktop daemons.</p>
-
-        <h3>Does WSL 2 use fixed RAM allocation?</h3>
-        <p>No. WSL 2 utilizes Hyper-V LightVM dynamic memory allocation, returning unused RAM back to the Windows host operating system when Linux container workloads complete.</p>
-
-        <h3>How do you programmatically control WSL containers in C#?</h3>
-        <p>Developers can use the official Microsoft.WSL.Containers NuGet package in .NET applications to pull OCI images, map ports, enable GPU acceleration, and lifecycle manage containers directly.</p>
+        <h3>What is the core takeaway of this guide?</h3>
+        <p>This guide establishes production patterns and verifiable architecture standards designed to eliminate engineering friction, improve reliability, and optimize system performance.</p>
+        <h3>How can teams implement these patterns safely?</h3>
+        <p>Start by auditing your current pipeline, applying clear boundaries, enforcing verification commands on disk, and introducing automated checks gradually.</p>
+        <h3>Where can I find additional technical reference code?</h3>
+        <p>Check the StackScout open-source repository on GitHub for full runnable code samples, architecture benchmarks, and continuous deployment configurations.</p>
       </div>
 
-      <h2 id="conclusion">10. Summary &amp; Recommendations</h2>
-      <ul>
-        <li><strong>Keep code inside <code>/home/...</code>:</strong> Avoid mounting <code>/mnt/c/</code> paths into containers to prevent severe I/O degradation.</li>
-        <li><strong>Leverage VS Code Remote - WSL:</strong> Run your editor UI on Windows while attaching directly to Linux toolchains inside WSL 2.</li>
-        <li><strong>Evaluate <code>wslc</code>:</strong> Consider native WSL containers for a zero-cost, lightweight container management setup.</li>
-      </ul>
+
+            <!-- Recommended Reading Section -->
+      <section class="recommended-section">
+        <div class="section-label">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          RECOMMENDED READING
+        </div>
+        <div class="recommended-grid">
+        <a href="../../posts/zero-trust-ai-agents-istio-kubernetes/" class="recommended-card">
+          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 14 MIN READ</div>
+          <h3>Zero Trust Architecture for AI Agents in Istio and Kubernetes</h3>
+          <p>Securing autonomous AI agents in Kubernetes using Istio service mesh, SPIFFE/SPIRE identities, mTLS, and egress control.</p>
+          <span class="read-link">Read article &rarr;</span>
+        </a>
+        <a href="../../posts/instatic-cms-complete-guide/" class="recommended-card">
+          <div class="meta-line">JUL 25, 2026 &nbsp;·&nbsp; 12 MIN READ</div>
+          <h3>Instatic CMS: The Complete Technical Guide</h3>
+          <p>Instatic CMS is a self-hosted visual CMS that outputs clean static HTML. Learn its architecture, deployment options, and how it compares to Webflow and WordPress.</p>
+          <span class="read-link">Read article &rarr;</span>
+        </a>
+        </div>
+      </section>
 
       <div class="article-share">
         <span class="share-label">Share Article</span>
         <div class="share-buttons">
-          <a href="https://x.com/intent/post?text=Docker%20on%20Windows%20with%20WSL%202%3A%20What%20Actually%20Happens%20Under%20the%20Hood%20by%20%40StackScout&url=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fdocker-on-windows-wsl2-under-the-hood%2F" target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fdocker-on-windows-wsl2-under-the-hood%2F" target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
-          <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fstackscout-blog.pages.dev%2Fposts%2Fdocker-on-windows-wsl2-under-the-hood%2F&t=Docker%20on%20Windows%20with%20WSL%202%3A%20What%20Actually%20Happens%20Under%20the%20Hood" target="_blank" rel="noopener" class="share-btn">Hacker News</a>
+          <a href="https://x.com/intent/post?text=Docker%20on%20Windows%20with%20WSL%202%3A%20What%20Actually%20Happens%20Under%20the%20Hood&url=https%3A//stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/" target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/" target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
+          <a href="https://news.ycombinator.com/submitlink?u=https%3A//stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/&t=Docker%20on%20Windows%20with%20WSL%202%3A%20What%20Actually%20Happens%20Under%20the%20Hood" target="_blank" rel="noopener" class="share-btn">Hacker News</a>
           <button class="share-btn copy-link-btn" onclick="copyArticleLink(this)">Copy Link</button>
         </div>
       </div>
@@ -233,78 +275,32 @@ autoMemoryReclaim=dropcache</code></pre>
     <div class="footer-links">
       <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
       <span>·</span>
-      <a href="../../sitemap.xml">RSS</a>
+      <a href="/rss.xml">RSS</a>
+      <span>·</span>
+      <a href="/sitemap.xml">Sitemap</a>
     </div>
   </footer>
 
   <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "headline": "Docker on Windows with WSL 2: What Actually Happens Under the Hood",
-      "description": "A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).",
-      "url": "https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/",
-      "datePublished": "2026-08-14",
-      "dateModified": "2026-08-14",
-      "author": {
-        "@type": "Organization",
-        "name": "StackScout Engineering",
-        "url": "https://stackscout-blog.pages.dev"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "StackScout",
-        "url": "https://stackscout-blog.pages.dev"
-      }
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Docker on Windows with WSL 2: What Actually Happens Under the Hood",
+    "description": "A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).",
+    "url": "https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/",
+    "datePublished": "2026-08-14",
+    "dateModified": "2026-08-14",
+    "author": {
+      "@type": "Organization",
+      "name": "StackScout Engineering",
+      "url": "https://stackscout-blog.pages.dev"
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How does Docker work on Windows with WSL 2?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Docker on Windows leverages WSL 2 to execute containers directly inside a shared, lightweight Linux kernel microVM using native cgroups v2 and namespaces without needing full Hyper-V guest OS installs."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why is git status or npm install slow in WSL 2?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Accessing files stored on Windows NTFS via /mnt/c/ forces cross-OS VirtioFS protocol translation. Moving project files into the native WSL ext4 filesystem (/home/username/) resolves the performance bottleneck."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is native WSL containers (wslc)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "wslc.exe is Microsoft's native OCI container CLI built into WSL 2.9.3+. It allows developers to build, pull, and run Linux containers directly without requiring background Docker Desktop daemons."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does WSL 2 use fixed RAM allocation?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. WSL 2 utilizes Hyper-V LightVM dynamic memory allocation, returning unused RAM back to the Windows host operating system when Linux container workloads complete."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you programmatically control WSL containers in C#?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Developers can use the official Microsoft.WSL.Containers NuGet package in .NET applications to pull OCI images, map ports, enable GPU acceleration, and lifecycle manage containers directly."
-          }
-        }
-      ]
+    "publisher": {
+      "@type": "Organization",
+      "name": "StackScout",
+      "url": "https://stackscout-blog.pages.dev"
     }
-  ]
+  }
   </script>
 </body>
 </html>

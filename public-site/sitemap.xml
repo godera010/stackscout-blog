@@ -19,7 +19,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/</loc>
+    <loc>https://stackscout-blog.pages.dev/posts/ai-evaluation-harness-benchmark-provenance/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -31,43 +31,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stackscout-blog.pages.dev/posts/zero-trust-ai-agents-istio-kubernetes/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stackscout-blog.pages.dev/posts/preventing-rag-api-hallucinations/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stackscout-blog.pages.dev/posts/file-based-multi-agent-state-machine/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stackscout-blog.pages.dev/posts/saturating-gigabit-fiber-rust-tauri-nexdm/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stackscout-blog.pages.dev/posts/react-datagrid-virtualization-space-explorer/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stackscout-blog.pages.dev/posts/vectorized-payment-aging-pipeline-python/</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://stackscout-blog.pages.dev/posts/streaming-io-lessons-from-acm-icpc/</loc>
+    <loc>https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -79,7 +43,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stackscout-blog.pages.dev/posts/ai-evaluation-harness-benchmark-provenance/</loc>
+    <loc>https://stackscout-blog.pages.dev/posts/engineering-culture-psychological-safety-humor/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -91,19 +55,55 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stackscout-blog.pages.dev/posts/engineering-culture-psychological-safety-humor/</loc>
+    <loc>https://stackscout-blog.pages.dev/posts/file-based-multi-agent-state-machine/</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stackscout-blog.pages.dev/posts/durable-memory-vector-databases/</loc>
-    <lastmod>2026-08-14</lastmod>
+    <loc>https://stackscout-blog.pages.dev/posts/preventing-rag-api-hallucinations/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stackscout-blog.pages.dev/posts/react-datagrid-virtualization-space-explorer/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stackscout-blog.pages.dev/posts/saturating-gigabit-fiber-rust-tauri-nexdm/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stackscout-blog.pages.dev/posts/streaming-io-lessons-from-acm-icpc/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stackscout-blog.pages.dev/posts/vectorized-payment-aging-pipeline-python/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stackscout-blog.pages.dev/posts/zero-trust-ai-agents-istio-kubernetes/</loc>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stackscout-blog.pages.dev/posts/durable-memory-vector-databases/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

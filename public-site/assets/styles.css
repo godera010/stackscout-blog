@@ -1,5 +1,4 @@
 /* StackScout - Aesthetic: Quiet Engineering Journal (Noto Sans Typographic System) */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap');
 
 /* Color Tokens & High-Contrast Hierarchy */
 :root, [data-theme="dark"] {
@@ -626,6 +625,101 @@ article li {
 .share-btn.copied {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+/* Recommended Reading Section */
+.recommended-section {
+  margin: 3.5rem 0 2rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+
+.recommended-section .section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommended-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.recommended-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.recommended-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  text-decoration: none;
+}
+
+.recommended-card .meta-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 0.5rem;
+}
+
+.recommended-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-heading);
+  margin: 0 0 0.5rem 0;
+  transition: color 0.15s ease;
+}
+
+.recommended-card:hover h3 {
+  color: var(--color-accent);
+}
+
+.recommended-card p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin: 0 0 0.85rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.recommended-card .read-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: auto;
+}
+
+.recommended-card:hover .read-link {
+  color: var(--color-accent-hover);
 }
 
 /* Footer */

@@ -28,6 +28,18 @@ fi
 echo "==> Remote: $REMOTE"
 echo "==> Commit message: $COMMIT_MSG"
 
+# Build static site & calculate recommendations
+echo "==> Compiling static site and recommendation engine..."
+if command -v py >/dev/null 2>&1; then
+  py "$REPO_DIR/scripts/build.py"
+elif command -v python3 >/dev/null 2>&1; then
+  python3 "$REPO_DIR/scripts/build.py"
+elif command -v python >/dev/null 2>&1; then
+  python "$REPO_DIR/scripts/build.py"
+else
+  echo "WARNING: Python not found in PATH. Skipping build step."
+fi
+
 # Stage all changes
 echo "==> Staging files..."
 git add .

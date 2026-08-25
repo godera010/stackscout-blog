@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>StackScout</title>
+    <link>https://stackscout-blog.pages.dev/</link>
+    <description>Dev infrastructure, automation, and deployment deep-dives.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Aug 2026 07:58:56 GMT</lastBuildDate>
+    <atom:link href="https://stackscout-blog.pages.dev/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Scaffolding vs. Intelligence: Why AI Evaluation Harnesses Fake 70-Point Leaps</title>
+      <link>https://stackscout-blog.pages.dev/posts/ai-evaluation-harness-benchmark-provenance/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/ai-evaluation-harness-benchmark-provenance/</guid>
+      <description>Why AI evaluation harness architectures create massive score spreads on benchmarks like ARC-AGI-3, and how to establish strict benchmark provenance.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Architecting an Autonomous AWS Ops Agent with Model Context Protocol</title>
+      <link>https://stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/autonomous-aws-ops-agent-mcp/</guid>
+      <description>How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Beyond the Hype: My Production Workflow with Claude Code</title>
+      <link>https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/coding-with-claude-code-in-production/</guid>
+      <description>A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>When 100% Test Coverage Lies: Contract Faults and the Least-Derived Evidence Principle</title>
+      <link>https://stackscout-blog.pages.dev/posts/contract-testing-least-derived-evidence/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/contract-testing-least-derived-evidence/</guid>
+      <description>A deep dive into why green unit tests can pass while specifications mandate contradictions. Learn the least-derived evidence principle for reliable software contracts.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Why Memes Are Essential Infrastructure for High-Pressure Engineering Teams</title>
+      <link>https://stackscout-blog.pages.dev/posts/engineering-culture-psychological-safety-humor/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/engineering-culture-psychological-safety-humor/</guid>
+      <description>How shared technical humor, satirical coding memes, and community traditions build psychological safety, defuse production stress, and strengthen remote engineering teams.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>The Systems Engineer&#x27;s Guide to AI: 10 Essential Books for 2026</title>
+      <link>https://stackscout-blog.pages.dev/posts/essential-books-for-ai-systems-engineers/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/essential-books-for-ai-systems-engineers/</guid>
+      <description>The 10 essential books for AI engineers in 2026. Master transformer architectures, systems design, agentic AI, evaluation pipelines, and production serving.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Zero-Infra Multi-Agent Coordination: The File-System State Machine</title>
+      <link>https://stackscout-blog.pages.dev/posts/file-based-multi-agent-state-machine/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/file-based-multi-agent-state-machine/</guid>
+      <description>How to coordinate multiple autonomous AI agents across repositories using a simple, file-based markdown task queue with state transitions and verified evidence.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>The Phantom Endpoint: Why Your RAG Assistant Hallucinates APIs (And How to Fix It)</title>
+      <link>https://stackscout-blog.pages.dev/posts/preventing-rag-api-hallucinations/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/preventing-rag-api-hallucinations/</guid>
+      <description>A deep dive into RAG hallucinations, same-domain brand substitution, why similarity thresholds fail, and how deterministic scope gating prevents fake API generations.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Virtualizing 100,000 Rows at 60 FPS: Building a Space Mission Explorer with React DataGrid</title>
+      <link>https://stackscout-blog.pages.dev/posts/react-datagrid-virtualization-space-explorer/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/react-datagrid-virtualization-space-explorer/</guid>
+      <description>A deep dive into React DataGrid performance and architecture: rendering 100,000+ records at 60 FPS using DOM virtualization, tree hierarchies, and memoized cell renderers.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Saturating Gigabit Fiber in 28MB of RAM: Building NeXDM with Rust and Tauri</title>
+      <link>https://stackscout-blog.pages.dev/posts/saturating-gigabit-fiber-rust-tauri-nexdm/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/saturating-gigabit-fiber-rust-tauri-nexdm/</guid>
+      <description>A deep architectural review of NeXDM, a memory-safe, 64-segment download manager built with Rust and Tauri. Maximize gigabit fiber speeds with zero-copy I/O.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>How Scoring Zero at ACM-ICPC Taught Me the O(1) Streaming I/O Rule</title>
+      <link>https://stackscout-blog.pages.dev/posts/streaming-io-lessons-from-acm-icpc/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/streaming-io-lessons-from-acm-icpc/</guid>
+      <description>How a devastating Memory Limit Exceeded failure in the ACM-ICPC programming contest taught lasting software engineering lessons in streaming I/O and memory management.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Building a Vectorized Payment Aging &amp; Risk Analysis Pipeline in Python</title>
+      <link>https://stackscout-blog.pages.dev/posts/vectorized-payment-aging-pipeline-python/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/vectorized-payment-aging-pipeline-python/</guid>
+      <description>How to build an automated Accounts Receivable payment analysis tool in Python using Pandas to detect overdue invoices, track late payment behavior, and score customer credit risk.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Quarantining Autonomous SRE Agents: Zero-Trust Istio Mesh Architecture on Kubernetes</title>
+      <link>https://stackscout-blog.pages.dev/posts/zero-trust-ai-agents-istio-kubernetes/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/zero-trust-ai-agents-istio-kubernetes/</guid>
+      <description>How to build an autonomous AIOps incident response agent (NEXUS) on Amazon EKS and Istio using SPIFFE identities, strict mTLS, and zero-trust sidecar isolation.</description>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Docker on Windows with WSL 2: What Actually Happens Under the Hood</title>
+      <link>https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/docker-on-windows-wsl2-under-the-hood/</guid>
+      <description>A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).</description>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Durable Memory: Why Vector Databases Aren&#x27;t Enough</title>
+      <link>https://stackscout-blog.pages.dev/posts/durable-memory-vector-databases/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/durable-memory-vector-databases/</guid>
+      <description>Why durable memory is more than persistent storage, and why the real architectural problem begins at the write boundary.</description>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+    <item>
+      <title>Instatic CMS: The Complete Technical Guide (2026)</title>
+      <link>https://stackscout-blog.pages.dev/posts/instatic-cms-complete-guide/</link>
+      <guid isPermaLink="true">https://stackscout-blog.pages.dev/posts/instatic-cms-complete-guide/</guid>
+      <description>Instatic CMS is a self-hosted visual CMS that outputs clean static HTML. Learn its architecture, deployment options, and how it compares to Webflow and WordPress.</description>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
+      <author>StackScout Engineering</author>
+    </item>
+  </channel>
+</rss>

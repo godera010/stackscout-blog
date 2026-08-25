@@ -1,0 +1,19 @@
+# Cloudflare Pages Caching & Security Headers
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: interest-cohort=()
+
+# Immutable caching for static assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fresh delivery for HTML and feeds
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/sitemap.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+/rss.xml
+  Cache-Control: public, max-age=3600, must-revalidate

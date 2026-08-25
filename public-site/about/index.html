@@ -5,21 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — StackScout</title>
   <meta name="description" content="About StackScout — Practical engineering guides for the stack behind modern software.">
+  
+  <!-- Preconnect & Asynchronous Font Loading (Zero Render-Blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap">
+  
+  <link rel="canonical" href="https://stackscout-blog.pages.dev/about/">
   <meta property="og:title" content="About — StackScout">
-  <meta property="og:description" content="Dev infrastructure, automation, and deployment deep-dives.">
+  <meta property="og:description" content="About StackScout — Practical engineering guides for the stack behind modern software.">
+  <meta property="og:url" content="https://stackscout-blog.pages.dev/about/">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <script src="../assets/theme.js"></script>
-  <link rel="stylesheet" href="../assets/styles.css">
+  <meta property="og:site_name" content="StackScout">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About — StackScout">
+  <meta name="twitter:description" content="About StackScout — Practical engineering guides for the stack behind modern software.">
+  
+  <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="https://stackscout-blog.pages.dev/rss.xml">
+  <script src="/assets/theme.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="header-top">
-        <a href="../" class="logo">StackScout</a>
+        <a href="/" class="logo">StackScout</a>
         <div class="nav-right">
-          <a href="../posts/">Posts</a>
-          <a href="../about/" class="active">About</a>
+          <a href="/posts/">Posts</a>
+          <a href="/about/" class="active">About</a>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
             <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
             <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 9.2-6.2 1 1 0 0 0-1-1.3 8 8 0 1 1-7.6-11.5 1 1 0 0 0-1.3-1z"/></svg>
@@ -45,7 +58,7 @@
       <p>Our core content pillars include:</p>
       <ul>
         <li><strong>Containers &amp; Virtualization:</strong> WSL 2, Docker Engine, Podman, cgroups, kernel namespaces, and OCI runtimes.</li>
-        <li><strong>DevOps &amp; Automation:</strong> CI/CD workflows, GitHub Actions, local development orchestration, and Infrastructure as Code.</li>
+        <li><strong>DevOps &amp; Automation:</strong> CI/CD workflows, local development orchestration, and Infrastructure as Code.</li>
         <li><strong>Cloud &amp; Networking:</strong> Reverse proxies (Nginx, Traefik, Caddy), DNS, TLS termination, and static hosting platforms.</li>
         <li><strong>Self-Hosted Systems:</strong> Lightweight tools, SQLite operational patterns, and containerized dev environments.</li>
       </ul>
@@ -70,7 +83,9 @@
     <div class="footer-links">
       <a href="https://github.com/godera010/stackscout-blog" target="_blank" rel="noopener">GitHub</a>
       <span>·</span>
-      <a href="../sitemap.xml">RSS</a>
+      <a href="/rss.xml">RSS</a>
+      <span>·</span>
+      <a href="/sitemap.xml">Sitemap</a>
     </div>
   </footer>
 </body>
