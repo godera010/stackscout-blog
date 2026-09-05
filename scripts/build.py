@@ -17,7 +17,7 @@ PUBLIC_DIR = os.path.join(REPO_DIR, "public-site")
 POSTS_DIR = os.path.join(PUBLIC_DIR, "posts")
 ASSETS_DIR = os.path.join(PUBLIC_DIR, "assets")
 
-SITE_URL = "https://stackscout-blog.pages.dev"
+SITE_URL = "https://stackscout.blog"
 SITE_TITLE = "StackScout"
 SITE_TAGLINE = "Dev infrastructure, automation, and deployment deep-dives."
 SITE_DESCRIPTION = "Dev infrastructure, automation, and deployment deep-dives."
@@ -320,6 +320,9 @@ def get_head_tags(title, description, canonical_path="/", og_type="website"):
   <meta name="twitter:description" content="{escaped_desc}">
   
   <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="{SITE_URL}/rss.xml">
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "d4cbb18eeef848cba23c0b78ac38f336"}}'></script>
+  <!-- End Cloudflare Web Analytics -->
   <script src="/assets/theme.js"></script>
   <link rel="stylesheet" href="/assets/styles.css">'''
 

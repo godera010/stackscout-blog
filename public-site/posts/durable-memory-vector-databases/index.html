@@ -22,6 +22,9 @@
   <meta name="twitter:description" content="Why durable memory is more than persistent storage, and why the real architectural problem begins at the write boundary.">
   
   <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="https://stackscout.blog/rss.xml">
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d4cbb18eeef848cba23c0b78ac38f336"}'></script>
+  <!-- End Cloudflare Web Analytics -->
   <script src="/assets/theme.js"></script>
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
@@ -50,11 +53,13 @@
       <header>
         <h1>Durable Memory: Why Vector Databases Aren&#x27;t Enough</h1>
         <div class="subtitle">Why durable memory is more than persistent storage, and why the real architectural problem begins at the write boundary.</div>
-        <div class="meta">AUG 14, 2026 &nbsp;·&nbsp; 5 MIN READ</div>
+        <div class="meta">AUG 14, 2026 &nbsp;·&nbsp; 3 MIN READ &nbsp;·&nbsp; BY StackScout Engineering</div>
       </header>
 
 
-      
+      <blockquote>
+        <p><strong>TL;DR:</strong> Why durable memory is more than persistent storage, and why the real architectural problem begins at the write boundary.</p>
+      </blockquote>
 
       <div class="toc">
         <div class="toc-title">Contents</div>
@@ -63,9 +68,11 @@
         </ol>
       </div>
 
-            <figure>
-        <img src="../../assets/images/durable_memory_architecture.jpg" alt="Durable Memory: Why Vector Databases Aren't Enough">
-        <figcaption>Figure 1: AI Memory Layers Architecture showing Durable Memory policy layer feeding Active Working Memory and LLM Context.</figcaption>
+      <figure>
+        <picture>
+          <img src="/assets/images/durable_memory_architecture.jpg" alt="Durable Memory and Vector Database Architecture Diagram" loading="lazy" decoding="async" width="1200" height="630">
+        </picture>
+        <figcaption>Figure 1: Durable Memory and Vector Database Architecture Diagram.</figcaption>
       </figure>
 
 <p><em>Part 3 of the Building the AI Memory Stack series</em></p>
@@ -153,23 +160,19 @@ Notice what is missing:
       </div>
 
 
-            <!-- Recommended Reading Section -->
-                              <section class="recommended-section">
-        <div class="section-label">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          RECOMMENDED READING
-        </div>
+      <section class="recommended-section">
+        <div class="section-label">RECOMMENDED READING</div>
         <div class="recommended-grid">
-        <a href="../../posts/preventing-rag-api-hallucinations/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 6 MIN READ</div>
-          <h3>Preventing RAG API Hallucinations: Least-Derived Evidence & Grounding</h3>
-          <p>How to prevent hallucinations in RAG-powered API applications by enforcing least-derived evidence and strict grounding policies.</p>
+        <a href="/posts/ai-evaluation-harness-benchmark-provenance/" class="recommended-card">
+          <div class="meta-line">AI · EVALUATION &nbsp;·&nbsp; 4 MIN READ</div>
+          <h3>Scaffolding vs. Intelligence: Why AI Evaluation Harnesses Fake 70-Point Leaps</h3>
+          <p>Why AI evaluation harness architectures create massive score spreads on benchmarks like ARC-AGI-3, and how to establish strict benchmark provenance.</p>
           <span class="read-link">Read article &rarr;</span>
         </a>
-        <a href="../../posts/file-based-multi-agent-state-machine/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 5 MIN READ</div>
-          <h3>File-Based Multi-Agent State Machines for Deterministic Code Generation</h3>
-          <p>Designing file-based multi-agent state machines for reliable, deterministic code generation without complex framework overhead.</p>
+        <a href="/posts/coding-with-claude-code-in-production/" class="recommended-card">
+          <div class="meta-line">AI · DEVELOPER TOOLS &nbsp;·&nbsp; 6 MIN READ</div>
+          <h3>Beyond the Hype: My Production Workflow with Claude Code</h3>
+          <p>A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes.</p>
           <span class="read-link">Read article &rarr;</span>
         </a>
         </div>

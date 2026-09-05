@@ -22,6 +22,9 @@
   <meta name="twitter:description" content="A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).">
   
   <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href="https://stackscout.blog/rss.xml">
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d4cbb18eeef848cba23c0b78ac38f336"}'></script>
+  <!-- End Cloudflare Web Analytics -->
   <script src="/assets/theme.js"></script>
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
@@ -50,11 +53,13 @@
       <header>
         <h1>Docker on Windows with WSL 2: What Actually Happens Under the Hood</h1>
         <div class="subtitle">A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).</div>
-        <div class="meta">AUG 14, 2026 &nbsp;·&nbsp; 7 MIN READ</div>
+        <div class="meta">AUG 14, 2026 &nbsp;·&nbsp; 5 MIN READ &nbsp;·&nbsp; BY StackScout Engineering</div>
       </header>
 
 
-      
+      <blockquote>
+        <p><strong>TL;DR:</strong> A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc).</p>
+      </blockquote>
 
       <div class="toc">
         <div class="toc-title">Contents</div>
@@ -63,9 +68,11 @@
         </ol>
       </div>
 
-            <figure>
-        <img src="../../assets/images/wsl2_architecture.jpg" alt="Docker on Windows with WSL 2: What Actually Happens Under the Hood">
-        <figcaption>Figure 1: Windows 11 Virtualization Architecture showing Host Compute Service (HCS), LightVM microkernel, and container cgroups v2.</figcaption>
+      <figure>
+        <picture>
+          <img src="/assets/images/wsl2_architecture.jpg" alt="Docker on Windows WSL2 Kernel and MicroVM Architecture Diagram" loading="lazy" decoding="async" width="1200" height="630">
+        </picture>
+        <figcaption>Figure 1: Docker on Windows WSL2 Kernel and MicroVM Architecture Diagram.</figcaption>
       </figure>
 
 <p>For years, running Linux containers on Windows meant accepting a series of heavy abstractions. Early solutions relied on VirtualBox or Hyper-V virtual machines running full Linux guest operating systems. Later, Docker Desktop abstracted this complexity behind a tray application, but the underlying mechanisms remained opaque to many engineers.</p>
@@ -143,7 +150,7 @@ Windows NTFS (C:\Users\dev\my-app)
 WSL 2 Native ext4 VHDX (/home/dev/projects/my-app)
    ---&gt; Direct Linux Kernel Virtual Block Device
    ---&gt; Container Bind Mount
-   RESULT: Near-native Linux I/O throughput (~3,000+ IOPS).</code></pre>
+   RESULT: Near-native Linux I/O throughput (~3,000+ IOPS).</code></pre></p>
 
 <blockquote><p><strong>Engineering Rule of Thumb:</strong> Never mount project code stored under <code>C:\</code> into Linux containers. Always clone repositories into the native WSL filesystem at <code>/home/username/projects/</code>.</p></blockquote>
 
@@ -157,7 +164,7 @@ WSL 2 Native ext4 VHDX (/home/dev/projects/my-app)
 wsl --update --pre-release
 
 <p># Verify installed WSL kernel version
-wsl --version</code></pre>
+wsl --version</code></pre></p>
 
 <h3 id="step-2-build-and-execute-via-wslc">Step 2: Build and Execute via wslc</h3>
 
@@ -174,7 +181,7 @@ wslc run -d --rm -p 8080:8080 --name web-service wslc-python-demo</p>
 wslc container ps</p>
 
 <p># 5. Test endpoint from Windows browser or PowerShell
-curl http://localhost:8080</code></pre>
+curl http://localhost:8080</code></pre></p>
 
 <hr>
 
@@ -212,7 +219,7 @@ using Microsoft.WSL.Containers;
         await container.StartAsync();
         Console.WriteLine($&quot;Container running successfully (ID: {container.Id})&quot;);
     }
-}</code></pre>
+}</code></pre></p>
 
 <hr>
 
@@ -234,23 +241,19 @@ using Microsoft.WSL.Containers;
       </div>
 
 
-            <!-- Recommended Reading Section -->
-                              <section class="recommended-section">
-        <div class="section-label">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          RECOMMENDED READING
-        </div>
+      <section class="recommended-section">
+        <div class="section-label">RECOMMENDED READING</div>
         <div class="recommended-grid">
-        <a href="../../posts/zero-trust-ai-agents-istio-kubernetes/" class="recommended-card">
-          <div class="meta-line">AUG 25, 2026 &nbsp;·&nbsp; 6 MIN READ</div>
-          <h3>Zero Trust Architecture for AI Agents in Istio and Kubernetes</h3>
-          <p>Securing autonomous AI agents in Kubernetes using Istio service mesh, SPIFFE/SPIRE identities, mTLS, and egress control.</p>
+        <a href="/posts/contract-testing-least-derived-evidence/" class="recommended-card">
+          <div class="meta-line">MICROSERVICES · TESTING &nbsp;·&nbsp; 4 MIN READ</div>
+          <h3>When 100% Test Coverage Lies: Contract Faults and the Least-Derived Evidence Principle</h3>
+          <p>A deep dive into why green unit tests can pass while specifications mandate contradictions. Learn the least-derived evidence principle for reliable software contracts.</p>
           <span class="read-link">Read article &rarr;</span>
         </a>
-        <a href="../../posts/instatic-cms-complete-guide/" class="recommended-card">
-          <div class="meta-line">JUL 25, 2026 &nbsp;·&nbsp; 16 MIN READ</div>
-          <h3>Instatic CMS: The Complete Technical Guide</h3>
-          <p>Instatic CMS is a self-hosted visual CMS that outputs clean static HTML. Learn its architecture, deployment options, and how it compares to Webflow and WordPress.</p>
+        <a href="/posts/file-based-multi-agent-state-machine/" class="recommended-card">
+          <div class="meta-line">AI AGENTS · ARCHITECTURE &nbsp;·&nbsp; 5 MIN READ</div>
+          <h3>Zero-Infra Multi-Agent Coordination: The File-System State Machine</h3>
+          <p>How to coordinate multiple autonomous AI agents across repositories using a simple, file-based markdown task queue with state transitions and verified evidence.</p>
           <span class="read-link">Read article &rarr;</span>
         </a>
         </div>
