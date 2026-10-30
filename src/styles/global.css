@@ -777,3 +777,9 @@ article ul, article ol { padding-left: 1.4rem; margin: 1rem 0; }
 article li { margin: 0.35rem 0; }
 article li > p { margin: 0.25rem 0; }
 table { display: block; overflow-x: auto; }
+
+/* Body diagrams: on narrow screens keep them at a readable size and scroll inside the figure, not the page */
+article p:has(> img) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 640px) {
+  article p > img { min-width: 620px; max-width: none; }
+}

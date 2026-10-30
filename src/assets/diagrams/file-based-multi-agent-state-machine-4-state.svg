@@ -11,7 +11,7 @@
     .lbl { fill:#f1f5f9; font-size:16px; text-anchor:middle; font-weight:600; }
     .sub { fill:#b9c2cf; font-size:13px; text-anchor:middle; }
     .edge { fill:none; stroke:#64748b; stroke-width:2; marker-end:url(#arrow2); }
-    .tag { fill:#94a3b8; font-size:13px; text-anchor:middle; font-weight:600; }
+    .tag { fill:#6b7a90; font-size:13px; text-anchor:middle; font-weight:600; }
   </style>
 
   <path class="edge" d="M640,168 C 610,34 420,24 357,58"/>

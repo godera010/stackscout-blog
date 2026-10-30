@@ -1,5 +1,12 @@
 # Cover image legibility and accuracy audit
 
+> **Follow-up (2026-10-30, review pass):** the three High-severity covers below were replaced with
+> hand-drawn covers built only from each article's own text (sources in `design/cover-sources/`).
+> Resolved: vectorized-payment-aging-pipeline-python (now Pandas), streaming-io-lessons-from-acm-icpc
+> (invented io_uring/DPDK/mmap removed), durable-memory-vector-databases (leaked prompt text removed).
+> The wrong "Polars" alt text on the payment-aging article was a migration error and is also fixed.
+> Everything else in this report is still open.
+
 Date: 2026-10-30. Report only — no images were regenerated, cropped, or altered. Each cover
 was opened at full size (1376x768) next to its article text. "Phone legibility" is judged
 against the main headline and section labels at 390px width (roughly 28% of full size);
@@ -43,7 +50,7 @@ regeneration, since a wrong fix could just encode the same error differently:
 
 - All 16 covers load correctly and none are missing alt text.
 - No image was edited as part of this audit (Part 2 is report-only per the handover).
-- Of the 16, five are already slated for in-body SVG replacement in Part 3 phase 1
+- Of the 16, six are already slated for an in-body SVG figure in Part 3 phase 1
   (preventing-rag-api-hallucinations [cover itself is fine; new SVG is a body figure],
   file-based-multi-agent-state-machine, autonomous-aws-ops-agent-mcp,
   coding-with-claude-code-in-production, react-datagrid-virtualization-space-explorer,

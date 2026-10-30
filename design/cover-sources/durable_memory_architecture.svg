@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="1376" height="768" font-family="'Noto Sans','DejaVu Sans',Arial,sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#14213d"/></linearGradient>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7d8aa3"/></marker>
+</defs>
+<rect width="1376" height="768" fill="url(#bg)"/>
+<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">Durable Memory Is a </tspan><tspan fill="#a78bfa">Policy</tspan><tspan fill="#f1f5f9">, Not a Place</tspan></text>
+<rect x="28" y="130" width="282" height="150" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="169.0" y="174" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Durable Memory</text>
+<text x="169.0" y="227" text-anchor="middle" font-size="21" fill="#aab6c8">Curated policies</text>
+<rect x="374" y="130" width="282" height="150" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
+<text x="515.0" y="174" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Active Working Memory</text>
+<text x="515.0" y="227" text-anchor="middle" font-size="21" fill="#aab6c8">Task-assembled</text>
+<rect x="720" y="130" width="282" height="150" rx="16" fill="#111c33" stroke="#fbbf24" stroke-width="3"/>
+<text x="861.0" y="174" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Context Window</text>
+<text x="861.0" y="227" text-anchor="middle" font-size="21" fill="#aab6c8">L1/L2 cache</text>
+<rect x="1066" y="130" width="282" height="150" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="1207.0" y="174" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Model Inference</text>
+<text x="1207.0" y="227" text-anchor="middle" font-size="21" fill="#aab6c8">Execution</text>
+<line x1="314" y1="205" x2="370" y2="205" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="660" y1="205" x2="716" y2="205" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="1006" y1="205" x2="1062" y2="205" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<text x="688" y="345" text-anchor="middle" font-size="27" font-weight="700" fill="#f1f5f9">Memory is a write problem: what earns a place in durable memory?</text>
+<rect x="28" y="395" width="300" height="280" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
+<text x="178.0" y="542.7" text-anchor="middle" font-size="22" font-weight="700" fill="#f1f5f9">Observation / output</text>
+<rect x="400" y="395" width="576" height="280" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="688.0" y="447" text-anchor="middle" font-size="28" font-weight="700" fill="#f1f5f9">Write boundary</text>
+<text x="688.0" y="503" text-anchor="middle" font-size="24" fill="#aab6c8">Is it authoritative?</text>
+<text x="688.0" y="539" text-anchor="middle" font-size="24" fill="#aab6c8">Is it verified?</text>
+<text x="688.0" y="575" text-anchor="middle" font-size="24" fill="#aab6c8">Is it a duplicate?</text>
+<text x="688.0" y="611" text-anchor="middle" font-size="24" fill="#aab6c8">Does it expire?</text>
+<rect x="1048" y="395" width="300" height="280" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="1198.0" y="445" text-anchor="middle" font-size="26" font-weight="700" fill="#f1f5f9">Durable Memory</text>
+<text x="1198.0" y="499" text-anchor="middle" font-size="22" fill="#aab6c8">only what passes</text>
+<text x="1198.0" y="533" text-anchor="middle" font-size="22" fill="#aab6c8">the policy</text>
+<line x1="332" y1="535" x2="396" y2="535" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="980" y1="535" x2="1044" y2="535" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<text x="1014" y="515" text-anchor="middle" font-size="19" font-weight="400" fill="#34d399">passed</text>
+</svg>

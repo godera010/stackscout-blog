@@ -5,7 +5,7 @@ date: 2026-08-25
 tags: ["Performance", "Systems"]
 tldr: "During an ACM-ICPC collegiate programming contest, a team of straight-A computer science students scored zero points across all ten problems due to an unhandled Memory Limit Exceeded error. The culprit was not algorithm complexity, but buffering entire inputs and outputs into massive static arrays instead of using streaming I/O."
 image: ../../assets/images/streaming_fast_io.webp
-imageAlt: "Fast streaming I/O diagram"
+imageAlt: "In-memory batch buffering that exceeds the memory limit, compared with streaming I/O that reads, processes and flushes one record at a time in constant memory"
 ---
 
 ## The Day a Straight-A Team Scored Zero at ACM-ICPC

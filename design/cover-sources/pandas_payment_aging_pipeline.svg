@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="1376" height="768" font-family="'Noto Sans','DejaVu Sans',Arial,sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#14213d"/></linearGradient>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7d8aa3"/></marker>
+</defs>
+<rect width="1376" height="768" fill="url(#bg)"/>
+<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">Vectorized Payment Aging with </tspan><tspan fill="#38bdf8">Pandas</tspan></text>
+<rect x="28" y="170" width="360" height="470" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
+<text x="208.0" y="220" text-anchor="middle" font-size="26" font-weight="700" fill="#f1f5f9">Data Ingestion Layer</text>
+<text x="208.0" y="276" text-anchor="middle" font-size="24" fill="#aab6c8">CSV export</text>
+<text x="208.0" y="312" text-anchor="middle" font-size="24" fill="#aab6c8">PostgreSQL billing DB</text>
+<text x="208.0" y="348" text-anchor="middle" font-size="24" fill="#aab6c8">Stripe webhook</text>
+<rect x="458" y="170" width="460" height="470" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="688.0" y="220" text-anchor="middle" font-size="26" font-weight="700" fill="#f1f5f9">Vectorized Pandas Engine</text>
+<text x="688.0" y="275" text-anchor="middle" font-size="23" fill="#aab6c8">1. Normalize ISO-8601 timestamps</text>
+<text x="688.0" y="310" text-anchor="middle" font-size="23" fill="#aab6c8">2. Compute delinquency deltas</text>
+<text x="688.0" y="345" text-anchor="middle" font-size="23" fill="#aab6c8">   (PaymentDate - DueDate)</text>
+<text x="688.0" y="380" text-anchor="middle" font-size="23" fill="#aab6c8">3. Age open invoices</text>
+<text x="688.0" y="415" text-anchor="middle" font-size="23" fill="#aab6c8">   (Today - DueDate)</text>
+<text x="688.0" y="450" text-anchor="middle" font-size="23" fill="#aab6c8">4. Customer GroupBy</text>
+<text x="688.0" y="485" text-anchor="middle" font-size="23" fill="#aab6c8">   aggregation &amp; scoring</text>
+<rect x="988" y="170" width="360" height="470" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="1168.0" y="220" text-anchor="middle" font-size="26" font-weight="700" fill="#f1f5f9">Actionable Outputs</text>
+<text x="1168.0" y="275" text-anchor="middle" font-size="23" fill="#aab6c8">Categorized risk tiers:</text>
+<text x="1168.0" y="310" text-anchor="middle" font-size="23" fill="#aab6c8">Excellent · Good</text>
+<text x="1168.0" y="345" text-anchor="middle" font-size="23" fill="#aab6c8">Attention</text>
+<text x="1168.0" y="380" text-anchor="middle" font-size="23" fill="#aab6c8">High Risk · Critical</text>
+<text x="1168.0" y="415" text-anchor="middle" font-size="23" fill="#aab6c8"></text>
+<text x="1168.0" y="450" text-anchor="middle" font-size="23" fill="#aab6c8">Automated overdue</text>
+<text x="1168.0" y="485" text-anchor="middle" font-size="23" fill="#aab6c8">dunning webhooks</text>
+<line x1="392" y1="405" x2="452" y2="405" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="922" y1="405" x2="982" y2="405" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+</svg>
