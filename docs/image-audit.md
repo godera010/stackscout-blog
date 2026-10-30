@@ -70,3 +70,5 @@ regeneration, since a wrong fix could just encode the same error differently:
   regeneration candidates: **vectorized-payment-aging-pipeline-python** (wrong library),
   **streaming-io-lessons-from-acm-icpc** (invented tech not in the article),
   **durable-memory-vector-databases** (leaked AI-prompt text).
+
+> **Second review (2026-10-30):** the three covers from the follow-up above were redrawn again with larger type (text was 11-14px, which renders at about 6px at article width) and one invented detail removed (a fourth 76-100% byte range the NeXDM article does not show). Alt texts now describe what each image shows.

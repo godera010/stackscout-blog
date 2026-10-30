@@ -4,18 +4,26 @@
   <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7d8aa3"/></marker>
 </defs>
 <rect width="1376" height="768" fill="url(#bg)"/>
-<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">NeXDM: Saturating Gigabit Fiber with </tspan><tspan fill="#fbbf24">Rust + Tauri</tspan></text>
-<rect x="28" y="150" width="1320" height="110" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
-<text x="688.0" y="198" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">Source File (Remote URL)</text>
-<text x="688.0" y="250" text-anchor="middle" font-size="20" fill="#aab6c8">Range 0-25%          Range 26-50%          Range 51-75%          Range 76-100%</text>
-<line x1="688" y1="260" x2="688" y2="310" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
-<rect x="188" y="314" width="1000" height="190" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
-<text x="688.0" y="362" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">NeXDM Async Rust Engine (Tokio Core)</text>
-<text x="688.0" y="415" text-anchor="middle" font-size="21" fill="#aab6c8">64 concurrent HTTP Range requests (Socket 1..64)</text>
-<text x="688.0" y="448" text-anchor="middle" font-size="21" fill="#aab6c8">Zero-copy ring buffer recycling</text>
-<text x="688.0" y="481" text-anchor="middle" font-size="21" fill="#aab6c8">Non-blocking asynchronous disk flush</text>
-<line x1="688" y1="504" x2="688" y2="554" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
-<rect x="338" y="558" width="700" height="110" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
-<text x="688.0" y="621.4" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">Local Target File (Assembled)</text>
-<text x="688" y="710" text-anchor="middle" font-size="23" font-weight="600" fill="#aab6c8">64-segment throughput · 4MB binary · 28MB idle RAM</text>
+<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">NeXDM: Gigabit Fiber with </tspan><tspan fill="#fbbf24">Rust + Tauri</tspan></text>
+<rect x="28" y="130" width="1320" height="170" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
+<text x="688" y="172" text-anchor="middle" font-size="30" font-weight="700" fill="#f1f5f9">Source file (remote URL)</text>
+<rect x="100" y="198" width="240" height="68" rx="12" fill="none" stroke="#5b6b86" stroke-width="2"/>
+<text x="220" y="242" text-anchor="middle" font-size="26" font-weight="400" fill="#aab6c8">Range 0-25%</text>
+<rect x="420" y="198" width="240" height="68" rx="12" fill="none" stroke="#5b6b86" stroke-width="2"/>
+<text x="540" y="242" text-anchor="middle" font-size="26" font-weight="400" fill="#aab6c8">Range 26-50%</text>
+<rect x="740" y="198" width="240" height="68" rx="12" fill="none" stroke="#5b6b86" stroke-width="2"/>
+<text x="860" y="242" text-anchor="middle" font-size="26" font-weight="400" fill="#aab6c8">Range 51-75%</text>
+<rect x="1060" y="198" width="240" height="68" rx="12" fill="none" stroke="#5b6b86" stroke-width="2"/>
+<text x="1180" y="242" text-anchor="middle" font-size="26" font-weight="400" fill="#aab6c8">...</text>
+<line x1="688" y1="304" x2="688" y2="350" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<rect x="28" y="356" width="1320" height="230" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="688" y="400" text-anchor="middle" font-size="30" font-weight="700" fill="#f1f5f9">NeXDM async Rust engine (Tokio core)</text>
+<text x="688" y="454" text-anchor="middle" font-size="27" font-weight="400" fill="#aab6c8">64 concurrent HTTP Range requests</text>
+<text x="688" y="498" text-anchor="middle" font-size="27" font-weight="400" fill="#aab6c8">Zero-copy ring buffer recycling</text>
+<text x="688" y="542" text-anchor="middle" font-size="27" font-weight="400" fill="#aab6c8">Non-blocking asynchronous disk flush</text>
+<line x1="688" y1="590" x2="688" y2="636" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<rect x="388" y="640" width="600" height="80" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="688" y="691" text-anchor="middle" font-size="29" font-weight="700" fill="#f1f5f9">Local target file (assembled)</text>
+<text x="1180" y="676" text-anchor="middle" font-size="22" font-weight="600" fill="#34d399">64 segments · ~4 MB binary</text>
+<text x="1180" y="708" text-anchor="middle" font-size="22" font-weight="600" fill="#34d399">~28 MB idle RAM</text>
 </svg>

@@ -81,52 +81,70 @@ s += '</svg>\n'
 (OUT / 'durable_memory_architecture.svg').write_text(s, encoding='utf-8')
 
 # 4. essential AI engineering books: the recommended reading order ------------
-s = head([('10 Essential Books: ', TXT), ('The Recommended Reading Order', BLUE)])
-xs = [28, 374, 720, 1066]; w = 282
+s = head([('10 Essential Books: ', TXT), ('Recommended Reading Order', BLUE)])
+xs = [22, 366, 710, 1054]; w = 300
 phases = [
-    ('Phase 1: Architecture', ['AI Engineering', 'by Chip Huyen'], BLUE),
-    ('Phase 2: Low-Level Mechanics', ['Build an LLM', 'from Scratch — Raschka'], PURPLE),
-    ('Phase 3: Operations & RAG', ["LLM Engineer's Handbook", 'Iusztin & Labonne'], AMBER),
-    ('Phase 4: Agentic Systems', ['Building Agentic', 'AI Systems', 'Biswas & Talukdar'], GREEN),
+    ('Phase 1', 'Architecture &|Lifecycle', ['AI Engineering', 'Chip Huyen'], BLUE),
+    ('Phase 2', 'Low-Level|Mechanics', ['Build a Large', 'Language Model', '(From Scratch)', 'Sebastian Raschka'], PURPLE),
+    ('Phase 3', 'Operations|& RAG', ["The LLM Engineer's", 'Handbook', 'Iusztin & Labonne'], AMBER),
+    ('Phase 4', 'Agentic|Systems', ['Building Agentic', 'AI Systems', 'Biswas & Talukdar'], GREEN),
 ]
-for x, (t, lines, c) in zip(xs, phases):
-    s += box(x, 210, w, 230, c, t, lines, tsize=20, lsize=17)
+for x, (ph, t, lines, c) in zip(xs, phases):
+    s += f'<rect x="{x}" y="170" width="{w}" height="400" rx="16" fill="{PANEL}" stroke="{c}" stroke-width="3"/>\n'
+    s += text(x + w / 2, 225, ph.upper(), 24, c, 'middle', '700')
+    s += text(x + w / 2, 275, t.split('|')[0], 28, TXT, 'middle', '700')
+    s += text(x + w / 2, 311, t.split('|')[1], 28, TXT, 'middle', '700')
+    for k, l in enumerate(lines):
+        s += text(x + w / 2, 370 + k * 40, l, 24, SUB if k < len(lines) - 1 else TXT, 'middle', '400' if k < len(lines) - 1 else '600')
 for x in xs[:-1]:
-    s += arrow(x + w + 4, 325, x + w + 60, 325)
-s += text(688, 150, 'From end-to-end mental model to low-level mechanics to production RAG to multi-agent systems', 23, SUB, 'middle', '400')
-s += text(688, 500, '10 books total, grouped into 4 reading phases — see the full list and comparison table below', 23, SUB, 'middle', '400')
+    s += arrow(x + w + 3, 370, x + w + 40, 370)
+s += text(688, 640, '10 books in total: the full list and comparison table follow in the article', 27, SUB)
 s += '</svg>\n'
 (OUT / 'ai_books_engineering.svg').write_text(s, encoding='utf-8')
 
 # 5. NeXDM: saturating gigabit fiber with Rust + Tauri -------------------------
-s = head([('NeXDM: Saturating Gigabit Fiber with ', TXT), ('Rust + Tauri', AMBER)])
-s += box(28, 150, 1320, 110, BLUE, 'Source File (Remote URL)',
-         ['Range 0-25%          Range 26-50%          Range 51-75%          Range 76-100%'], tsize=24, lsize=20)
-s += arrow(688, 260, 688, 310)
-s += box(188, 314, 1000, 190, PURPLE, 'NeXDM Async Rust Engine (Tokio Core)',
-         ['64 concurrent HTTP Range requests (Socket 1..64)', 'Zero-copy ring buffer recycling',
-          'Non-blocking asynchronous disk flush'], tsize=24, lsize=21)
-s += arrow(688, 504, 688, 554)
-s += box(338, 558, 700, 110, GREEN, 'Local Target File (Assembled)', tsize=24)
-s += text(688, 710, '64-segment throughput · 4MB binary · 28MB idle RAM', 23, SUB, 'middle', '600')
+s = head([('NeXDM: Gigabit Fiber with ', TXT), ('Rust + Tauri', AMBER)])
+s += f'<rect x="28" y="130" width="1320" height="170" rx="16" fill="{PANEL}" stroke="{BLUE}" stroke-width="3"/>\n'
+s += text(688, 172, 'Source file (remote URL)', 30, TXT, 'middle', '700')
+for x, r in zip([100, 420, 740, 1060], ['Range 0-25%', 'Range 26-50%', 'Range 51-75%', '...']):
+    s += f'<rect x="{x}" y="198" width="240" height="68" rx="12" fill="none" stroke="#5b6b86" stroke-width="2"/>\n'
+    s += text(x + 120, 242, r, 26, SUB)
+s += arrow(688, 304, 688, 350)
+s += f'<rect x="28" y="356" width="1320" height="230" rx="16" fill="{PANEL}" stroke="{PURPLE}" stroke-width="3"/>\n'
+s += text(688, 400, 'NeXDM async Rust engine (Tokio core)', 30, TXT, 'middle', '700')
+for k, l in enumerate(['64 concurrent HTTP Range requests', 'Zero-copy ring buffer recycling', 'Non-blocking asynchronous disk flush']):
+    s += text(688, 454 + k * 44, l, 27, SUB)
+s += arrow(688, 590, 688, 636)
+s += f'<rect x="388" y="640" width="600" height="80" rx="16" fill="{PANEL}" stroke="{GREEN}" stroke-width="3"/>\n'
+s += text(688, 691, 'Local target file (assembled)', 29, TXT, 'middle', '700')
+s += text(1180, 676, '64 segments · ~4 MB binary', 22, GREEN, 'middle', '600')
+s += text(1180, 708, '~28 MB idle RAM', 22, GREEN, 'middle', '600')
 s += '</svg>\n'
 (OUT / 'rust_tauri_gigabit_network.svg').write_text(s, encoding='utf-8')
 
-# 6. zero-trust NEXUS agent blast-radius quarantine (Istio + SPIFFE) -----------
-s = head([('Quarantining NEXUS: ', TXT), ('Istio + SPIFFE', PURPLE), (' Blast-Radius Isolation', TXT)])
-s += f'<rect x="40" y="130" width="620" height="560" rx="18" fill="#101a30" stroke="{BLUE}" stroke-width="3"/>\n'
-s += text(350, 168, 'Istio Service Mesh (Amazon EKS) — mTLS STRICT', 24, BLUE, 'middle', '700')
-s += box(90, 300, 520, 220, PURPLE, 'NEXUS Agent Pod',
-         ['spiffe://cluster.local/ns/', 'ai-agent/sa/ai-agent-sa', '', 'Envoy sidecar — AuthorizationPolicy'],
-         tsize=24, lsize=21)
-s += arrow(610, 360, 700, 300, dash=False)
-s += arrow(610, 440, 700, 540, dash=False)
-s += box(740, 230, 580, 110, GREEN, 'Prometheus :9090 — ALLOW read-only GET', tsize=22)
-s += box(740, 530, 580, 110, GREEN, 'Jaeger — ALLOW read-only GET', tsize=22)
-s += box(740, 380, 580, 110, RED, 'lsd-payments namespace — DENY all TCP/HTTP', tsize=22)
-s += box(740, 650, 580, 90, RED, 'frontend namespace — DENY all TCP/HTTP', tsize=22)
-s += text(350, 610, 'Remediation requires an on-call engineer approval', 20, SUB, 'middle', '400')
-s += text(350, 635, '(Grafana Cloud IRM or Discord) — NEXUS cannot write directly', 20, SUB, 'middle', '400')
+# 6. Zero-trust: NEXUS in an Istio mesh ---------------------------------------
+s = head([('Quarantining NEXUS: ', TXT), ('Istio + SPIFFE', PURPLE), (' Isolation', TXT)])
+s = s.replace('font-size="46"', 'font-size="42"')
+s += f'<rect x="28" y="130" width="600" height="600" rx="18" fill="#0f1a30" stroke="{BLUE}" stroke-width="3"/>\n'
+s += text(328, 172, 'Istio service mesh (Amazon EKS)', 26, BLUE, 'middle', '700')
+s += text(328, 204, 'mTLS STRICT', 22, BLUE, 'middle', '600')
+s += f'<rect x="64" y="260" width="528" height="260" rx="14" fill="{PANEL}" stroke="{PURPLE}" stroke-width="3"/>\n'
+s += text(328, 306, 'NEXUS agent pod', 30, TXT, 'middle', '700')
+s += f'<text x="328" y="352" text-anchor="middle" font-size="22" fill="{SUB}" font-family="DejaVu Sans Mono,monospace">spiffe://cluster.local/ns/</text>\n'
+s += f'<text x="328" y="384" text-anchor="middle" font-size="22" fill="{SUB}" font-family="DejaVu Sans Mono,monospace">ai-agent/sa/ai-agent-sa</text>\n'
+s += f'<rect x="104" y="420" width="448" height="62" rx="10" fill="none" stroke="{PURPLE}" stroke-width="2"/>\n'
+s += text(328, 460, 'Envoy sidecar: AuthorizationPolicy', 22, TXT, 'middle', '600')
+s += text(328, 590, 'Remediation needs an on-call engineer\'s approval', 22, SUB)
+s += text(328, 622, '(Grafana Cloud IRM or Discord).', 22, SUB)
+s += text(328, 654, 'NEXUS cannot write directly.', 22, SUB)
+rows = [('Prometheus :9090', 'ALLOW: read-only GET', GREEN, True), ('lsd-payments namespace', 'DENY: all TCP/HTTP', RED, False),
+        ('Jaeger', 'ALLOW: read-only GET', GREEN, True), ('frontend namespace', 'DENY: all TCP/HTTP', RED, False)]
+for k, (t, sub, c, ok) in enumerate(rows):
+    y = 135 + k * 150
+    s += box(760, y, 588, 124, c, t, [sub], tsize=27, lsize=23)
+    dash = '' if ok else ' stroke-dasharray="9,7"'
+    mk = ' marker-end="url(#ar)"' if ok else ''
+    s += f'<line x1="596" y1="390" x2="756" y2="{y + 62}" stroke="{c}" stroke-width="3.5"{dash}{mk}/>\n'
 s += '</svg>\n'
 (OUT / 'zero_trust_istio_k8s.svg').write_text(s, encoding='utf-8')
 print('ok')
