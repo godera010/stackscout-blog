@@ -36,6 +36,10 @@ handovers/
 
 To coordinate multiple agents safely, task files follow a strict state machine with explicit ownership.
 
+![State diagram of the four task states: pending, taken, snoozed, and the terminal done or dropped states, with the atomic transitions between them](../../assets/diagrams/file-based-multi-agent-state-machine-4-state.svg)
+
+*Figure 2: Every transition is an atomic edit to the task file's frontmatter, so two agents can never claim the same task.*
+
 ```
               ┌─────────┐
               │ PENDING │ ◀─────── (Snooze Date Reached)

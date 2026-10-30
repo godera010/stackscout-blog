@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 440" width="800" height="440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">The four-state task state machine</title>
+  <desc id="desc">A task moves from pending to taken, then either to a terminal done or dropped state, or to snoozed for up to seven days before returning to pending.</desc>
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; }
+    .lbl { fill:#f1f5f9; font-size:16px; text-anchor:middle; font-weight:600; }
+    .sub { fill:#b9c2cf; font-size:13px; text-anchor:middle; }
+    .edge { fill:none; stroke:#64748b; stroke-width:2; marker-end:url(#arrow2); }
+    .tag { fill:#94a3b8; font-size:13px; text-anchor:middle; font-weight:600; }
+  </style>
+
+  <path class="edge" d="M640,168 C 610,34 420,24 357,58"/>
+  <text x="500" y="38" class="tag">Snooze date reached</text>
+
+  <rect x="195" y="40" width="160" height="56" rx="28" fill="#1e293bf2" stroke="#3b82f6" stroke-width="2"/>
+  <text x="275" y="74" class="lbl">PENDING</text>
+
+  <path class="edge" d="M275,96 L275,144"/>
+  <text x="330" y="124" class="tag">Take</text>
+
+  <rect x="195" y="148" width="160" height="56" rx="28" fill="#1e293bf2" stroke="#f59e0b" stroke-width="2"/>
+  <text x="275" y="182" class="lbl">TAKEN</text>
+
+  <path class="edge" d="M355,168 C 470,160 540,170 578,196"/>
+  <text x="470" y="150" class="tag">Snooze (max 7 days)</text>
+
+  <rect x="580" y="148" width="170" height="56" rx="10" fill="#1e293bf2" stroke="#7c3aed" stroke-width="2"/>
+  <text x="665" y="175" class="lbl" font-size="15">SNOOZED</text>
+  <text x="665" y="194" class="sub" font-size="11">Bypassed if severity: risk</text>
+
+  <path class="edge" d="M240,204 C 200,240 170,252 150,274"/>
+  <path class="edge" d="M310,204 C 350,240 390,252 410,274"/>
+
+  <rect x="30" y="278" width="200" height="64" rx="10" fill="#1e293bf2" stroke="#16a34a" stroke-width="2"/>
+  <text x="130" y="304" class="lbl" font-size="15">DONE</text>
+  <text x="130" y="326" class="sub">Evidence pasted</text>
+
+  <rect x="330" y="278" width="200" height="64" rx="10" fill="#1e293bf2" stroke="#dc2626" stroke-width="2"/>
+  <text x="430" y="304" class="lbl" font-size="15">DROPPED</text>
+  <text x="430" y="326" class="sub">Reason documented</text>
+
+  <text x="400" y="400" class="sub" font-size="13">Done and Dropped are terminal; every transition is an atomic frontmatter edit.</text>
+</svg>

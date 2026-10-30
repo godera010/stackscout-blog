@@ -39,6 +39,10 @@ The fix is DOM virtualization: keeping only the 25–40 rows currently inside th
 
 React DataGrid calculates the scroll container's pixel offset on each animation frame. It positions mounted rows using absolute CSS transforms while recycling unmounted DOM nodes as the user scrolls.
 
+![Diagram of a tall list of over 100,000 rows with the visible viewport window highlighted and mapped to a small set of recycled, mounted DOM nodes](../../assets/diagrams/react-datagrid-virtualization-space-explorer-viewport-window.svg)
+
+*Figure 2: Only the rows inside the visible viewport window are ever mounted as DOM nodes; everything else stays unrendered until it scrolls into view.*
+
 Three features make it particularly effective for dense datasets:
 1. **Row and Column Virtualization:** It virtualizes horizontally as well as vertically, making 50-column datasets as fast as 5-column ones.
 2. **Native Tree Data Support:** It handles parent-child mission stages (e.g., *Apollo 11* → *Launch* → *Translunar Injection* → *Lunar Landing*) without requiring third-party state managers.

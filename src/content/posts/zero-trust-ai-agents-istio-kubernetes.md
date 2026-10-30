@@ -48,6 +48,10 @@ The solution is zero trust: treating the AI agent pod as an untrusted workload w
 
 To isolate NEXUS while allowing it to diagnose issues, the architecture enforces three strict boundaries:
 
+![Diagram of the NEXUS agent pod inside an Istio mesh with its SPIFFE identity, allowed read-only connections to Prometheus and Jaeger, and denied connections to the application namespaces](../../assets/diagrams/zero-trust-ai-agents-istio-kubernetes-blast-radius.svg)
+
+*Figure 2: The sidecar's AuthorizationPolicy allows read-only telemetry queries and denies everything else, including the payments and frontend namespaces.*
+
 ### 1. Cryptographic SPIFFE Identity
 NEXUS runs with an identity minted by Istio (`spiffe://cluster.local/ns/ai-agent/sa/ai-agent-sa`). All communication inside the mesh requires mutual TLS (`mode: STRICT`).
 
