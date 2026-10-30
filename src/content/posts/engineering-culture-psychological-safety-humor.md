@@ -4,7 +4,7 @@ description: "How shared technical humor, satirical coding memes, and community 
 date: 2026-08-25
 tags: ["Career & Culture", "DevOps"]
 tldr: "Developer memes and weekly community rituals like Meme Monday are not frivolous workplace distractions. They function as essential social mechanisms that convert shared technical frustrations—such as merge conflicts, broken CI pipelines, and legacy debt—into psychological safety, team resilience, and effective asynchronous communication."
-image: ../../assets/images/engineering_culture_postmortem.jpg
+image: ../../assets/images/engineering_culture_postmortem.webp
 imageAlt: "Engineering culture and blameless postmortem illustration"
 ---
 

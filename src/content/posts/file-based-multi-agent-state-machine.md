@@ -4,7 +4,7 @@ description: "How to coordinate multiple autonomous AI agents across repositorie
 date: 2026-08-25
 tags: ["AI Agents", "AI", "Architecture"]
 tldr: "Coordinating autonomous AI agents across multiple software repositories does not require heavy databases or complex message brokers. A single directory of structured markdown files provides reliable, conflict-free task handovers. By enforcing strict state transitions and requiring verifiable terminal proof before closing tasks, you eliminate race conditions and agent hallucinations."
-image: ../../assets/images/multi_agent_state_machine.jpg
+image: ../../assets/images/multi_agent_state_machine.webp
 imageAlt: "File-based multi-agent state machine diagram"
 ---
 

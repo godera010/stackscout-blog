@@ -4,7 +4,7 @@ description: "A deep dive into RAG hallucinations, same-domain brand substitutio
 date: 2026-08-25
 tags: ["AI", "LLM", "APIs"]
 tldr: "Retrieval-Augmented Generation (RAG) systems frequently hallucinate when queries fall into near-identical semantic domains not covered in their corpus. Vector similarity thresholds and prompt instructions cannot reliably prevent brand substitutions or fake citations; deterministic scope gating before retrieval is necessary to ensure production reliability."
-image: ../../assets/images/rag_api_grounding.jpg
+image: ../../assets/images/rag_api_grounding.webp
 imageAlt: "RAG API grounding and scope gating diagram"
 ---
 

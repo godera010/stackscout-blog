@@ -4,7 +4,7 @@ description: "How to build an autonomous AIOps incident response agent (NEXUS) o
 date: 2026-08-25
 tags: ["AI Agents", "Cloud", "Containers"]
 tldr: "Autonomous AIOps agents must never be granted unrestricted Kubernetes cluster privileges. By embedding the NEXUS operations agent inside an Istio service mesh with SPIFFE identities, strict mutual TLS, and granular sidecar AuthorizationPolicies, platform teams enable real-time telemetry diagnosis while physically blocking the agent from touching production application pods."
-image: ../../assets/images/zero_trust_istio_k8s.jpg
+image: ../../assets/images/zero_trust_istio_k8s.webp
 imageAlt: "Zero trust AI agent security in Istio and Kubernetes architecture diagram"
 ---
 
