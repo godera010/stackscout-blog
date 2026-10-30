@@ -11,7 +11,7 @@
     .lbl { fill:#f1f5f9; font-size:14px; }
     .sub { fill:#b9c2cf; font-size:12.5px; text-anchor:middle; }
     .edge { fill:none; stroke:#64748b; stroke-width:2; marker-end:url(#arrow5); }
-    .tag { fill:#94a3b8; font-size:13px; font-weight:600; }
+    .tag { fill:#6b7a90; font-size:13px; font-weight:600; }
     .row { fill:#1e293b99; stroke:#475569; stroke-width:1.5; }
   </style>
 

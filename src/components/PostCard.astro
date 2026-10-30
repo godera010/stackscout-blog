@@ -1,5 +1,5 @@
 ---
-import { formatDate, readingTime, type Post } from '../lib/posts';
+import { formatDate, readingTime, tagSlug, type Post } from '../lib/posts';
 import { SITE_URL } from '../lib/site';
 interface Props { post: Post; featured?: boolean }
 const { post, featured = false } = Astro.props;
@@ -13,7 +13,7 @@ const url = `/posts/${post.id}/`;
   <h2><a href={url}>{post.data.title}</a></h2>
   <p>{post.data.description}</p>
   <div class="post-tags">
-    {post.data.tags.map((t, i) => <>{i > 0 && <span> · </span>}{t}</>)}
+    {post.data.tags.map((t, i) => <>{i > 0 && <span> · </span>}<a href={`/tags/${tagSlug(t)}/`}>{t}</a></>)}
   </div>
   <div class="post-actions">
     <a href={url} class="read-more">Read article &rarr;</a>

@@ -9,7 +9,8 @@ Live: <https://stackscout.blog>
 npm install                    # once
 npm run new "My post title"    # scaffolds src/content/posts/my-post-title.md as a draft
 npm run dev                    # live preview at http://localhost:4321 (drafts visible)
-npm run check && npm run build # validate frontmatter + types, then production build
+npm run check && npm run build # validate frontmatter + types, build site + search index
+npm run check:links            # fail on broken internal links (also runs in CI)
 ```
 
 1. Create a branch, write/edit the Markdown in `src/content/posts/`, drop images in `src/assets/images/`.
@@ -38,7 +39,7 @@ The schema lives in `src/content.config.ts`; a bad post fails the build with a p
 ## What's generated automatically
 
 Article pages, home and archive pages, table of contents, reading time, related-article recommendations,
-RSS (`/rss.xml`), sitemap (`/sitemap.xml`), JSON-LD, Open Graph images, responsive WebP images, syntax highlighting.
+tag pages (`/tags/`), full-text search (`/search/`, Pagefind, built by `npm run build`), RSS (`/rss.xml`), sitemap (`/sitemap.xml`), JSON-LD, Open Graph images, responsive WebP images, syntax highlighting.
 
 ## Deployment (Cloudflare Pages)
 

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, groupByTag } from '../../lib/posts';
+const groups = [...groupByTag(await getPosts())].sort(
+  (a, b) => b[1].posts.length - a[1].posts.length || a[1].name.localeCompare(b[1].name),
+);
+---
+<BaseLayout title="Tags — StackScout" description="Browse StackScout engineering articles by topic." active="tags">
+  <div class="section-label">TOPICS ({groups.length})</div>
+  <div class="post-list">
+    <p class="tag-cloud">
+      {groups.map(([slug, g]) => (
+        <a href={`/tags/${slug}/`} class="tag-chip">{g.name} <span>{g.posts.length}</span></a>
+      ))}
+    </p>
+  </div>
+</BaseLayout>

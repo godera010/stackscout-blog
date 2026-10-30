@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getPosts, formatDate, readingTime, recommend } from '../../lib/posts';
+import { getPosts, formatDate, readingTime, recommend, tagSlug } from '../../lib/posts';
 import { SITE_URL, AUTHOR_NAME } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -35,7 +35,7 @@ const shareTitle = encodeURIComponent(title);
 const shareUrl = encodeURIComponent(url);
 ---
 <BaseLayout title={`${title} — StackScout`} description={description} active="posts" ogType="article" ogImage={ogImage}>
-  <article>
+  <article data-pagefind-body>
     <header>
       <h1>{title}</h1>
       <div class="subtitle">{description}</div>
@@ -44,6 +44,10 @@ const shareUrl = encodeURIComponent(url);
         {post.data.draft && <> &nbsp;·&nbsp; <strong>DRAFT</strong></>}
       </div>
     </header>
+
+    <div class="post-tags" data-pagefind-ignore>
+      {post.data.tags.map((t, i) => <>{i > 0 && <span> · </span>}<a href={`/tags/${tagSlug(t)}/`}>{t}</a></>)}
+    </div>
 
     {tldr && (
       <blockquote><p><strong>TL;DR:</strong> {tldr}</p></blockquote>
@@ -68,7 +72,7 @@ const shareUrl = encodeURIComponent(url);
     <Content />
 
     {related.length > 0 && (
-      <section class="recommended-section">
+      <section class="recommended-section" data-pagefind-ignore>
         <div class="section-label">RECOMMENDED READING</div>
         <div class="recommended-grid">
           {related.map((rec) => (

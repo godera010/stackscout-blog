@@ -11,7 +11,7 @@
     .lbl { fill:#f1f5f9; font-size:15px; text-anchor:middle; }
     .sub { fill:#b9c2cf; font-size:13px; text-anchor:middle; }
     .edge { fill:none; stroke:#64748b; stroke-width:2; marker-end:url(#arrow); }
-    .tag { fill:#94a3b8; font-size:13px; text-anchor:middle; font-weight:600; }
+    .tag { fill:#6b7a90; font-size:13px; text-anchor:middle; font-weight:600; }
   </style>
 
   <rect x="280" y="20" width="240" height="56" rx="10" fill="#1e293bf2" stroke="#3b82f6" stroke-width="2"/>

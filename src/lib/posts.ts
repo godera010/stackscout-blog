@@ -46,3 +46,19 @@ export function recommend(target: Post, all: Post[], limit = 2): Post[] {
     .slice(0, limit)
     .map((x) => x.p);
 }
+
+export const tagSlug = (t: string) =>
+  t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+/** Map of tag slug -> { name, posts } across all published posts. */
+export function groupByTag(posts: Post[]) {
+  const map = new Map<string, { name: string; posts: Post[] }>();
+  for (const p of posts) {
+    for (const t of p.data.tags) {
+      const slug = tagSlug(t);
+      if (!map.has(slug)) map.set(slug, { name: t, posts: [] });
+      map.get(slug)!.posts.push(p);
+    }
+  }
+  return map;
+}

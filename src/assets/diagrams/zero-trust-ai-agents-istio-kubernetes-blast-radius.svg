@@ -16,7 +16,7 @@
     .tag { font-size:12px; font-weight:600; text-anchor:middle; }
   </style>
 
-  <rect x="40" y="30" width="400" height="360" rx="14" fill="#1e293b66" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="40" y="30" width="400" height="360" rx="14" fill="#172033" stroke="#3b82f6" stroke-width="2"/>
   <text x="240" y="54" class="lbl" fill="#93c5fd">Istio Service Mesh — mTLS STRICT</text>
 
   <rect x="90" y="150" width="300" height="120" rx="10" fill="#1e293bf2" stroke="#7c3aed" stroke-width="2"/>
