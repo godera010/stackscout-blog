@@ -15,3 +15,4 @@ jobs:
       - run: npm ci
       - run: npm run check   # type-checks and validates every post's frontmatter against the schema
       - run: npm run build
+      - run: npm run check:links

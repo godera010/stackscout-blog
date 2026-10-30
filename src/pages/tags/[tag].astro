@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, groupByTag } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  return [...groupByTag(await getPosts())].map(([slug, g]) => ({
+    params: { tag: slug },
+    props: { name: g.name, posts: g.posts },
+  }));
+}
+const { name, posts } = Astro.props;
+---
+<BaseLayout
+  title={`${name} articles — StackScout`}
+  description={`${posts.length} StackScout ${posts.length === 1 ? 'article' : 'articles'} about ${name}.`}
+  active="tags"
+>
+  <div class="section-label">TAG: {name.toUpperCase()} ({posts.length})</div>
+  <div class="post-list">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+  <p class="back-link"><a href="/tags/">&larr; All topics</a></p>
+</BaseLayout>

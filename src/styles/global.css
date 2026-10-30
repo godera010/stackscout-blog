@@ -782,4 +782,23 @@ table { display: block; overflow-x: auto; }
 article p:has(> img) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 @media (max-width: 640px) {
   article p > img { min-width: 620px; max-width: none; }
+
+/* ---- Tags & search ---------------------------------------------------- */
+.post-tags a { color: inherit; text-decoration: none; }
+.post-tags a:hover { color: var(--color-accent); text-decoration: underline; }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tag-chip {
+  border: 1px solid var(--color-border); border-radius: 999px; padding: 0.3rem 0.85rem;
+  font-size: 0.875rem; color: var(--color-text); text-decoration: none;
+}
+.tag-chip span { color: var(--color-text-muted); font-family: var(--font-mono); font-size: 0.75rem; margin-left: 0.25rem; }
+.tag-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.back-link { margin-top: 2rem; }
+#search {
+  --pagefind-ui-primary: var(--color-accent);
+  --pagefind-ui-text: var(--color-text);
+  --pagefind-ui-background: var(--color-bg);
+  --pagefind-ui-border: var(--color-border);
+  --pagefind-ui-tag: var(--color-code-bg);
+  --pagefind-ui-font: var(--font-sans, inherit);
 }

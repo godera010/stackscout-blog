@@ -1,6 +1,6 @@
 // Hand-rolled (instead of @astrojs/sitemap) so the URL stays /sitemap.xml,
 // which is what Google Search Console already has on file.
-import { getPosts } from '../lib/posts';
+import { getPosts, groupByTag } from '../lib/posts';
 import { SITE_URL } from '../lib/site';
 
 const iso = (d: Date) => d.toISOString().slice(0, 10);
@@ -12,6 +12,7 @@ export async function GET() {
     { loc: '/', lastmod: newest, freq: 'daily', priority: '1.0' },
     { loc: '/posts/', lastmod: newest, freq: 'daily', priority: '0.9' },
     { loc: '/about/', lastmod: newest, freq: 'monthly', priority: '0.5' },
+    ...[...groupByTag(posts).keys()].map((slug) => ({ loc: `/tags/${slug}/`, lastmod: newest, freq: 'weekly', priority: '0.4' })),
     ...posts.map((p) => ({
       loc: `/posts/${p.id}/`,
       lastmod: p.data.updated ?? p.data.date,

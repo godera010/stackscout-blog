@@ -18,7 +18,8 @@ Humans review every change via a pull request (Cloudflare Pages posts a preview 
 ## Before opening a PR
 ```bash
 npm run check   # astro check: types + frontmatter validation
-npm run build   # must succeed; look for new warnings
+npm run build   # must succeed; also generates the search index
+npm run check:links  # no broken internal links
 ```
 Open a PR titled `Post: <title>` (or `Fix:`/`Site:` for non-content). In the description list: slug, what changed, any
 facts/claims that need a human to verify, and sources used.
@@ -35,3 +36,6 @@ facts/claims that need a human to verify, and sources used.
 - `src/styles/global.css` — design system (light/dark via `data-theme`)
 - `src/lib/` — site constants, post helpers, related-article scoring
 - `public/` — copied as-is (`_headers`, `robots.txt`)
+
+## Tags
+Every tag gets its own page (`/tags/<slug>/`). Reuse existing tags (see `/tags/` after a build) before inventing new ones; keep casing consistent (`AI`, not `ai`).
