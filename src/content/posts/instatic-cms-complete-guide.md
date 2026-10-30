@@ -2,7 +2,7 @@
 title: "Instatic CMS: The Complete Technical Guide (2026)"
 description: "Instatic CMS is a self-hosted visual CMS that outputs clean static HTML. Learn its architecture, deployment options, and how it compares to Webflow and WordPress."
 date: 2026-07-25
-tags: ["CMS", "Jamstack", "Bun", "Static Site", "Architecture"]
+tags: ["Web", "Developer Tools", "Architecture"]
 image: ../../assets/images/instatic_architecture.jpg
 imageAlt: "Instatic CMS Bun architecture and static compiler diagram"
 ---

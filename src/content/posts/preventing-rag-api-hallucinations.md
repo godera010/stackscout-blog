@@ -2,7 +2,7 @@
 title: "The Phantom Endpoint: Why Your RAG Assistant Hallucinates APIs (And How to Fix It)"
 description: "A deep dive into RAG hallucinations, same-domain brand substitution, why similarity thresholds fail, and how deterministic scope gating prevents fake API generations."
 date: 2026-08-25
-tags: ["RAG", "LLM", "APIs", "Data Integrity"]
+tags: ["AI", "LLM", "APIs"]
 tldr: "Retrieval-Augmented Generation (RAG) systems frequently hallucinate when queries fall into near-identical semantic domains not covered in their corpus. Vector similarity thresholds and prompt instructions cannot reliably prevent brand substitutions or fake citations; deterministic scope gating before retrieval is necessary to ensure production reliability."
 image: ../../assets/images/rag_api_grounding.jpg
 imageAlt: "RAG API grounding and scope gating diagram"

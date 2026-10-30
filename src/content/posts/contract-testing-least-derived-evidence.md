@@ -2,7 +2,7 @@
 title: "When 100% Test Coverage Lies: Contract Faults and the Least-Derived Evidence Principle"
 description: "A deep dive into why green unit tests can pass while specifications mandate contradictions. Learn the least-derived evidence principle for reliable software contracts."
 date: 2026-08-25
-tags: ["Microservices", "Testing", "API", "Architecture"]
+tags: ["Testing", "APIs", "Architecture"]
 tldr: "Passing unit tests only prove that an implementation satisfies its written specification—they do not prove the specification is logically sound. When software systems rely on derived labels or rounded floats rather than raw evidence, green test suites can validate contradictory and vulnerable system states across 366 passing test assertions."
 image: ../../assets/images/contract_testing_schema.jpg
 imageAlt: "Contract testing and least-derived-evidence schema diagram"

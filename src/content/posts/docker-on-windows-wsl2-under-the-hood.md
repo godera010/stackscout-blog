@@ -2,7 +2,7 @@
 title: "Docker on Windows with WSL 2: What Actually Happens Under the Hood"
 description: "A practical deep dive into WSL 2, Linux kernel microVMs, container isolation, filesystem performance, and native WSL containers (wslc)."
 date: 2026-08-14
-tags: ["Docker", "WSL 2", "Linux", "Containers", "Windows", "Architecture", "DevOps"]
+tags: ["Containers", "Systems", "DevOps", "Developer Tools"]
 image: ../../assets/images/wsl2_architecture.jpg
 imageAlt: "Docker on Windows WSL 2 kernel and microVM architecture diagram"
 featured: true

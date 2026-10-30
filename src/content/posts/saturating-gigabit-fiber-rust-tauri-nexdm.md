@@ -2,7 +2,7 @@
 title: "Saturating Gigabit Fiber in 28MB of RAM: Building NeXDM with Rust and Tauri"
 description: "A deep architectural review of NeXDM, a memory-safe, 64-segment download manager built with Rust and Tauri. Maximize gigabit fiber speeds with zero-copy I/O."
 date: 2026-08-25
-tags: ["Rust", "Tauri", "Networking", "Performance"]
+tags: ["Performance", "Systems", "Developer Tools"]
 tldr: "Legacy download accelerators like Internet Download Manager (IDM) struggle with outdated UI designs, 32-connection bottlenecks, and paid licenses, while Electron alternatives consume excessive RAM. NeXDM solves this by pairing a high-concurrency Rust network engine with a lightweight Tauri desktop frontend, delivering 64-parallel segment throughput with under 28 MB of idle RAM."
 image: ../../assets/images/rust_tauri_gigabit_network.jpg
 imageAlt: "Rust and Tauri gigabit network download manager diagram"

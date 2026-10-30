@@ -2,7 +2,7 @@
 title: "Architecting an Autonomous AWS Ops Agent with Model Context Protocol"
 description: "How to build an autonomous AWS DevOps AI agent using Kiro Crew and the Model Context Protocol (MCP) to proactively detect silent cloud failures, perform root cause analysis, and execute remediations."
 date: 2026-08-25
-tags: ["AWS", "Cloud", "MCP", "Automation"]
+tags: ["AI Agents", "Cloud", "DevOps"]
 tldr: "Combining AWS DevOps Agent via the Model Context Protocol (MCP) with Kiro Crew creates an autonomous site reliability system that detects silent cloud failures without pre-configured alarms. By decoupling read-only telemetry analysis from controlled remediation workflows, teams can slash Mean Time to Resolution (MTTR) from hours to under 7 minutes."
 image: ../../assets/images/aws_mcp_ops_architecture.jpg
 imageAlt: "Autonomous AWS Ops agent with Model Context Protocol architecture diagram"

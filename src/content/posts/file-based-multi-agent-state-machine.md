@@ -2,7 +2,7 @@
 title: "Zero-Infra Multi-Agent Coordination: The File-System State Machine"
 description: "How to coordinate multiple autonomous AI agents across repositories using a simple, file-based markdown task queue with state transitions and verified evidence."
 date: 2026-08-25
-tags: ["AI Agents", "Architecture", "State Machines", "Orchestration"]
+tags: ["AI Agents", "AI", "Architecture"]
 tldr: "Coordinating autonomous AI agents across multiple software repositories does not require heavy databases or complex message brokers. A single directory of structured markdown files provides reliable, conflict-free task handovers. By enforcing strict state transitions and requiring verifiable terminal proof before closing tasks, you eliminate race conditions and agent hallucinations."
 image: ../../assets/images/multi_agent_state_machine.jpg
 imageAlt: "File-based multi-agent state machine diagram"
