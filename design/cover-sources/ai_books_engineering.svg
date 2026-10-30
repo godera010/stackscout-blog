@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="1376" height="768" font-family="'Noto Sans','DejaVu Sans',Arial,sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#14213d"/></linearGradient>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7d8aa3"/></marker>
+</defs>
+<rect width="1376" height="768" fill="url(#bg)"/>
+<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">10 Essential Books: </tspan><tspan fill="#38bdf8">The Recommended Reading Order</tspan></text>
+<rect x="28" y="210" width="282" height="230" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
+<text x="169.0" y="254" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Phase 1: Architecture</text>
+<text x="169.0" y="303" text-anchor="middle" font-size="17" fill="#aab6c8">AI Engineering</text>
+<text x="169.0" y="332" text-anchor="middle" font-size="17" fill="#aab6c8">by Chip Huyen</text>
+<rect x="374" y="210" width="282" height="230" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="515.0" y="254" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Phase 2: Low-Level Mechanics</text>
+<text x="515.0" y="303" text-anchor="middle" font-size="17" fill="#aab6c8">Build an LLM</text>
+<text x="515.0" y="332" text-anchor="middle" font-size="17" fill="#aab6c8">from Scratch — Raschka</text>
+<rect x="720" y="210" width="282" height="230" rx="16" fill="#111c33" stroke="#fbbf24" stroke-width="3"/>
+<text x="861.0" y="254" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Phase 3: Operations &amp; RAG</text>
+<text x="861.0" y="303" text-anchor="middle" font-size="17" fill="#aab6c8">LLM Engineer's Handbook</text>
+<text x="861.0" y="332" text-anchor="middle" font-size="17" fill="#aab6c8">Iusztin &amp; Labonne</text>
+<rect x="1066" y="210" width="282" height="230" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="1207.0" y="254" text-anchor="middle" font-size="20" font-weight="700" fill="#f1f5f9">Phase 4: Agentic Systems</text>
+<text x="1207.0" y="303" text-anchor="middle" font-size="17" fill="#aab6c8">Building Agentic</text>
+<text x="1207.0" y="332" text-anchor="middle" font-size="17" fill="#aab6c8">AI Systems</text>
+<text x="1207.0" y="361" text-anchor="middle" font-size="17" fill="#aab6c8">Biswas &amp; Talukdar</text>
+<line x1="314" y1="325" x2="370" y2="325" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="660" y1="325" x2="716" y2="325" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="1006" y1="325" x2="1062" y2="325" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<text x="688" y="150" text-anchor="middle" font-size="23" font-weight="400" fill="#aab6c8">From end-to-end mental model to low-level mechanics to production RAG to multi-agent systems</text>
+<text x="688" y="500" text-anchor="middle" font-size="23" font-weight="400" fill="#aab6c8">10 books total, grouped into 4 reading phases — see the full list and comparison table below</text>
+</svg>

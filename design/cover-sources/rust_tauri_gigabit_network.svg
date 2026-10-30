@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="1376" height="768" font-family="'Noto Sans','DejaVu Sans',Arial,sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#14213d"/></linearGradient>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7d8aa3"/></marker>
+</defs>
+<rect width="1376" height="768" fill="url(#bg)"/>
+<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">NeXDM: Saturating Gigabit Fiber with </tspan><tspan fill="#fbbf24">Rust + Tauri</tspan></text>
+<rect x="28" y="150" width="1320" height="110" rx="16" fill="#111c33" stroke="#38bdf8" stroke-width="3"/>
+<text x="688.0" y="198" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">Source File (Remote URL)</text>
+<text x="688.0" y="250" text-anchor="middle" font-size="20" fill="#aab6c8">Range 0-25%          Range 26-50%          Range 51-75%          Range 76-100%</text>
+<line x1="688" y1="260" x2="688" y2="310" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<rect x="188" y="314" width="1000" height="190" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="688.0" y="362" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">NeXDM Async Rust Engine (Tokio Core)</text>
+<text x="688.0" y="415" text-anchor="middle" font-size="21" fill="#aab6c8">64 concurrent HTTP Range requests (Socket 1..64)</text>
+<text x="688.0" y="448" text-anchor="middle" font-size="21" fill="#aab6c8">Zero-copy ring buffer recycling</text>
+<text x="688.0" y="481" text-anchor="middle" font-size="21" fill="#aab6c8">Non-blocking asynchronous disk flush</text>
+<line x1="688" y1="504" x2="688" y2="554" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<rect x="338" y="558" width="700" height="110" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="688.0" y="621.4" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">Local Target File (Assembled)</text>
+<text x="688" y="710" text-anchor="middle" font-size="23" font-weight="600" fill="#aab6c8">64-segment throughput · 4MB binary · 28MB idle RAM</text>
+</svg>

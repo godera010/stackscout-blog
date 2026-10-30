@@ -5,6 +5,15 @@
 > Resolved: vectorized-payment-aging-pipeline-python (now Pandas), streaming-io-lessons-from-acm-icpc
 > (invented io_uring/DPDK/mmap removed), durable-memory-vector-databases (leaked prompt text removed).
 > The wrong "Polars" alt text on the payment-aging article was a migration error and is also fixed.
+>
+> **Follow-up (2026-10-30, second pass):** the three Medium-severity covers below were also
+> replaced with hand-drawn SVG covers (same pipeline, sources in `design/cover-sources/`).
+> Resolved: essential-books-for-ai-systems-engineers ("Weer Gystems"/"Neoral Netwerk" garbled
+> decorative text removed — new cover is a clean 4-phase reading-order diagram), saturating-gigabit-fiber-rust-tauri-nexdm
+> ("TAURI FROND INTERFACE" typo removed — new cover is a 3-stage NeXDM pipeline diagram),
+> zero-trust-ai-agents-istio-kubernetes (SPIFFE path in the cover now matches the article body:
+> `spiffe://cluster.local/ns/ai-agent/sa/ai-agent-sa`). `imageAlt` text was updated for the first
+> two to describe the new diagrams; the zero-trust alt text was already accurate and unchanged.
 > Everything else in this report is still open.
 
 Date: 2026-10-30. Report only — no images were regenerated, cropped, or altered. Each cover

@@ -79,4 +79,54 @@ s += arrow(332, 535, 396, 535) + arrow(980, 535, 1044, 535)
 s += text(1014, 515, 'passed', 19, GREEN)
 s += '</svg>\n'
 (OUT / 'durable_memory_architecture.svg').write_text(s, encoding='utf-8')
+
+# 4. essential AI engineering books: the recommended reading order ------------
+s = head([('10 Essential Books: ', TXT), ('The Recommended Reading Order', BLUE)])
+xs = [28, 374, 720, 1066]; w = 282
+phases = [
+    ('Phase 1: Architecture', ['AI Engineering', 'by Chip Huyen'], BLUE),
+    ('Phase 2: Low-Level Mechanics', ['Build an LLM', 'from Scratch — Raschka'], PURPLE),
+    ('Phase 3: Operations & RAG', ["LLM Engineer's Handbook", 'Iusztin & Labonne'], AMBER),
+    ('Phase 4: Agentic Systems', ['Building Agentic', 'AI Systems', 'Biswas & Talukdar'], GREEN),
+]
+for x, (t, lines, c) in zip(xs, phases):
+    s += box(x, 210, w, 230, c, t, lines, tsize=20, lsize=17)
+for x in xs[:-1]:
+    s += arrow(x + w + 4, 325, x + w + 60, 325)
+s += text(688, 150, 'From end-to-end mental model to low-level mechanics to production RAG to multi-agent systems', 23, SUB, 'middle', '400')
+s += text(688, 500, '10 books total, grouped into 4 reading phases — see the full list and comparison table below', 23, SUB, 'middle', '400')
+s += '</svg>\n'
+(OUT / 'ai_books_engineering.svg').write_text(s, encoding='utf-8')
+
+# 5. NeXDM: saturating gigabit fiber with Rust + Tauri -------------------------
+s = head([('NeXDM: Saturating Gigabit Fiber with ', TXT), ('Rust + Tauri', AMBER)])
+s += box(28, 150, 1320, 110, BLUE, 'Source File (Remote URL)',
+         ['Range 0-25%          Range 26-50%          Range 51-75%          Range 76-100%'], tsize=24, lsize=20)
+s += arrow(688, 260, 688, 310)
+s += box(188, 314, 1000, 190, PURPLE, 'NeXDM Async Rust Engine (Tokio Core)',
+         ['64 concurrent HTTP Range requests (Socket 1..64)', 'Zero-copy ring buffer recycling',
+          'Non-blocking asynchronous disk flush'], tsize=24, lsize=21)
+s += arrow(688, 504, 688, 554)
+s += box(338, 558, 700, 110, GREEN, 'Local Target File (Assembled)', tsize=24)
+s += text(688, 710, '64-segment throughput · 4MB binary · 28MB idle RAM', 23, SUB, 'middle', '600')
+s += '</svg>\n'
+(OUT / 'rust_tauri_gigabit_network.svg').write_text(s, encoding='utf-8')
+
+# 6. zero-trust NEXUS agent blast-radius quarantine (Istio + SPIFFE) -----------
+s = head([('Quarantining NEXUS: ', TXT), ('Istio + SPIFFE', PURPLE), (' Blast-Radius Isolation', TXT)])
+s += f'<rect x="40" y="130" width="620" height="560" rx="18" fill="#101a30" stroke="{BLUE}" stroke-width="3"/>\n'
+s += text(350, 168, 'Istio Service Mesh (Amazon EKS) — mTLS STRICT', 24, BLUE, 'middle', '700')
+s += box(90, 300, 520, 220, PURPLE, 'NEXUS Agent Pod',
+         ['spiffe://cluster.local/ns/', 'ai-agent/sa/ai-agent-sa', '', 'Envoy sidecar — AuthorizationPolicy'],
+         tsize=24, lsize=21)
+s += arrow(610, 360, 700, 300, dash=False)
+s += arrow(610, 440, 700, 540, dash=False)
+s += box(740, 230, 580, 110, GREEN, 'Prometheus :9090 — ALLOW read-only GET', tsize=22)
+s += box(740, 530, 580, 110, GREEN, 'Jaeger — ALLOW read-only GET', tsize=22)
+s += box(740, 380, 580, 110, RED, 'lsd-payments namespace — DENY all TCP/HTTP', tsize=22)
+s += box(740, 650, 580, 90, RED, 'frontend namespace — DENY all TCP/HTTP', tsize=22)
+s += text(350, 610, 'Remediation requires an on-call engineer approval', 20, SUB, 'middle', '400')
+s += text(350, 635, '(Grafana Cloud IRM or Discord) — NEXUS cannot write directly', 20, SUB, 'middle', '400')
+s += '</svg>\n'
+(OUT / 'zero_trust_istio_k8s.svg').write_text(s, encoding='utf-8')
 print('ok')

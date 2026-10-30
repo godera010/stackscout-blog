@@ -5,7 +5,7 @@ date: 2026-08-25
 tags: ["AI", "Architecture", "Career & Culture"]
 tldr: "Transitioning from an API wrapper builder to a true AI engineer requires deep systems thinking rather than chasing ephemeral JavaScript or Python frameworks. These 10 foundational books teach transformer internals, systems design, agentic workflows, and production LLM serving architectures."
 image: ../../assets/images/ai_books_engineering.webp
-imageAlt: "Essential books for AI systems engineers illustration"
+imageAlt: "Diagram of the recommended reading order for 10 essential AI engineering books across four phases: architecture, low-level mechanics, operations and RAG, and agentic systems"
 ---
 
 ## Why Framework Chasing Fails in AI Engineering

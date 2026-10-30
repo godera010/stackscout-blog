@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="1376" height="768" font-family="'Noto Sans','DejaVu Sans',Arial,sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#14213d"/></linearGradient>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7d8aa3"/></marker>
+</defs>
+<rect width="1376" height="768" fill="url(#bg)"/>
+<text x="688" y="84" text-anchor="middle" font-size="46" font-weight="700" fill="#f1f5f9"><tspan fill="#f1f5f9">Quarantining NEXUS: </tspan><tspan fill="#a78bfa">Istio + SPIFFE</tspan><tspan fill="#f1f5f9"> Blast-Radius Isolation</tspan></text>
+<rect x="40" y="130" width="620" height="560" rx="18" fill="#101a30" stroke="#38bdf8" stroke-width="3"/>
+<text x="350" y="168" text-anchor="middle" font-size="24" font-weight="700" fill="#38bdf8">Istio Service Mesh (Amazon EKS) — mTLS STRICT</text>
+<rect x="90" y="300" width="520" height="220" rx="16" fill="#111c33" stroke="#a78bfa" stroke-width="3"/>
+<text x="350.0" y="348" text-anchor="middle" font-size="24" font-weight="700" fill="#f1f5f9">NEXUS Agent Pod</text>
+<text x="350.0" y="401" text-anchor="middle" font-size="21" fill="#aab6c8">spiffe://cluster.local/ns/</text>
+<text x="350.0" y="434" text-anchor="middle" font-size="21" fill="#aab6c8">ai-agent/sa/ai-agent-sa</text>
+<text x="350.0" y="467" text-anchor="middle" font-size="21" fill="#aab6c8"></text>
+<text x="350.0" y="500" text-anchor="middle" font-size="21" fill="#aab6c8">Envoy sidecar — AuthorizationPolicy</text>
+<line x1="610" y1="360" x2="700" y2="300" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<line x1="610" y1="440" x2="700" y2="540" stroke="#7d8aa3" stroke-width="3.5" marker-end="url(#ar)"/>
+<rect x="740" y="230" width="580" height="110" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="1030.0" y="292.7" text-anchor="middle" font-size="22" font-weight="700" fill="#f1f5f9">Prometheus :9090 — ALLOW read-only GET</text>
+<rect x="740" y="530" width="580" height="110" rx="16" fill="#111c33" stroke="#34d399" stroke-width="3"/>
+<text x="1030.0" y="592.7" text-anchor="middle" font-size="22" font-weight="700" fill="#f1f5f9">Jaeger — ALLOW read-only GET</text>
+<rect x="740" y="380" width="580" height="110" rx="16" fill="#111c33" stroke="#f87171" stroke-width="3"/>
+<text x="1030.0" y="442.7" text-anchor="middle" font-size="22" font-weight="700" fill="#f1f5f9">lsd-payments namespace — DENY all TCP/HTTP</text>
+<rect x="740" y="650" width="580" height="90" rx="16" fill="#111c33" stroke="#f87171" stroke-width="3"/>
+<text x="1030.0" y="702.7" text-anchor="middle" font-size="22" font-weight="700" fill="#f1f5f9">frontend namespace — DENY all TCP/HTTP</text>
+<text x="350" y="610" text-anchor="middle" font-size="20" font-weight="400" fill="#aab6c8">Remediation requires an on-call engineer approval</text>
+<text x="350" y="635" text-anchor="middle" font-size="20" font-weight="400" fill="#aab6c8">(Grafana Cloud IRM or Discord) — NEXUS cannot write directly</text>
+</svg>
