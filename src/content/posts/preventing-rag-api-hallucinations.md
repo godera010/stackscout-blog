@@ -63,6 +63,10 @@ At non-zero temperatures, probabilistic token sampling means negative prompt con
 
 If you want a guarantee that an LLM will not hallucinate an unsupported entity, do not let the query reach the vector database or the LLM. Intercept it with deterministic code.
 
+![Flow diagram showing a user query passing through a deterministic scope gate, which either issues a fast refusal for out-of-scope entities or proceeds to vector search, the LLM, and a validated answer](../../assets/diagrams/preventing-rag-api-hallucinations-scope-gate.svg)
+
+*Figure 2: Deterministic scope gating runs before retrieval, so out-of-scope queries never reach the vector database or the LLM.*
+
 ```
                          ┌───────────────────────────────────┐
                          │ Incoming User Query               │

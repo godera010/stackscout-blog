@@ -22,6 +22,10 @@ Human engineers discover these bugs only when a customer complains or when the A
 
 Giving an LLM unconstrained write permissions to your AWS production account is an invitation to disaster. The reliable architecture separates reasoning from execution.
 
+![Diagram of two lanes: the AWS DevOps Agent MCP reading telemetry and synthesizing root causes, and Kiro Crew applying gated write actions back to AWS infrastructure](../../assets/diagrams/autonomous-aws-ops-agent-mcp-brain-hands.svg)
+
+*Figure 2: The Brain reads telemetry and proposes fixes; only the Hands can apply a gated write action to production.*
+
 ```
 ┌────────────────────────────────────────────────────────┐
 │                   AWS Cloud Infrastructure             │

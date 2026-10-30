@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 360" width="800" height="360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">The Design-Plan-Execute loop</title>
+  <desc id="desc">Design feeds Plan, Plan feeds Execute, and every executed step is verified against a test command; a failed verification loops back to Execute, a passed one advances to the next step.</desc>
+  <defs>
+    <marker id="arrow4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, sans-serif; }
+    .lbl { fill:#f1f5f9; font-size:16px; text-anchor:middle; font-weight:600; }
+    .sub { fill:#b9c2cf; font-size:12.5px; text-anchor:middle; }
+    .edge { fill:none; stroke:#64748b; stroke-width:2; marker-end:url(#arrow4); }
+    .tag { fill:#94a3b8; font-size:13px; text-anchor:middle; font-weight:600; }
+  </style>
+
+  <rect x="20" y="40" width="200" height="70" rx="10" fill="#1e293bf2" stroke="#3b82f6" stroke-width="2"/>
+  <text x="120" y="70" class="lbl">DESIGN</text>
+  <text x="120" y="92" class="sub">Trade-offs &amp; UX</text>
+
+  <path class="edge" d="M220,75 L280,75"/>
+
+  <rect x="290" y="40" width="200" height="70" rx="10" fill="#1e293bf2" stroke="#7c3aed" stroke-width="2"/>
+  <text x="390" y="70" class="lbl">PLAN</text>
+  <text x="390" y="92" class="sub">Markdown on disk</text>
+
+  <path class="edge" d="M490,75 L560,75"/>
+
+  <rect x="570" y="40" width="200" height="70" rx="10" fill="#1e293bf2" stroke="#f59e0b" stroke-width="2"/>
+  <text x="670" y="70" class="lbl">EXECUTE</text>
+  <text x="670" y="92" class="sub">One step at a time</text>
+
+  <path class="edge" d="M670,110 L670,180"/>
+
+  <polygon points="670,186 740,226 670,266 600,226" fill="#1e293bf2" stroke="#16a34a" stroke-width="2"/>
+  <text x="670" y="222" class="lbl" font-size="14">VERIFY</text>
+  <text x="670" y="238" class="sub" font-size="10.5">Test cmd</text>
+
+  <path class="edge" d="M600,226 C 480,210 460,150 560,100"/>
+  <text x="440" y="276" class="tag">Fail — regression caught at the step boundary, retry Execute</text>
+
+  <path class="edge" d="M670,266 L670,310"/>
+  <text x="670" y="332" class="tag">Pass — advance to next step</text>
+</svg>

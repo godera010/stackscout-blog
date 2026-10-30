@@ -43,6 +43,10 @@ The difference comes down to three operational capabilities:
 
 Giving an agent free rein on a blank prompt produces sprawling, over-engineered messes. The fix is strictly separating work into three distinct phases.
 
+![Loop diagram of Design feeding Plan, Plan feeding Execute, and a Verify step that loops back to Execute on failure or advances on a pass](../../assets/diagrams/coding-with-claude-code-in-production-design-plan-execute.svg)
+
+*Figure 2: A failed verification loops back to Execute immediately, instead of letting regressions accumulate across steps.*
+
 ```
 ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
 │     DESIGN      │ ────▶ │      PLAN       │ ────▶ │     EXECUTE     │
