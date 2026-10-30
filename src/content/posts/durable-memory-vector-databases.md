@@ -3,7 +3,7 @@ title: "Durable Memory: Why Vector Databases Aren't Enough"
 description: "Why durable memory is more than persistent storage, and why the real architectural problem begins at the write boundary."
 date: 2026-08-14
 tags: ["AI", "LLM", "Data Engineering", "Architecture"]
-image: ../../assets/images/durable_memory_architecture.jpg
+image: ../../assets/images/durable_memory_architecture.webp
 imageAlt: "Durable memory and vector database architecture diagram"
 series: "Building the AI Memory Stack"
 part: 3

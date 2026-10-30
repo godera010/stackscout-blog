@@ -4,7 +4,7 @@ description: "Why AI evaluation harness architectures create massive score sprea
 date: 2026-08-25
 tags: ["AI", "LLM", "Testing"]
 tldr: "On AI benchmarks like ARC-AGI-3, evaluation harnesses account for score disparities of up to 70 points on identical model weights. Without documenting scaffold memory, compaction settings, supervisory loops, and action budgets, benchmark numbers represent untyped claims about a software system rather than objective measurements of model intelligence."
-image: ../../assets/images/ai_eval_harness.jpg
+image: ../../assets/images/ai_eval_harness.webp
 imageAlt: "AI evaluation harness and benchmark provenance diagram"
 ---
 

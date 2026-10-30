@@ -4,7 +4,7 @@ description: "How to build an automated Accounts Receivable payment analysis too
 date: 2026-08-25
 tags: ["Data Engineering", "Performance"]
 tldr: "Managing Accounts Receivable (AR) through spreadsheets inevitably leads to broken formulas, missed delinquencies, and blind spots in cash flow. By replacing manual spreadsheets with a 50-line vectorized Pandas pipeline, you can parse millions of invoice records in milliseconds, compute accurate aging schedules, and classify customer credit risk automatically."
-image: ../../assets/images/polars_vectorized_pipeline.jpg
+image: ../../assets/images/polars_vectorized_pipeline.webp
 imageAlt: "Vectorized payment aging pipeline in Polars diagram"
 ---
 

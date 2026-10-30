@@ -4,7 +4,7 @@ description: "The 10 essential books for AI engineers in 2026. Master transforme
 date: 2026-08-25
 tags: ["AI", "Architecture", "Career & Culture"]
 tldr: "Transitioning from an API wrapper builder to a true AI engineer requires deep systems thinking rather than chasing ephemeral JavaScript or Python frameworks. These 10 foundational books teach transformer internals, systems design, agentic workflows, and production LLM serving architectures."
-image: ../../assets/images/ai_books_engineering.jpg
+image: ../../assets/images/ai_books_engineering.webp
 imageAlt: "Essential books for AI systems engineers illustration"
 ---
 

@@ -4,7 +4,7 @@ description: "How a devastating Memory Limit Exceeded failure in the ACM-ICPC pr
 date: 2026-08-25
 tags: ["Performance", "Systems"]
 tldr: "During an ACM-ICPC collegiate programming contest, a team of straight-A computer science students scored zero points across all ten problems due to an unhandled Memory Limit Exceeded error. The culprit was not algorithm complexity, but buffering entire inputs and outputs into massive static arrays instead of using streaming I/O."
-image: ../../assets/images/streaming_fast_io.jpg
+image: ../../assets/images/streaming_fast_io.webp
 imageAlt: "Fast streaming I/O diagram"
 ---
 

@@ -4,7 +4,7 @@ description: "A deep dive into React DataGrid performance and architecture: rend
 date: 2026-08-25
 tags: ["Web", "Performance"]
 tldr: "Rendering large tabular datasets in React without DOM virtualization crashes browser memory and drops frame rates below usable thresholds. Using React DataGrid (`@inovua/reactdatagrid-community`), you can render 100,000+ records at a stable 60 FPS with nested tree hierarchies, faceted sorting, and instant keyboard navigation."
-image: ../../assets/images/react_datagrid_virtualization.jpg
+image: ../../assets/images/react_datagrid_virtualization.webp
 imageAlt: "React data grid virtualization diagram"
 ---
 

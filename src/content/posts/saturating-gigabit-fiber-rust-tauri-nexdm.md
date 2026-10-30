@@ -4,7 +4,7 @@ description: "A deep architectural review of NeXDM, a memory-safe, 64-segment do
 date: 2026-08-25
 tags: ["Performance", "Systems", "Developer Tools"]
 tldr: "Legacy download accelerators like Internet Download Manager (IDM) struggle with outdated UI designs, 32-connection bottlenecks, and paid licenses, while Electron alternatives consume excessive RAM. NeXDM solves this by pairing a high-concurrency Rust network engine with a lightweight Tauri desktop frontend, delivering 64-parallel segment throughput with under 28 MB of idle RAM."
-image: ../../assets/images/rust_tauri_gigabit_network.jpg
+image: ../../assets/images/rust_tauri_gigabit_network.webp
 imageAlt: "Rust and Tauri gigabit network download manager diagram"
 ---
 
