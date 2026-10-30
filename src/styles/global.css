@@ -781,7 +781,7 @@ table { display: block; overflow-x: auto; }
 /* Body diagrams: on narrow screens keep them at a readable size and scroll inside the figure, not the page */
 article p:has(> img) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 @media (max-width: 640px) {
-  article p > img { min-width: 620px; max-width: none; }
+  article p > img { width: 620px; min-width: 620px; max-width: none; height: auto; }
 
 /* ---- Tags & search ---------------------------------------------------- */
 .post-tags a { color: inherit; text-decoration: none; }
@@ -802,3 +802,17 @@ article p:has(> img) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   --pagefind-ui-tag: var(--color-code-bg);
   --pagefind-ui-font: var(--font-sans, inherit);
 }
+
+/* Header nav (Posts / Tags / Search / About / theme) must fit 360-390px phones */
+@media (max-width: 480px) {
+  header .nav-right { gap: 0.85rem; font-size: 0.9rem; }
+}
+@media (max-width: 380px) {
+  header .nav-right { gap: 0.6rem; font-size: 0.85rem; }
+  header .header-top { flex-wrap: wrap; row-gap: 0.5rem; }
+}
+/* Let wide children (diagrams, tables) scroll inside their own box instead of widening the page */
+main, article { min-width: 0; max-width: 100%; }
+article p:has(> img) { contain: inline-size; }
+/* Long inline code (URLs, headers) must wrap on phones */
+article p code, article li code, article td code { overflow-wrap: anywhere; }
