@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts } from '../lib/posts';
+import { SITE_TAGLINE } from '../lib/site';
+const posts = await getPosts();
+---
+<BaseLayout title="StackScout — Dev Infrastructure & Automation" description={SITE_TAGLINE}>
+  <div class="section-label">LATEST &amp; ARCHIVE</div>
+  <div class="post-list">
+    {posts.map((post, i) => <PostCard post={post} featured={i === 0} />)}
+  </div>
+</BaseLayout>

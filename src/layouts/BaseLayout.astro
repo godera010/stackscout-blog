@@ -1,0 +1,93 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { SITE_URL, SITE_TITLE, CF_ANALYTICS_TOKEN } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  active?: 'posts' | 'about' | '';
+  ogType?: 'website' | 'article';
+  /** Absolute or site-relative URL of the social share image. */
+  ogImage?: string;
+  noindex?: boolean;
+}
+const { title, description, active = '', ogType = 'website', ogImage, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const image = ogImage ? new URL(ogImage, SITE_URL).href : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,400..600;1,400..600&display=swap" />
+
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+    {image && <meta name="twitter:image" content={image} />}
+
+    <link rel="alternate" type="application/rss+xml" title="StackScout RSS Feed" href={`${SITE_URL}/rss.xml`} />
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: CF_ANALYTICS_TOKEN })}></script>
+
+    <!-- Set theme before first paint to avoid a flash -->
+    <script is:inline>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        document.documentElement.setAttribute('data-theme', t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+      })();
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <Header active={active} />
+    <main><slot /></main>
+    <Footer />
+    <script>
+      // Theme toggle
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const root = document.documentElement;
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch {}
+      });
+
+      // Share / copy-link buttons (event delegation: works for any card or article button)
+      const flash = (btn: HTMLElement, text: string) => {
+        const original = btn.innerHTML;
+        btn.textContent = text;
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
+      };
+      document.addEventListener('click', async (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-share-url], [data-copy-link]');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const url = btn.dataset.shareUrl ?? location.href;
+        const title = btn.dataset.shareTitle ?? document.title;
+        try {
+          if (btn.dataset.shareUrl && navigator.share) { await navigator.share({ title, url }); return; }
+          await navigator.clipboard.writeText(url);
+          flash(btn, 'Copied!');
+        } catch { /* user cancelled or clipboard blocked */ }
+      });
+    </script>
+  </body>
+</html>
