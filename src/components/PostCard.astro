@@ -1,0 +1,25 @@
+---
+import { formatDate, readingTime, type Post } from '../lib/posts';
+import { SITE_URL } from '../lib/site';
+interface Props { post: Post; featured?: boolean }
+const { post, featured = false } = Astro.props;
+const url = `/posts/${post.id}/`;
+---
+<div class:list={['post-item', { featured }]}>
+  <div class="meta-line">
+    {formatDate(post.data.date)} &nbsp;·&nbsp; {readingTime(post.body)}
+    {post.data.draft && <> &nbsp;·&nbsp; <strong>DRAFT</strong></>}
+  </div>
+  <h2><a href={url}>{post.data.title}</a></h2>
+  <p>{post.data.description}</p>
+  <div class="post-tags">
+    {post.data.tags.map((t, i) => <>{i > 0 && <span> · </span>}{t}</>)}
+  </div>
+  <div class="post-actions">
+    <a href={url} class="read-more">Read article &rarr;</a>
+    <button class="share-card-btn" data-share-url={`${SITE_URL}${url}`} data-share-title={post.data.title} title="Share article">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      Share
+    </button>
+  </div>
+</div>

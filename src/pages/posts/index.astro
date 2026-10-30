@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts } from '../../lib/posts';
+const posts = await getPosts();
+---
+<BaseLayout
+  title="All Posts — StackScout"
+  description={`All ${posts.length} dev infrastructure, automation, and deployment deep-dives on StackScout.`}
+  active="posts"
+>
+  <div class="section-label">ALL ARTICLES ({posts.length})</div>
+  <div class="post-list">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+</BaseLayout>

@@ -1,0 +1,97 @@
+---
+import { render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, formatDate, readingTime, recommend } from '../../lib/posts';
+import { SITE_URL, AUTHOR_NAME } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props;
+const { Content, headings } = await render(post);
+const { title, description, date, updated, tldr, image, imageAlt } = post.data;
+
+const toc = headings.filter((h) => h.depth === 2);
+const related = recommend(post, posts, 2);
+const url = `${SITE_URL}/posts/${post.id}/`;
+const ogImage = image ? (await getImage({ src: image, width: 1200, format: 'jpg' })).src : undefined;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  url,
+  datePublished: date.toISOString().slice(0, 10),
+  dateModified: (updated ?? date).toISOString().slice(0, 10),
+  ...(ogImage && { image: new URL(ogImage, SITE_URL).href }),
+  author: { '@type': 'Organization', name: AUTHOR_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: 'StackScout', url: SITE_URL },
+};
+const shareTitle = encodeURIComponent(title);
+const shareUrl = encodeURIComponent(url);
+---
+<BaseLayout title={`${title} — StackScout`} description={description} active="posts" ogType="article" ogImage={ogImage}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <div class="subtitle">{description}</div>
+      <div class="meta">
+        {formatDate(date)} &nbsp;·&nbsp; {readingTime(post.body)} &nbsp;·&nbsp; BY {AUTHOR_NAME}
+        {post.data.draft && <> &nbsp;·&nbsp; <strong>DRAFT</strong></>}
+      </div>
+    </header>
+
+    {tldr && (
+      <blockquote><p><strong>TL;DR:</strong> {tldr}</p></blockquote>
+    )}
+
+    {toc.length > 0 && (
+      <div class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+          {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+        </ol>
+      </div>
+    )}
+
+    {image && (
+      <figure>
+        <Image src={image} alt={imageAlt!} widths={[480, 800, 1200]} sizes="(max-width: 800px) 100vw, 800px" loading="lazy" decoding="async" />
+        <figcaption>Figure 1: {imageAlt}.</figcaption>
+      </figure>
+    )}
+
+    <Content />
+
+    {related.length > 0 && (
+      <section class="recommended-section">
+        <div class="section-label">RECOMMENDED READING</div>
+        <div class="recommended-grid">
+          {related.map((rec) => (
+            <a href={`/posts/${rec.id}/`} class="recommended-card">
+              <div class="meta-line">{rec.data.tags.slice(0, 2).join(' · ').toUpperCase()} &nbsp;·&nbsp; {readingTime(rec.body)}</div>
+              <h3>{rec.data.title}</h3>
+              <p>{rec.data.description}</p>
+              <span class="read-link">Read article &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <div class="article-share">
+      <span class="share-label">Share Article</span>
+      <div class="share-buttons">
+        <a href={`https://x.com/intent/post?text=${shareTitle}&url=${shareUrl}`} target="_blank" rel="noopener" class="share-btn">X (Twitter)</a>
+        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noopener" class="share-btn">LinkedIn</a>
+        <a href={`https://news.ycombinator.com/submitlink?u=${shareUrl}&t=${shareTitle}`} target="_blank" rel="noopener" class="share-btn">Hacker News</a>
+        <button class="share-btn" data-copy-link>Copy Link</button>
+      </div>
+    </div>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</BaseLayout>

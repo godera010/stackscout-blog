@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { GITHUB_URL } from '../lib/site';
+---
+<BaseLayout
+  title="About — StackScout"
+  description="About StackScout — Practical engineering guides for the stack behind modern software."
+  active="about"
+>
+  <article>
+    <header>
+      <h1>About StackScout</h1>
+      <div class="subtitle">Practical engineering deep dives into the tools and infrastructure behind modern software.</div>
+    </header>
+
+    <h2>Editorial Mission</h2>
+    <p>StackScout exists to demystify developer infrastructure, container ecosystems, deployment pipelines, and automation tooling. Rather than writing surface-level installation tutorials, we focus on explaining <strong>what actually happens under the hood</strong>.</p>
+
+    <p>Our core content pillars include:</p>
+    <ul>
+      <li><strong>Containers &amp; Virtualization:</strong> WSL 2, Docker Engine, Podman, cgroups, kernel namespaces, and OCI runtimes.</li>
+      <li><strong>DevOps &amp; Automation:</strong> CI/CD workflows, local development orchestration, and Infrastructure as Code.</li>
+      <li><strong>Cloud &amp; Networking:</strong> Reverse proxies (Nginx, Traefik, Caddy), DNS, TLS termination, and static hosting platforms.</li>
+      <li><strong>Self-Hosted Systems:</strong> Lightweight tools, SQLite operational patterns, and containerized dev environments.</li>
+    </ul>
+
+    <h2>Architecture &amp; Tech Stack</h2>
+    <p>StackScout is a static site built with Astro:</p>
+    <ul>
+      <li><strong>Framework:</strong> Astro, shipping zero client-side JavaScript frameworks.</li>
+      <li><strong>Content:</strong> Git-tracked Markdown articles validated by a typed content schema.</li>
+      <li><strong>Performance:</strong> Pre-rendered HTML, build-time image optimization, and a hand-written CSS design system.</li>
+      <li><strong>Hosting &amp; CD:</strong> Pull requests get a preview URL; merging to main deploys globally via Cloudflare Pages.</li>
+    </ul>
+
+    <h2>Open Source &amp; Repository</h2>
+    <p>The code, templates, and engineering articles for StackScout are open source and available on GitHub:</p>
+    <p><a href={GITHUB_URL} target="_blank" rel="noopener">{GITHUB_URL.replace('https://', '')} &rarr;</a></p>
+  </article>
+</BaseLayout>
