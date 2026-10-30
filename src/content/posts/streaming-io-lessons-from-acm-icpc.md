@@ -2,7 +2,7 @@
 title: "How Scoring Zero at ACM-ICPC Taught Me the O(1) Streaming I/O Rule"
 description: "How a devastating Memory Limit Exceeded failure in the ACM-ICPC programming contest taught lasting software engineering lessons in streaming I/O and memory management."
 date: 2026-08-25
-tags: ["Performance", "I/O", "Algorithms", "Systems"]
+tags: ["Performance", "Systems"]
 tldr: "During an ACM-ICPC collegiate programming contest, a team of straight-A computer science students scored zero points across all ten problems due to an unhandled Memory Limit Exceeded error. The culprit was not algorithm complexity, but buffering entire inputs and outputs into massive static arrays instead of using streaming I/O."
 image: ../../assets/images/streaming_fast_io.jpg
 imageAlt: "Fast streaming I/O diagram"

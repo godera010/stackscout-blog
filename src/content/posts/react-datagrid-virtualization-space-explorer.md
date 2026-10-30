@@ -2,7 +2,7 @@
 title: "Virtualizing 100,000 Rows at 60 FPS: Building a Space Mission Explorer with React DataGrid"
 description: "A deep dive into React DataGrid performance and architecture: rendering 100,000+ records at 60 FPS using DOM virtualization, tree hierarchies, and memoized cell renderers."
 date: 2026-08-25
-tags: ["React", "Performance", "Frontend", "Virtualization"]
+tags: ["Web", "Performance"]
 tldr: "Rendering large tabular datasets in React without DOM virtualization crashes browser memory and drops frame rates below usable thresholds. Using React DataGrid (`@inovua/reactdatagrid-community`), you can render 100,000+ records at a stable 60 FPS with nested tree hierarchies, faceted sorting, and instant keyboard navigation."
 image: ../../assets/images/react_datagrid_virtualization.jpg
 imageAlt: "React data grid virtualization diagram"

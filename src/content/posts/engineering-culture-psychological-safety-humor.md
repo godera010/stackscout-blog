@@ -2,7 +2,7 @@
 title: "Why Memes Are Essential Infrastructure for High-Pressure Engineering Teams"
 description: "How shared technical humor, satirical coding memes, and community traditions build psychological safety, defuse production stress, and strengthen remote engineering teams."
 date: 2026-08-25
-tags: ["Culture", "Engineering Leadership", "DevOps", "Teamwork"]
+tags: ["Career & Culture", "DevOps"]
 tldr: "Developer memes and weekly community rituals like Meme Monday are not frivolous workplace distractions. They function as essential social mechanisms that convert shared technical frustrations—such as merge conflicts, broken CI pipelines, and legacy debt—into psychological safety, team resilience, and effective asynchronous communication."
 image: ../../assets/images/engineering_culture_postmortem.jpg
 imageAlt: "Engineering culture and blameless postmortem illustration"

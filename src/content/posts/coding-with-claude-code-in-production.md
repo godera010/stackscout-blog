@@ -2,7 +2,7 @@
 title: "Beyond the Hype: My Production Workflow with Claude Code"
 description: "A battle-tested guide to coding with Claude Code. Learn the Design-Plan-Execute framework, repository setup, delegated tasks, and failure modes."
 date: 2026-08-25
-tags: ["AI", "Developer Tools", "Claude Code", "Workflow"]
+tags: ["AI", "AI Agents", "Developer Tools"]
 tldr: "Coding effectively with Claude Code requires a structured three-phase framework—Design, Plan, and Execute—anchored by persistent markdown plans inside the repository. By treating the agent as a delegated collaborator rather than an autocomplete tool, engineers can eliminate mechanical friction while retaining full control over architecture, code review, and production releases."
 image: ../../assets/images/claude_code_workflow.jpg
 imageAlt: "Claude Code terminal agent workflow architecture diagram"

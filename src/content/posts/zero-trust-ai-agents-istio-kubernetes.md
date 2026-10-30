@@ -2,7 +2,7 @@
 title: "Quarantining Autonomous SRE Agents: Zero-Trust Istio Mesh Architecture on Kubernetes"
 description: "How to build an autonomous AIOps incident response agent (NEXUS) on Amazon EKS and Istio using SPIFFE identities, strict mTLS, and zero-trust sidecar isolation."
 date: 2026-08-25
-tags: ["Kubernetes", "Istio", "Security", "AI"]
+tags: ["AI Agents", "Cloud", "Containers"]
 tldr: "Autonomous AIOps agents must never be granted unrestricted Kubernetes cluster privileges. By embedding the NEXUS operations agent inside an Istio service mesh with SPIFFE identities, strict mutual TLS, and granular sidecar AuthorizationPolicies, platform teams enable real-time telemetry diagnosis while physically blocking the agent from touching production application pods."
 image: ../../assets/images/zero_trust_istio_k8s.jpg
 imageAlt: "Zero trust AI agent security in Istio and Kubernetes architecture diagram"
